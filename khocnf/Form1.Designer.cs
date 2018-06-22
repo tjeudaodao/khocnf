@@ -109,7 +109,7 @@
             this.pbclose.Image = ((System.Drawing.Image)(resources.GetObject("pbclose.Image")));
             this.pbclose.Location = new System.Drawing.Point(1322, 0);
             this.pbclose.Name = "pbclose";
-            this.pbclose.Size = new System.Drawing.Size(29, 32);
+            this.pbclose.Size = new System.Drawing.Size(30, 30);
             this.pbclose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbclose.TabIndex = 1;
             this.pbclose.TabStop = false;
@@ -120,7 +120,7 @@
             this.pbminimize.Image = ((System.Drawing.Image)(resources.GetObject("pbminimize.Image")));
             this.pbminimize.Location = new System.Drawing.Point(1286, 0);
             this.pbminimize.Name = "pbminimize";
-            this.pbminimize.Size = new System.Drawing.Size(29, 32);
+            this.pbminimize.Size = new System.Drawing.Size(30, 30);
             this.pbminimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbminimize.TabIndex = 1;
             this.pbminimize.TabStop = false;
