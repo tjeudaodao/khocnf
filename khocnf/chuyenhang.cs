@@ -65,7 +65,8 @@ namespace khocnf
                 txtbarcode.Clear();
                 btnbatdaukiemhang.Enabled = true;
                 txtbarcode.Enabled = false;
-                //lbthongbao.Text = "Kiểm hàng từ đầu nào.";
+                chinhsizecot = false;
+                chinhsuama = false;
             }
             catch (Exception)
             {
@@ -153,7 +154,7 @@ namespace khocnf
                         {
                             lbmasp.Text = masp;
                             lbtinhtrang.Text = dulieu.tinhtrang(masp);
-                            dulieu.insertdl1(txtbarcode.Text, lbmasp.Text, "1", ngay, gio);
+                            dulieu.insertdl1(txtbarcode.Text, lbmasp.Text, "1", ngay, gio,txtnoinhan.Text);
                             dulieu.loadvaodatag1(datag1);
                             if (datag3.RowCount > 0)
                             {
@@ -185,6 +186,12 @@ namespace khocnf
                                 chinhsizecot = true;
                             }
                             capnhatlbthongtin(masp);
+                            if (pbdelete.Image == Properties.Resources.taygif || chinhsuama)
+                            {
+                                pbdelete.Image = Properties.Resources.eraser;
+                                chinhsuama = false;
+                            }
+                            
                         }
                          catch (Exception)
                         {
@@ -335,7 +342,8 @@ namespace khocnf
                 if (datag3.RowCount > 0)
                 {
                     DataGridViewColumn column = datag3.Columns[1];
-                    column.Width = 30;
+                    column.Width = 40;
+                    datag3.DefaultCellStyle.Font = new Font("Comic Sans MS", 12.0f);
                 }
                 dulieu.xoabangtamchuyenhang1();
                 string StrQuery = "";
@@ -416,10 +424,8 @@ namespace khocnf
                     var dulieu = ketnoi.Khoitao();
                     xuatexcel();
                     dulieu.savevaobangchuyenhang(ngay, gio);
-                    dulieu.xoabangtamchuyenhang();
                     datag3.DataSource = dulieu.tachdonmoi(datag2,"bangtamchuyenhang1");
-
-                    dulieu.xoabangthuathieu();
+                    
                     lammoitatca();
                     lbsoluongdon.Text = dulieu.tongsoluongcannhat("bangtamchuyenhang1");
                     hamtao.notifi_hts("OK ,Triển chiêu");

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.IO;
 
+
 namespace khocnf
 {
     public partial class Form1 : Form
@@ -19,14 +20,44 @@ namespace khocnf
         kiemhang uskiemhang = new kiemhang();
         chuyenhang uschuyenhang = new chuyenhang();
         timkiem ustimkiem = new timkiem();
-        
+
+        Thread kiemtra;
         public Form1()
         {
             InitializeComponent();
-
-            
+            kiemtra = new Thread(hamkiemtra);
+            kiemtra.IsBackground = true;
+            kiemtra.Start();
         }
         
+        void hamkiemtra()
+        {
+            try
+            {
+                Thread.Sleep(10000);
+                var con = ketnoimysql.Khoitao();
+                var conn = ketnoi.Khoitao();
+
+                pbcapnhat.Invoke(new MethodInvoker(delegate ()
+                {
+                    pbcapnhat.Image = Properties.Resources.update;
+                    DataTable dt = con.Check();
+                    conn.chenvaoDATA(dt);
+
+                    pbcapnhat.Image = Properties.Resources.hetupdate;
+                }));
+
+
+
+
+            }
+            catch (Exception)
+            {
+
+                hamtao.notifi_hts("Có lỗi cập nhật");
+            }
+            
+        }
         private void btnchuyenhang_Click(object sender, EventArgs e)
         {
             panthaydoi.Top = btnchuyenhang.Top;
@@ -42,7 +73,7 @@ namespace khocnf
         private void btnkiemhang_Click(object sender, EventArgs e)
         {
             panthaydoi.Top = btnkiemhang.Top;
-            panthaydoi.BackColor = Color.OrangeRed;
+            panthaydoi.BackColor = Color.SpringGreen;
             btnkiemhang.BackColor = Color.Gray;
             btnchuyenhang.BackColor = Color.DimGray;
             btntimkiem.BackColor = Color.DimGray;
@@ -54,10 +85,11 @@ namespace khocnf
         private void btntimkiem_Click(object sender, EventArgs e)
         {
             panthaydoi.Top = btntimkiem.Top;
+            panthaydoi.BackColor = Color.OrangeRed;
             btntimkiem.BackColor = Color.Gray;
             btnchuyenhang.BackColor = Color.DimGray;
             btnkiemhang.BackColor = Color.DimGray;
-
+            
             ustimkiem.Show();
             ustimkiem.BringToFront();
         }
@@ -125,5 +157,13 @@ namespace khocnf
             return base.ProcessCmdKey(ref msg, keyData);
         }
         #endregion
+
+        private void pbcapnhat_Click(object sender, EventArgs e)
+        {
+            //if (!kiemtra.IsAlive)
+            //{
+            //    kiemtra.Start();
+            //}
+        }
     }
 }

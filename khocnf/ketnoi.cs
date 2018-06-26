@@ -56,6 +56,30 @@ namespace khocnf
         }
         #endregion
 
+        // xu ly thread
+        public void chenvaoDATA(DataTable dt)
+        {
+            string barcode = null;
+            string masp = null;
+            if (dt!= null)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    barcode = row[0].ToString();
+                    masp = row[1].ToString();
+                    if (barcode != null && masp != null)
+                    {
+                        string sql = "insert into data values('" + barcode + "','" + masp + "')";
+                        Open();
+                        SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+                        cmd.ExecuteNonQuery();
+                        Close();
+                    }
+                   
+                }
+            }
+        }
+        
         #region xuly kiemhang
         public string laymasp(string barcode)
         {
@@ -223,9 +247,9 @@ namespace khocnf
             cmd.ExecuteNonQuery();
             Close();
         }
-        public void chenthongtinphieu(string sophieu,string matong, string sl)
+        public void chenthongtinphieu(string sophieu,string masp, string sl)
         {
-            string sql = string.Format("insert into chitietphieu values('{0}','{1}','{2}')", sophieu, matong, sl);
+            string sql = string.Format("insert into chitietphieu values('{0}','{1}','{2}')", sophieu, masp, sl);
             Open();
             SQLiteCommand cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
@@ -389,9 +413,9 @@ namespace khocnf
             Close();
             return sl1;
         }
-        public void insertdl1(string barcode, string masp, string sl, string ngay, string gio)
+        public void insertdl1(string barcode, string masp, string sl, string ngay, string gio,string noinhan)
         {
-            string sql = "insert into bangtamchuyenhang(barcode,masp,soluong,ngay,gio) values('" + barcode + "','" + masp + "','" + sl + "','" + ngay + "','" + gio + "')";
+            string sql = "insert into bangtamchuyenhang(barcode,masp,soluong,ngay,gio,noinhan) values('" + barcode + "','" + masp + "','" + sl + "','" + ngay + "','" + gio + "', '"+noinhan+"')";
             Open();
             SQLiteCommand cmd = new SQLiteCommand(sql, conn);
 
@@ -605,7 +629,7 @@ namespace khocnf
         }
         public void savevaobangchuyenhang(string ngay, string gio)
         {
-            string sqlupdate = "update bangtamchuyenhang set ngay='" + ngay + "',gio='" + gio + "' ; insert into chuyenhang(barcode,masp,soluong,ngay,gio) select barcode,masp,soluong,ngay,gio from bangtamchuyenhang";
+            string sqlupdate = "update bangtamchuyenhang set ngay='" + ngay + "',gio='" + gio + "' ; insert into chuyenhang(barcode,masp,soluong,ngay,gio,noinhan) select barcode,masp,soluong,ngay,gio,noinhan from bangtamchuyenhang";
            
             Open();
             SQLiteCommand cmd = new SQLiteCommand(sqlupdate, conn);
@@ -673,6 +697,131 @@ namespace khocnf
             SQLiteCommand cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
             Close();
+        }
+        #endregion
+
+        #region tab tim kiem
+        public DataTable loadbangkiemhang(string ngay)
+        {
+            string sql = "select sophieu as 'Số phiếu',ngay as 'Ngày',gio as 'Giờ',masp as 'Mã chi tiết',soluong as 'Số lượng' from kiemhang where ngay ='" + ngay + "'";
+            Open();
+            SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
+            DataTable dt = new DataTable();
+            dta.Fill(dt);
+            Close();
+            return dt;
+        }
+        public DataTable loadbangchuyenhang(string ngay)
+        {
+            string sql = "select noinhan as 'Nơi nhận',ngay as 'Ngày',gio as 'Giờ',masp as 'Mã chi tiết',soluong as 'Số lượng' from chuyenhang where ngay ='" + ngay + "'";
+            Open();
+            SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
+            DataTable dt = new DataTable();
+            dta.Fill(dt);
+            Close();
+            return dt;
+        }
+        public DataTable loadbangPhieu(string ngay)
+        {
+            string sql = "select sophieu as 'Số phiếu',noidung as 'Nội dung',dieuphoi as 'User',tongsoluong as 'Số lượng' from bangphieu where ngay ='" + ngay + "'";
+            Open();
+            SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
+            DataTable dt = new DataTable();
+            dta.Fill(dt);
+            Close();
+            return dt;
+        }
+        public DataTable loadbangchitietPhieu()
+        {
+            string sql = "select sophieu as 'Số phiếu',masp as 'Mã sản phẩm',soluong as 'Số lượng' from chitietphieu";
+            Open();
+            SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
+            DataTable dt = new DataTable();
+            dta.Fill(dt);
+            Close();
+            return dt;
+        }
+        public DataTable loadbangchitietPhieu(string sophieu)
+        {
+            string sql = "select sophieu as 'Số phiếu',masp as 'Mã sản phẩm',soluong as 'Số lượng' from chitietphieu where sophieu ='" + sophieu + "'";
+            Open();
+            SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
+            DataTable dt = new DataTable();
+            dta.Fill(dt);
+            Close();
+            return dt;
+        }
+        public string laysodontrongngay(string ngay,string tenbang)
+        {
+            string sql = "select count(*) from (select count(gio) from '"+tenbang+"' where ngay = '"+ngay+"' group by gio)";
+            string sl = null;
+            Open();
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            SQLiteDataReader dtr = cmd.ExecuteReader();
+            while (dtr.Read())
+            {
+                sl = dtr[0].ToString();
+            }
+            Close();
+            return sl;
+        }
+        public string laysoluongtrongngay(string ngay,string tenbang)
+        {
+            string sql = "select sum(soluong) from '" + tenbang + "' where ngay ='" + ngay + "'";
+            string sl = null;
+            Open();
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            SQLiteDataReader dtr = cmd.ExecuteReader();
+            while (dtr.Read())
+            {
+                sl = dtr[0].ToString();
+            }
+            Close();
+            return sl;
+        }
+        public string laysoluong1dontrongngay(string ngay,string gio, string tenbang)
+        {
+            string sql = "select count(gio) from '"+tenbang+"' where ngay ='"+ngay+"' and gio ='"+gio+"'";
+            string sl = null;
+            Open();
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            SQLiteDataReader dtr = cmd.ExecuteReader();
+            while (dtr.Read())
+            {
+                sl = dtr[0].ToString();
+            }
+            Close();
+            return sl;
+        }
+        public DataTable loctheoSophieubang1(string sophieu)
+        {
+            string sql = "select sophieu as 'Số phiếu',ngay as 'Ngày',gio as 'Giờ',masp as 'Mã chi tiết',soluong as 'Số lượng' from kiemhang where sophieu like 'CNF01/INT/" + sophieu + "%'";
+            Open();
+            SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
+            DataTable dt = new DataTable();
+            dta.Fill(dt);
+            Close();
+            return dt;
+        }
+        public DataTable loctheoSophieubang3(string sophieu)
+        {
+            string sql = "select sophieu as 'Số phiếu',noidung as 'Nội dung',dieuphoi as 'User',tongsoluong as 'Số lượng' from bangphieu where sophieu like 'CNF01/INT/" + sophieu + "%'";
+            Open();
+            SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
+            DataTable dt = new DataTable();
+            dta.Fill(dt);
+            Close();
+            return dt;
+        }
+        public DataTable loctheoNoinhan(string noinhan)
+        {
+            string sql = "select noinhan as 'Nơi nhận',ngay as 'Ngày',gio as 'Giờ',masp as 'Mã chi tiết',soluong as 'Số lượng' from chuyenhang where noinhan like '" + noinhan + "%'";
+            Open();
+            SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
+            DataTable dt = new DataTable();
+            dta.Fill(dt);
+            Close();
+            return dt;
         }
         #endregion
     }

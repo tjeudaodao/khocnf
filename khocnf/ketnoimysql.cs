@@ -16,8 +16,8 @@ namespace khocnf
         private MySqlConnection conn = null;
         private ketnoimysql()
         {
-            //string connstring = string.Format("Server=27.72.29.28;port=3306; database=cnf; User Id=kho; password=1234");
-            string connstring = string.Format("Server=localhost;port=3306; database=cnf; User Id=hts; password=1211");
+            string connstring = string.Format("Server=27.72.29.28;port=3306; database=cnf; User Id=kho; password=1234");
+            //string connstring = string.Format("Server=localhost;port=3306; database=cnf; User Id=hts; password=1211");
             conn = new MySqlConnection(connstring);
         }
         private static ketnoimysql _khoitao = null;
@@ -53,5 +53,15 @@ namespace khocnf
         }
         #endregion
 
+        public DataTable Check()
+        {
+            string sql = "select cnf.data.barcode,cnf.data.masp from cnf.data left join cnf.data_backup on cnf.data.barcode = cnf.data_backup.barcode where cnf.data_backup.barcode is null";
+            Open();
+            MySqlDataAdapter dta = new MySqlDataAdapter(sql, conn);
+            DataTable dt = new DataTable();
+            dta.Fill(dt);
+            Close();
+            return dt;
+        }
     }
 }

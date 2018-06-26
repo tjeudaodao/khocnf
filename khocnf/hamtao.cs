@@ -203,7 +203,7 @@ namespace khocnf
         {
             ExcelPackage ExcelPkg = new ExcelPackage();
             ExcelWorksheet worksheet = ExcelPkg.Workbook.Worksheets.Add("hts");
-            worksheet.Cells["A1"].LoadFromDataTable(dt, true);
+            worksheet.Cells["A1"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
 
             worksheet.Column(1).Width = 28;
             worksheet.Column(2).Width = 4;
@@ -246,10 +246,12 @@ namespace khocnf
             {
                 noinhan = "-";
             }
+            Random dr = new Random();
+            string ver = " " + dr.Next(1, 100).ToString();
             using (SaveFileDialog saveDialog = new SaveFileDialog())
             {
                 saveDialog.Filter = "Excel (.xlsx)|*.xlsx";
-                saveDialog.FileName = noinhan + "-" + tongsp + "sp" +"-"+ "27LVL-ĐC ngày " + tenfile ;
+                saveDialog.FileName = noinhan + "-" + tongsp + "sp" +"-"+ "27LVL-ĐC ngày " + tenfile +ver;
                 if (saveDialog.ShowDialog() != DialogResult.Cancel)
                 {
                     duongdanfileexcel = Path.GetFullPath(saveDialog.FileName);
@@ -260,7 +262,7 @@ namespace khocnf
 
                         ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("27LVL_Điều chuyển_"+tongsp+"sp");
 
-                        worksheet.Cells["A1"].LoadFromDataTable(dt, true);
+                        worksheet.Cells["A1"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
 
                         worksheet.Cells[worksheet.Dimension.End.Row + 1, 1].Value = "Tổng sản phẩm:";
                         worksheet.Cells[worksheet.Dimension.End.Row, 3].Value = Int32.Parse(tongsp);
@@ -280,7 +282,7 @@ namespace khocnf
             ExcelWorksheet worksheet = ExcelPkg.Workbook.Worksheets.Add("hts");
             worksheet.Cells["A1"].Value = "27 Lê Văn Lương _ Điều chuyển";
             worksheet.Cells["A2"].Value = "Đến :" +noinhan;
-            worksheet.Cells["A3"].LoadFromDataTable(dt, true);
+            worksheet.Cells["A4"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
 
             worksheet.Column(1).Width = 28;
             worksheet.Column(2).Width = 4;
@@ -326,6 +328,52 @@ namespace khocnf
                 dtmasp.Rows.Add(newrow);
             }
             return dtmasp;
+        }
+        #endregion
+        #region tab tim kiem
+        public static void xuatfileexceltabtimkiem(DataTable dtkiemhang,DataTable dtchuyenhang,DataTable dtchitietphieu, string ngay)
+        {
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
+            {
+                Random dr = new Random();
+                string ver = " " + dr.Next(1, 100).ToString();
+                saveDialog.Filter = "Excel (.xlsx)|*.xlsx";
+                saveDialog.FileName = "Thống kê đơn từ ngày " +ngay + ver;
+                if (saveDialog.ShowDialog() != DialogResult.Cancel)
+                {
+                    duongdanfileexcel = Path.GetFullPath(saveDialog.FileName);
+                    string exportFilePath = saveDialog.FileName;
+                    var newFile = new FileInfo(exportFilePath);
+                    using (var package = new ExcelPackage(newFile))
+                    {
+                        ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Kiểm hàng");
+
+                        worksheet.Cells["A1"].LoadFromDataTable(dtkiemhang, true, OfficeOpenXml.Table.TableStyles.Light1);
+                        worksheet.Column(1).AutoFit();
+                        worksheet.Column(2).AutoFit();
+                        worksheet.Column(3).AutoFit();
+                        worksheet.Column(4).AutoFit();
+
+                        worksheet = package.Workbook.Worksheets.Add("Chuyển hàng");
+
+                        worksheet.Cells["A1"].LoadFromDataTable(dtchuyenhang, true,OfficeOpenXml.Table.TableStyles.Light1);
+                        worksheet.Column(1).AutoFit();
+                        worksheet.Column(2).AutoFit();
+                        worksheet.Column(3).AutoFit();
+                        worksheet.Column(4).AutoFit();
+
+                        worksheet = package.Workbook.Worksheets.Add("Chi tiết phiếu");
+
+                        worksheet.Cells["A1"].LoadFromDataTable(dtchitietphieu, true, OfficeOpenXml.Table.TableStyles.Light1);
+                        worksheet.Column(1).AutoFit();
+                        worksheet.Column(2).AutoFit();
+                        worksheet.Column(3).AutoFit();
+                        worksheet.Column(4).AutoFit();
+                        package.Save();
+
+                    }
+                }
+            }
         }
         #endregion
     }

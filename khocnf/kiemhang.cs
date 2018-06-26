@@ -38,7 +38,7 @@ namespace khocnf
             txtsoluong.Enabled = false;
             amthanh.amluong(true);
 
-            btnbatdaukiemhang.ForeColor = Color.OrangeRed;
+            btnbatdaukiemhang.ForeColor = Color.SpringGreen;
             
         }
 
@@ -318,6 +318,7 @@ namespace khocnf
                     {
                         string matong = null;
                         string soluong = null;
+                        string masp = null;
                         ExcelPackage filechon = new ExcelPackage(new FileInfo(file));
                         ExcelWorksheet ws = filechon.Workbook.Worksheets[1];
                         var sodong = ws.Dimension.End.Row;
@@ -333,13 +334,14 @@ namespace khocnf
                                 noidung = ws.Cells[2, 11].Value.ToString();
                                 dieuphoi = ws.Cells[2, 18].Value.ToString();
                                 tongsoluong = ws.Cells[2, 14].Value.ToString();
+
                                 for (int i = 3; i < sodong; i++)
                                 {
                                     matong = ws.Cells[i, 10].Value.ToString();
-
+                                    masp = ws.Cells[i, 12].Value.ToString();
                                     soluong = ws.Cells[i, 14].Value.ToString();
                                     dulieu.laydataexcel(matong, soluong);
-                                    dulieu.chenthongtinphieu(sophieu, matong, soluong);
+                                    dulieu.chenthongtinphieu(sophieu, masp, soluong);
                                 }
                                 dulieu.chenthongtinphieu(sophieu, noidung, dieuphoi, tongsoluong);
                             }
