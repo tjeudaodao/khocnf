@@ -30,21 +30,21 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pantieude = new System.Windows.Forms.Panel();
-            this.panthaydoi = new System.Windows.Forms.Panel();
-            this.pbminimize = new System.Windows.Forms.PictureBox();
-            this.pbclose = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pbcapnhat = new System.Windows.Forms.PictureBox();
             this.pbtatmoamthanh = new System.Windows.Forms.PictureBox();
+            this.panthaydoi = new System.Windows.Forms.Panel();
             this.btntimkiem = new System.Windows.Forms.Button();
             this.btnchuyenhang = new System.Windows.Forms.Button();
             this.btnkiemhang = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbminimize = new System.Windows.Forms.PictureBox();
+            this.pbclose = new System.Windows.Forms.PictureBox();
             this.pantieude.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbminimize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbclose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbcapnhat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtatmoamthanh)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbminimize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbclose)).BeginInit();
             this.SuspendLayout();
             // 
             // pantieude
@@ -63,35 +63,15 @@
             this.pantieude.Size = new System.Drawing.Size(190, 720);
             this.pantieude.TabIndex = 0;
             // 
-            // panthaydoi
+            // pictureBox1
             // 
-            this.panthaydoi.BackColor = System.Drawing.Color.OrangeRed;
-            this.panthaydoi.Location = new System.Drawing.Point(7, 73);
-            this.panthaydoi.Name = "panthaydoi";
-            this.panthaydoi.Size = new System.Drawing.Size(10, 90);
-            this.panthaydoi.TabIndex = 1;
-            // 
-            // pbminimize
-            // 
-            this.pbminimize.Image = ((System.Drawing.Image)(resources.GetObject("pbminimize.Image")));
-            this.pbminimize.Location = new System.Drawing.Point(1286, 0);
-            this.pbminimize.Name = "pbminimize";
-            this.pbminimize.Size = new System.Drawing.Size(30, 30);
-            this.pbminimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbminimize.TabIndex = 1;
-            this.pbminimize.TabStop = false;
-            this.pbminimize.Click += new System.EventHandler(this.pbminimize_Click);
-            // 
-            // pbclose
-            // 
-            this.pbclose.Image = ((System.Drawing.Image)(resources.GetObject("pbclose.Image")));
-            this.pbclose.Location = new System.Drawing.Point(1326, 0);
-            this.pbclose.Name = "pbclose";
-            this.pbclose.Size = new System.Drawing.Size(30, 30);
-            this.pbclose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbclose.TabIndex = 1;
-            this.pbclose.TabStop = false;
-            this.pbclose.Click += new System.EventHandler(this.pbclose_Click);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(31, 622);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(133, 86);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
             // 
             // pbcapnhat
             // 
@@ -114,6 +94,14 @@
             this.pbtatmoamthanh.TabIndex = 2;
             this.pbtatmoamthanh.TabStop = false;
             this.pbtatmoamthanh.Click += new System.EventHandler(this.pbtatmoamthanh_Click);
+            // 
+            // panthaydoi
+            // 
+            this.panthaydoi.BackColor = System.Drawing.Color.OrangeRed;
+            this.panthaydoi.Location = new System.Drawing.Point(7, 73);
+            this.panthaydoi.Name = "panthaydoi";
+            this.panthaydoi.Size = new System.Drawing.Size(10, 90);
+            this.panthaydoi.TabIndex = 1;
             // 
             // btntimkiem
             // 
@@ -169,15 +157,27 @@
             this.btnkiemhang.UseVisualStyleBackColor = false;
             this.btnkiemhang.Click += new System.EventHandler(this.btnkiemhang_Click);
             // 
-            // pictureBox1
+            // pbminimize
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(31, 622);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(133, 86);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.pbminimize.Image = ((System.Drawing.Image)(resources.GetObject("pbminimize.Image")));
+            this.pbminimize.Location = new System.Drawing.Point(1286, 0);
+            this.pbminimize.Name = "pbminimize";
+            this.pbminimize.Size = new System.Drawing.Size(30, 30);
+            this.pbminimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbminimize.TabIndex = 1;
+            this.pbminimize.TabStop = false;
+            this.pbminimize.Click += new System.EventHandler(this.pbminimize_Click);
+            // 
+            // pbclose
+            // 
+            this.pbclose.Image = ((System.Drawing.Image)(resources.GetObject("pbclose.Image")));
+            this.pbclose.Location = new System.Drawing.Point(1326, 0);
+            this.pbclose.Name = "pbclose";
+            this.pbclose.Size = new System.Drawing.Size(30, 30);
+            this.pbclose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbclose.TabIndex = 1;
+            this.pbclose.TabStop = false;
+            this.pbclose.Click += new System.EventHandler(this.pbclose_Click);
             // 
             // Form1
             // 
@@ -191,6 +191,7 @@
             this.Controls.Add(this.pantieude);
             this.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "Form1";
@@ -198,11 +199,11 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.pantieude.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbminimize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbclose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbcapnhat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtatmoamthanh)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbminimize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbclose)).EndInit();
             this.ResumeLayout(false);
 
         }
