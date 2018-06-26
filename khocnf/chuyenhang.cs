@@ -78,6 +78,19 @@ namespace khocnf
         {
             txtbarcode.Clear();
         }
+        public void capnhatlbthongtin(string masp)
+        {
+            var dulieu = ketnoi.Khoitao();
+            string matong = dulieu.laymatong(masp);
+            if (dulieu.kiemtracotrongcotmatong(matong) != null)
+            {
+                lbthongtin.Text = dulieu.laysoluong2tudon(matong);
+            }
+            else
+            {
+                lbthongtin.Text = "-";
+            }
+        }
         //
         private void chuyenhang_Load(object sender, EventArgs e)
         {
@@ -136,7 +149,7 @@ namespace khocnf
                     }
                     else
                     {
-                          try
+                        try
                         {
                             lbmasp.Text = masp;
                             lbtinhtrang.Text = dulieu.tinhtrang(masp);
@@ -171,7 +184,7 @@ namespace khocnf
                                 column.Width = 120;
                                 chinhsizecot = true;
                             }
-
+                            capnhatlbthongtin(masp);
                         }
                          catch (Exception)
                         {
@@ -296,18 +309,14 @@ namespace khocnf
         {
             try
             {
+                var dulieu = ketnoi.Khoitao();
                 DataGridViewRow row = datag1.Rows[e.RowIndex];
                 idrows = row.Cells[0].Value.ToString();
                 lbmasp.Text = row.Cells[2].Value.ToString();
                 pbdelete.Image = Properties.Resources.taygif;
 
-                for (int i = 0; i < datag2.RowCount -1; i++)
-                {
-                    if (datag2.Rows[i].Cells[0].Value.ToString() == lbmasp.Text)
-                    {
-                        lbtinhtrang.Text = datag2.Rows[i].Cells[2].Value.ToString();
-                    }
-                }
+                lbtinhtrang.Text = dulieu.laytinhtrangthuathieu(lbmasp.Text);
+                capnhatlbthongtin(lbmasp.Text);
                 chinhsuama = true;
             }
             catch (Exception)
@@ -334,8 +343,6 @@ namespace khocnf
                 string mau1 = @"\d\w{2}\d{2}[SWAC]\d{3}";
 
                 dulieu.Open();
-                Console.WriteLine(datag3.RowCount.ToString());
-                Console.WriteLine(datag3.Rows[0].Cells[0].Value.ToString().Trim());
                 for (int i = 0; i < datag3.Rows.Count -1; i++)
                 {
                     string magoc = datag3.Rows[i].Cells[0].Value.ToString().Trim();
@@ -434,6 +441,7 @@ namespace khocnf
         {
             if (radioMathieu.Checked)
             {
+                var dulieu = ketnoi.Khoitao();
                 radioMathieu.BackColor = Color.RoyalBlue;
                 radioMathieu.ForeColor = Color.White;
                 string mabang3 = null;
@@ -444,7 +452,7 @@ namespace khocnf
                     for (int j = 0; j < datag2.RowCount - 1; j++)
                     {
                         mabang2 = datag2.Rows[j].Cells[0].Value.ToString();
-                        if (mabang3 == mabang2)
+                        if (mabang3 == mabang2 || dulieu.laymatong(mabang2) == mabang3)
                         {
                             datag3.Rows[i].Selected = true;
                         }

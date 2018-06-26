@@ -375,6 +375,20 @@ namespace khocnf
             Close();
             return hamtao.ConvertToDouble(sl1);
         }
+        public string laysoluong2tudon(string matong)
+        {
+            string sql = "select soluong2 from bangtamchuyenhang1 where matong='" + matong + "'";
+            Open();
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            SQLiteDataReader dtr = cmd.ExecuteReader();
+            string sl1 = null;
+            while (dtr.Read())
+            {
+                sl1 = dtr[0].ToString();
+            }
+            Close();
+            return sl1;
+        }
         public void insertdl1(string barcode, string masp, string sl, string ngay, string gio)
         {
             string sql = "insert into bangtamchuyenhang(barcode,masp,soluong,ngay,gio) values('" + barcode + "','" + masp + "','" + sl + "','" + ngay + "','" + gio + "')";
@@ -437,6 +451,20 @@ namespace khocnf
             dta.Fill(dt);
             Close();
             return dt;
+        }
+        public string laytinhtrangthuathieu(string masp)
+        {
+            string sql = "select tinhtrang from bangthuathieu where masp='" + masp + "'";
+            Open();
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            SQLiteDataReader dtr = cmd.ExecuteReader();
+            string sl1 = null;
+            while (dtr.Read())
+            {
+                sl1 = dtr[0].ToString();
+            }
+            Close();
+            return sl1;
         }
         public string tongcheckhang()
         {
