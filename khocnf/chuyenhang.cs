@@ -259,8 +259,19 @@ namespace khocnf
                 }
             }
         }
-
-        private void pbdunglaidi_Click(object sender, EventArgs e)
+        public bool laygiatriChinhsua
+        {
+            get { return chinhsuama; }
+        }
+        public PictureBox pbdunglai
+        {
+            get { return pbdunglaidi; }
+        }
+        public PictureBox pbxoa
+        {
+            get { return pbdelete; }
+        }
+        public void pbdunglaidi_Click(object sender, EventArgs e)
         {
             try
             {
@@ -278,7 +289,7 @@ namespace khocnf
             }
         }
 
-        private void pbdelete_Click(object sender, EventArgs e)
+        public void pbdelete_Click(object sender, EventArgs e)
         {
             DialogResult hoi = MessageBox.Show("Có chắc muốn xóa mã này không ?\n" + lbmasp.Text, "Hỏi cho chắc cú", MessageBoxButtons.YesNo);
             if (hoi == DialogResult.Yes)
@@ -309,6 +320,27 @@ namespace khocnf
                 }
                 
 
+            }
+        }
+        public void chonhangcuoi()
+        {
+            try
+            {
+                var dulieu = ketnoi.Khoitao();
+                int RowIndex = datag1.RowCount - 1;
+                DataGridViewRow row = datag1.Rows[RowIndex];
+                idrows = row.Cells[0].Value.ToString();
+                lbmasp.Text = row.Cells[2].Value.ToString();
+                pbdelete.Image = Properties.Resources.taygif;
+
+                lbtinhtrang.Text = dulieu.laytinhtrangthuathieu(lbmasp.Text);
+                capnhatlbthongtin(lbmasp.Text);
+                chinhsuama = true;
+            }
+            catch (Exception)
+            {
+
+                return;
             }
         }
 

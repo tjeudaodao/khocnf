@@ -69,7 +69,7 @@ namespace khocnf
                     masp = row[1].ToString();
                     if (barcode != null && masp != null)
                     {
-                        string sql = "insert into data values('" + barcode + "','" + masp + "')";
+                        string sql = "insert into data(barcode,masp) values('" + barcode + "','" + masp + "')";
                         Open();
                         SQLiteCommand cmd = new SQLiteCommand(sql, conn);
                         cmd.ExecuteNonQuery();

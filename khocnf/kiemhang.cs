@@ -250,7 +250,7 @@ namespace khocnf
             hamupdatesoluong();
         }
 
-        private void pbdelete_Click(object sender, EventArgs e)
+        public void pbdelete_Click(object sender, EventArgs e)
         {
             if (datag1.SelectedCells.Count > 0 && chinhsuama)
             {
@@ -263,7 +263,33 @@ namespace khocnf
             }
             
         }
+        public bool laygiatriChinhsua
+        {
+            get { return chinhsuama; }
+        }
+        public void chonhangcuoi()
+        {
+            try
+            {
+                var dulieu = ketnoi.Khoitao();
+                int RowIndex = datag1.RowCount - 1;
+                DataGridViewRow row = datag1.Rows[RowIndex];
+                idrows = row.Cells[0].Value.ToString();
+                lbmasp.Text = row.Cells[2].Value.ToString();
+                pbdelete.Image = Properties.Resources.taygif;
 
+                chinhsuama = true;
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
+        }
+        public PictureBox pbxoa
+        {
+            get { return pbdelete; }
+        }
         private void datag1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try

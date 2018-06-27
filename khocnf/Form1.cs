@@ -16,6 +16,7 @@ namespace khocnf
 {
     public partial class Form1 : Form
     {
+        static int tabnao = 1;
         bool chay = true;
         kiemhang uskiemhang = new kiemhang();
         chuyenhang uschuyenhang = new chuyenhang();
@@ -68,6 +69,7 @@ namespace khocnf
 
             uschuyenhang.Show();
             uschuyenhang.BringToFront();
+            tabnao = 2;
         }
 
         private void btnkiemhang_Click(object sender, EventArgs e)
@@ -80,6 +82,7 @@ namespace khocnf
 
             uskiemhang.Show();
             uskiemhang.BringToFront();
+            tabnao = 1;
         }
 
         private void btntimkiem_Click(object sender, EventArgs e)
@@ -92,6 +95,7 @@ namespace khocnf
             
             ustimkiem.Show();
             ustimkiem.BringToFront();
+            tabnao = 3;
         }
 
         private void pbminimize_Click(object sender, EventArgs e)
@@ -150,9 +154,39 @@ namespace khocnf
                 {
                     uskiemhang.pbdunglaidi_Click(uskiemhang.pbdunglai, new KeyEventArgs(keyData));
                 }
-
+                else if (uschuyenhang.pbdunglai.Visible == true)
+                {
+                    uschuyenhang.pbdunglaidi_Click(uschuyenhang.pbdunglai, new KeyEventArgs(keyData));
+                }
             }
-
+            if (keyData == Keys.Down)
+            {
+                if (tabnao == 2)
+                {
+                    uschuyenhang.chonhangcuoi();
+                }
+                else if (tabnao == 1)
+                {
+                    uskiemhang.chonhangcuoi();
+                }
+            }
+            if (keyData == Keys.Delete)
+            {
+                if (tabnao == 2)
+                {
+                    if (uschuyenhang.laygiatriChinhsua == true)
+                    {
+                        uschuyenhang.pbdelete_Click(uschuyenhang.pbxoa, new KeyEventArgs(keyData));
+                    }
+                }
+                else if (tabnao == 1)
+                {
+                    if (uskiemhang.laygiatriChinhsua == true)
+                    {
+                        uskiemhang.pbdelete_Click(uskiemhang.pbxoa, new KeyEventArgs(keyData));
+                    }
+                }
+            }
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -160,10 +194,19 @@ namespace khocnf
 
         private void pbcapnhat_Click(object sender, EventArgs e)
         {
-            //if (!kiemtra.IsAlive)
-            //{
-            //    kiemtra.Start();
-            //}
+            try
+            {
+                if (!kiemtra.IsAlive)
+                {
+                    kiemtra.Start();
+                }
+            }
+            catch (Exception)
+            {
+
+                hamtao.notifi_hts("Có vấn đề, xem lại");
+            }
+            
         }
     }
 }
