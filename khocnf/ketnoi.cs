@@ -69,11 +69,15 @@ namespace khocnf
                     masp = row[1].ToString();
                     if (barcode != null && masp != null)
                     {
-                        string sql = "insert into data(barcode,masp) values('" + barcode + "','" + masp + "')";
-                        Open();
-                        SQLiteCommand cmd = new SQLiteCommand(sql, conn);
-                        cmd.ExecuteNonQuery();
-                        Close();
+                        if (laymasp(barcode) == null)
+                        {
+                            string sql = "insert into data(barcode,masp) values('" + barcode + "','" + masp + "')";
+                            Open();
+                            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+                            cmd.ExecuteNonQuery();
+                            Close();
+                        }
+                        
                     }
                    
                 }
@@ -610,6 +614,16 @@ namespace khocnf
         public DataTable laybangxuatchuyenhang()
         {
             string sql = "select barcode as 'Barcode',masp as 'Mã thực tế', sum(soluong) as 'Số lượng' from bangtamchuyenhang group by masp";
+            Open();
+            SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
+            DataTable dt = new DataTable();
+            dta.Fill(dt);
+            Close();
+            return dt;
+        }
+        public DataTable laybangmatongchuyenhang1()
+        {
+            string sql = "select matong as 'Ma tong',soluong2 as 'So luong' from bangtamchuyenhang1";
             Open();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
             DataTable dt = new DataTable();

@@ -38,7 +38,6 @@ namespace khocnf
             txtsoluong.Enabled = false;
             amthanh.amluong(true);
 
-            btnbatdaukiemhang.ForeColor = Color.SpringGreen;
             
         }
 
@@ -219,7 +218,6 @@ namespace khocnf
                 btnbatdaukiemhang.Enabled = false;
                 txtbarcode.Focus();
 
-                btnbatdaukiemhang.ForeColor = Color.DimGray;
             }
             catch (Exception)
             {
@@ -317,9 +315,7 @@ namespace khocnf
 
         private void btnsosanh_Click(object sender, EventArgs e)
         {
-            btnsosanh.ForeColor = Color.OrangeRed;
             sosanhdulieu();
-            btnsosanh.ForeColor = Color.DimGray;
         }
         
         void sosanhdulieu()

@@ -97,7 +97,7 @@
             // 
             // panthaydoi
             // 
-            this.panthaydoi.BackColor = System.Drawing.Color.OrangeRed;
+            this.panthaydoi.BackColor = System.Drawing.Color.SpringGreen;
             this.panthaydoi.Location = new System.Drawing.Point(7, 73);
             this.panthaydoi.Name = "panthaydoi";
             this.panthaydoi.Size = new System.Drawing.Size(10, 90);

@@ -187,6 +187,7 @@
             // 
             // btnsosanh
             // 
+            this.btnsosanh.BackColor = System.Drawing.Color.SpringGreen;
             this.btnsosanh.Font = new System.Drawing.Font("Comic Sans MS", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnsosanh.ForeColor = System.Drawing.Color.DimGray;
             this.btnsosanh.Location = new System.Drawing.Point(328, 258);
@@ -194,7 +195,7 @@
             this.btnsosanh.Size = new System.Drawing.Size(102, 43);
             this.btnsosanh.TabIndex = 4;
             this.btnsosanh.Text = "So sánh";
-            this.btnsosanh.UseVisualStyleBackColor = true;
+            this.btnsosanh.UseVisualStyleBackColor = false;
             this.btnsosanh.Click += new System.EventHandler(this.btnsosanh_Click);
             // 
             // lbsoluongdon
@@ -211,6 +212,7 @@
             // 
             // btnbatdaukiemhang
             // 
+            this.btnbatdaukiemhang.BackColor = System.Drawing.Color.SpringGreen;
             this.btnbatdaukiemhang.Font = new System.Drawing.Font("Comic Sans MS", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnbatdaukiemhang.ForeColor = System.Drawing.Color.DimGray;
             this.btnbatdaukiemhang.Location = new System.Drawing.Point(22, 187);
@@ -218,7 +220,7 @@
             this.btnbatdaukiemhang.Size = new System.Drawing.Size(129, 43);
             this.btnbatdaukiemhang.TabIndex = 4;
             this.btnbatdaukiemhang.Text = "Bắt đầu";
-            this.btnbatdaukiemhang.UseVisualStyleBackColor = true;
+            this.btnbatdaukiemhang.UseVisualStyleBackColor = false;
             this.btnbatdaukiemhang.Click += new System.EventHandler(this.btnbatdaukiemhang_Click);
             // 
             // pictureBox4

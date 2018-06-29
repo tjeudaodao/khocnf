@@ -35,7 +35,7 @@ namespace khocnf
         {
             try
             {
-                Thread.Sleep(10000);
+                Thread.Sleep(5000);
                 var con = ketnoimysql.Khoitao();
                 var conn = ketnoi.Khoitao();
 
