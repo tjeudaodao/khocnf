@@ -28,7 +28,9 @@ namespace khocnf
             InitializeComponent();
             kiemtra = new Thread(hamkiemtra);
             kiemtra.IsBackground = true;
-            kiemtra.Start();
+           
+            tabnao = 1;
+
         }
         
         void hamkiemtra()
@@ -59,6 +61,8 @@ namespace khocnf
             }
             
         }
+        
+
         private void btnchuyenhang_Click(object sender, EventArgs e)
         {
             panthaydoi.Top = btnchuyenhang.Top;
@@ -152,6 +156,7 @@ namespace khocnf
             {
                 if (uskiemhang.pbdunglai.Visible == true)
                 {
+                   
                     uskiemhang.pbdunglaidi_Click(uskiemhang.pbdunglai, new KeyEventArgs(keyData));
                 }
                 else if (uschuyenhang.pbdunglai.Visible == true)
@@ -159,32 +164,22 @@ namespace khocnf
                     uschuyenhang.pbdunglaidi_Click(uschuyenhang.pbdunglai, new KeyEventArgs(keyData));
                 }
             }
-            if (keyData == Keys.Down)
+            
+            else if (keyData == Keys.Delete)
             {
                 if (tabnao == 2)
                 {
-                    uschuyenhang.chonhangcuoi();
-                }
-                else if (tabnao == 1)
-                {
-                    uskiemhang.chonhangcuoi();
-                }
-            }
-            if (keyData == Keys.Delete)
-            {
-                if (tabnao == 2)
-                {
-                    if (uschuyenhang.laygiatriChinhsua == true)
-                    {
+                    
+                        uschuyenhang.chonhangcuoi();
                         uschuyenhang.pbdelete_Click(uschuyenhang.pbxoa, new KeyEventArgs(keyData));
-                    }
+                    
                 }
                 else if (tabnao == 1)
                 {
-                    if (uskiemhang.laygiatriChinhsua == true)
-                    {
+                    
+                        uskiemhang.chonhangcuoi();
                         uskiemhang.pbdelete_Click(uskiemhang.pbxoa, new KeyEventArgs(keyData));
-                    }
+                   
                 }
             }
 
@@ -208,5 +203,6 @@ namespace khocnf
             }
             
         }
+        
     }
 }

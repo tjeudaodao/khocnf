@@ -11,7 +11,6 @@ using Excel =Microsoft.Office.Interop.Excel;
 using OfficeOpenXml.Drawing;
 using Tulpep.NotificationWindow;
 using OfficeOpenXml;
-using OfficeOpenXml.Drawing;
 using Microsoft.Office.Interop;
 using excel = Microsoft.Office.Interop.Excel;
 using System.Drawing;
@@ -60,20 +59,30 @@ namespace khocnf
             pop.HeaderHeight = 1;
             pop.Popup();
         }
+        
         public static void tudongnhaydenmasp(DataGridView dtv, string masp)
         {
-            if (dtv.RowCount < 1)
+            try
             {
-                return;
-            }
-            for (int i = 0; i < dtv.RowCount -1; i++)
-            {
-                if (masp == dtv.Rows[i].Cells[0].Value.ToString())
+                if (dtv.RowCount < 1)
                 {
-                    dtv.FirstDisplayedScrollingRowIndex = i;
-                    dtv.Rows[i].Selected = true;
+                    return;
+                }
+                for (int i = 0; i < dtv.RowCount - 1; i++)
+                {
+                    if (masp == dtv.Rows[i].Cells[0].Value.ToString())
+                    {
+                        dtv.FirstDisplayedScrollingRowIndex = i;
+                        dtv.Rows[i].Selected = true;
+                    }
                 }
             }
+            catch (Exception)
+            {
+
+                return;
+            }
+            
         }
         public static double ConvertToDouble(string Value)
         {

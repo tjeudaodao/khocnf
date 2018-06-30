@@ -41,7 +41,7 @@ namespace khocnf
                 if (datag2.RowCount > 0)
                 {
                     hamtao.xuatfile(dulieu.laybangxuatchuyenhang(), lbtongsoluong.Text, txtnoinhan.Text);
-                    hamtao.taovainfileexcelchuyenhang(dulieu.laybangdein(), lbsoluongdon.Text, txtnoinhan.Text);
+                    hamtao.taovainfileexcelchuyenhang(dulieu.laybangdein(), lbtongsoluong.Text, txtnoinhan.Text);
                     hamtao.notifi_hts("Đường dẫn:'" + hamtao.layduongdan() + "'", 5);
                     return;
                 }
@@ -146,7 +146,7 @@ namespace khocnf
                         amthanh.phatbaoloi();
                         pbdunglaidi.Visible = true;
                         txtbarcode.Enabled = false;
-                        hamtao.notifi_hts("Có lỗi scan barcode rồi. Ấn biểu tượng tạm dừng để dừng âm thanh !");
+                       // hamtao.notifi_hts("Có lỗi scan barcode rồi. Ấn biểu tượng tạm dừng để dừng âm thanh !");
                     }
                     else
                     {
@@ -327,7 +327,7 @@ namespace khocnf
             try
             {
                 var dulieu = ketnoi.Khoitao();
-                int RowIndex = datag1.RowCount - 1;
+                int RowIndex = datag1.RowCount - 2;
                 DataGridViewRow row = datag1.Rows[RowIndex];
                 idrows = row.Cells[0].Value.ToString();
                 lbmasp.Text = row.Cells[2].Value.ToString();

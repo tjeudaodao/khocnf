@@ -52,9 +52,18 @@ namespace khocnf
             lbtongsoluong.Text = dulieu.tongsoluongbt1();
             pbdelete.Image = Properties.Resources.eraser;
             pbedit.Image = Properties.Resources.tools;
-            datag1.FirstDisplayedScrollingRowIndex = datag1.RowCount - 2;
-            datag1.Rows[datag1.RowCount - 2].Cells[0].Selected = true;
-            hamtao.tudongnhaydenmasp(datag2, dulieu.laymatong(lbmasp.Text));
+            try
+            {
+                datag1.FirstDisplayedScrollingRowIndex = datag1.RowCount - 2;
+                datag1.Rows[datag1.RowCount - 2].Cells[0].Selected = true;
+                hamtao.tudongnhaydenmasp(datag2, dulieu.laymatong(lbmasp.Text));
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
+            
         }
         public void clearvungnhap()
         {
@@ -107,16 +116,15 @@ namespace khocnf
                     dulieu.deletemasp(idrows);
                     hamtao.notifi_hts( " Vừa xóa mã\n- '" + lbmasp.Text + "'");
                     updatetatca();
-                    hamtao.tudongnhaydenmasp(datag2, dulieu.laymatong(lbmasp.Text));
                     clearvungnhap();
                     txtbarcode.Focus();
                 }
-                catch (Exception)
-                {
+            catch (Exception)
+            {
 
-                    hamtao.notifi_hts("Có vân đề \n Xem lại đi");
-                }
-            
+                hamtao.notifi_hts("Có vân đề \n Xem lại đi");
+            }
+
         }
         //
         private void txtsophieu_KeyDown(object sender, KeyEventArgs e)
@@ -146,8 +154,8 @@ namespace khocnf
                             pbdunglaidi.Focus();
                             txtbarcode.Enabled = false;
                             txtsoluong.Enabled = false;
-
-                            hamtao.notifi_hts("Có lỗi scan barcode rồi. Ấn biểu tượng tạm dừng để dừng âm thanh !");
+                            
+                           // hamtao.notifi_hts("Có lỗi scan barcode rồi. Ấn biểu tượng tạm dừng để dừng âm thanh !",1); // dung lenh nay gay cham khi nhan phim fai doi no show het moi nhan dc
                         }
                         else
                         {
@@ -269,11 +277,9 @@ namespace khocnf
         {
             try
             {
-                var dulieu = ketnoi.Khoitao();
-                int RowIndex = datag1.RowCount - 1;
+                int RowIndex = datag1.RowCount - 2;
                 DataGridViewRow row = datag1.Rows[RowIndex];
                 idrows = row.Cells[0].Value.ToString();
-                lbmasp.Text = row.Cells[2].Value.ToString();
                 pbdelete.Image = Properties.Resources.taygif;
 
                 chinhsuama = true;
