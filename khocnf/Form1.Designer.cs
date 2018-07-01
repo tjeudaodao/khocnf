@@ -30,30 +30,32 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pantieude = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pbcapnhat = new System.Windows.Forms.PictureBox();
-            this.pbtatmoamthanh = new System.Windows.Forms.PictureBox();
             this.panthaydoi = new System.Windows.Forms.Panel();
             this.btntimkiem = new System.Windows.Forms.Button();
             this.btnchuyenhang = new System.Windows.Forms.Button();
             this.btnkiemhang = new System.Windows.Forms.Button();
             this.pbminimize = new System.Windows.Forms.PictureBox();
             this.pbclose = new System.Windows.Forms.PictureBox();
+            this.panTop = new System.Windows.Forms.Panel();
+            this.panMain = new System.Windows.Forms.Panel();
+            this.btnTHUGON = new System.Windows.Forms.Button();
+            this.btnUPDATE = new System.Windows.Forms.Button();
+            this.btnAMTHANH = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.pantieude.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbcapnhat)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbtatmoamthanh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbminimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbclose)).BeginInit();
+            this.panTop.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pantieude
             // 
             this.pantieude.BackColor = System.Drawing.Color.DimGray;
-            this.pantieude.Controls.Add(this.pictureBox1);
-            this.pantieude.Controls.Add(this.pbcapnhat);
-            this.pantieude.Controls.Add(this.pbtatmoamthanh);
+            this.pantieude.Controls.Add(this.btnTHUGON);
             this.pantieude.Controls.Add(this.panthaydoi);
+            this.pantieude.Controls.Add(this.btnAMTHANH);
+            this.pantieude.Controls.Add(this.btnUPDATE);
             this.pantieude.Controls.Add(this.btntimkiem);
             this.pantieude.Controls.Add(this.btnchuyenhang);
             this.pantieude.Controls.Add(this.btnkiemhang);
@@ -62,38 +64,6 @@
             this.pantieude.Name = "pantieude";
             this.pantieude.Size = new System.Drawing.Size(190, 720);
             this.pantieude.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(31, 622);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(133, 86);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pbcapnhat
-            // 
-            this.pbcapnhat.Image = ((System.Drawing.Image)(resources.GetObject("pbcapnhat.Image")));
-            this.pbcapnhat.Location = new System.Drawing.Point(48, 559);
-            this.pbcapnhat.Name = "pbcapnhat";
-            this.pbcapnhat.Size = new System.Drawing.Size(32, 31);
-            this.pbcapnhat.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbcapnhat.TabIndex = 2;
-            this.pbcapnhat.TabStop = false;
-            this.pbcapnhat.Click += new System.EventHandler(this.pbcapnhat_Click);
-            // 
-            // pbtatmoamthanh
-            // 
-            this.pbtatmoamthanh.Image = ((System.Drawing.Image)(resources.GetObject("pbtatmoamthanh.Image")));
-            this.pbtatmoamthanh.Location = new System.Drawing.Point(132, 559);
-            this.pbtatmoamthanh.Name = "pbtatmoamthanh";
-            this.pbtatmoamthanh.Size = new System.Drawing.Size(32, 31);
-            this.pbtatmoamthanh.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbtatmoamthanh.TabIndex = 2;
-            this.pbtatmoamthanh.TabStop = false;
-            this.pbtatmoamthanh.Click += new System.EventHandler(this.pbtatmoamthanh_Click);
             // 
             // panthaydoi
             // 
@@ -112,7 +82,7 @@
             this.btntimkiem.ForeColor = System.Drawing.SystemColors.Control;
             this.btntimkiem.Image = ((System.Drawing.Image)(resources.GetObject("btntimkiem.Image")));
             this.btntimkiem.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btntimkiem.Location = new System.Drawing.Point(31, 405);
+            this.btntimkiem.Location = new System.Drawing.Point(22, 391);
             this.btntimkiem.Name = "btntimkiem";
             this.btntimkiem.Size = new System.Drawing.Size(150, 90);
             this.btntimkiem.TabIndex = 1;
@@ -130,7 +100,7 @@
             this.btnchuyenhang.ForeColor = System.Drawing.SystemColors.Control;
             this.btnchuyenhang.Image = ((System.Drawing.Image)(resources.GetObject("btnchuyenhang.Image")));
             this.btnchuyenhang.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnchuyenhang.Location = new System.Drawing.Point(31, 241);
+            this.btnchuyenhang.Location = new System.Drawing.Point(22, 234);
             this.btnchuyenhang.Name = "btnchuyenhang";
             this.btnchuyenhang.Size = new System.Drawing.Size(150, 90);
             this.btnchuyenhang.TabIndex = 1;
@@ -148,7 +118,7 @@
             this.btnkiemhang.ForeColor = System.Drawing.SystemColors.Control;
             this.btnkiemhang.Image = ((System.Drawing.Image)(resources.GetObject("btnkiemhang.Image")));
             this.btnkiemhang.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnkiemhang.Location = new System.Drawing.Point(31, 73);
+            this.btnkiemhang.Location = new System.Drawing.Point(22, 73);
             this.btnkiemhang.Name = "btnkiemhang";
             this.btnkiemhang.Size = new System.Drawing.Size(150, 90);
             this.btnkiemhang.TabIndex = 1;
@@ -160,7 +130,7 @@
             // pbminimize
             // 
             this.pbminimize.Image = ((System.Drawing.Image)(resources.GetObject("pbminimize.Image")));
-            this.pbminimize.Location = new System.Drawing.Point(1286, 0);
+            this.pbminimize.Location = new System.Drawing.Point(17, 0);
             this.pbminimize.Name = "pbminimize";
             this.pbminimize.Size = new System.Drawing.Size(30, 30);
             this.pbminimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -171,13 +141,85 @@
             // pbclose
             // 
             this.pbclose.Image = ((System.Drawing.Image)(resources.GetObject("pbclose.Image")));
-            this.pbclose.Location = new System.Drawing.Point(1326, 0);
+            this.pbclose.Location = new System.Drawing.Point(57, 0);
             this.pbclose.Name = "pbclose";
             this.pbclose.Size = new System.Drawing.Size(30, 30);
             this.pbclose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbclose.TabIndex = 1;
             this.pbclose.TabStop = false;
             this.pbclose.Click += new System.EventHandler(this.pbclose_Click);
+            // 
+            // panTop
+            // 
+            this.panTop.Controls.Add(this.panel1);
+            this.panTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panTop.Location = new System.Drawing.Point(190, 0);
+            this.panTop.Name = "panTop";
+            this.panTop.Size = new System.Drawing.Size(1170, 30);
+            this.panTop.TabIndex = 2;
+            // 
+            // panMain
+            // 
+            this.panMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panMain.Location = new System.Drawing.Point(190, 30);
+            this.panMain.Name = "panMain";
+            this.panMain.Size = new System.Drawing.Size(1170, 690);
+            this.panMain.TabIndex = 3;
+            // 
+            // btnTHUGON
+            // 
+            this.btnTHUGON.BackColor = System.Drawing.Color.DimGray;
+            this.btnTHUGON.FlatAppearance.BorderSize = 0;
+            this.btnTHUGON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTHUGON.Image = ((System.Drawing.Image)(resources.GetObject("btnTHUGON.Image")));
+            this.btnTHUGON.Location = new System.Drawing.Point(16, 9);
+            this.btnTHUGON.Name = "btnTHUGON";
+            this.btnTHUGON.Size = new System.Drawing.Size(44, 41);
+            this.btnTHUGON.TabIndex = 0;
+            this.btnTHUGON.UseVisualStyleBackColor = false;
+            this.btnTHUGON.Click += new System.EventHandler(this.btnTHUGON_Click);
+            // 
+            // btnUPDATE
+            // 
+            this.btnUPDATE.BackColor = System.Drawing.Color.DimGray;
+            this.btnUPDATE.FlatAppearance.BorderSize = 0;
+            this.btnUPDATE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUPDATE.Font = new System.Drawing.Font("Comic Sans MS", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUPDATE.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnUPDATE.Image = ((System.Drawing.Image)(resources.GetObject("btnUPDATE.Image")));
+            this.btnUPDATE.Location = new System.Drawing.Point(22, 529);
+            this.btnUPDATE.Name = "btnUPDATE";
+            this.btnUPDATE.Size = new System.Drawing.Size(150, 52);
+            this.btnUPDATE.TabIndex = 1;
+            this.btnUPDATE.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnUPDATE.UseVisualStyleBackColor = false;
+            this.btnUPDATE.Click += new System.EventHandler(this.btnUPDATE_Click);
+            // 
+            // btnAMTHANH
+            // 
+            this.btnAMTHANH.BackColor = System.Drawing.Color.DimGray;
+            this.btnAMTHANH.FlatAppearance.BorderSize = 0;
+            this.btnAMTHANH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAMTHANH.Font = new System.Drawing.Font("Comic Sans MS", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAMTHANH.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnAMTHANH.Image = global::khocnf.Properties.Resources.spacker;
+            this.btnAMTHANH.Location = new System.Drawing.Point(22, 623);
+            this.btnAMTHANH.Name = "btnAMTHANH";
+            this.btnAMTHANH.Size = new System.Drawing.Size(150, 50);
+            this.btnAMTHANH.TabIndex = 1;
+            this.btnAMTHANH.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAMTHANH.UseVisualStyleBackColor = false;
+            this.btnAMTHANH.Click += new System.EventHandler(this.btnAMTHANH_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.pbclose);
+            this.panel1.Controls.Add(this.pbminimize);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(1071, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(99, 30);
+            this.panel1.TabIndex = 2;
             // 
             // Form1
             // 
@@ -186,8 +228,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1360, 720);
-            this.Controls.Add(this.pbminimize);
-            this.Controls.Add(this.pbclose);
+            this.Controls.Add(this.panMain);
+            this.Controls.Add(this.panTop);
             this.Controls.Add(this.pantieude);
             this.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -199,11 +241,10 @@
             this.Text = "Kho CNF";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.pantieude.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbcapnhat)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbtatmoamthanh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbminimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbclose)).EndInit();
+            this.panTop.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -216,10 +257,13 @@
         private System.Windows.Forms.Button btnchuyenhang;
         private System.Windows.Forms.PictureBox pbclose;
         private System.Windows.Forms.PictureBox pbminimize;
-        private System.Windows.Forms.PictureBox pbcapnhat;
-        private System.Windows.Forms.PictureBox pbtatmoamthanh;
         private System.Windows.Forms.Button btntimkiem;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panTop;
+        private System.Windows.Forms.Panel panMain;
+        private System.Windows.Forms.Button btnTHUGON;
+        private System.Windows.Forms.Button btnAMTHANH;
+        private System.Windows.Forms.Button btnUPDATE;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

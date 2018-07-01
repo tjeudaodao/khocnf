@@ -41,13 +41,13 @@ namespace khocnf
                 var con = ketnoimysql.Khoitao();
                 var conn = ketnoi.Khoitao();
 
-                pbcapnhat.Invoke(new MethodInvoker(delegate ()
+                btnUPDATE.Invoke(new MethodInvoker(delegate ()
                 {
-                    pbcapnhat.Image = Properties.Resources.update;
+                    btnUPDATE.Image = Properties.Resources.update;
                     DataTable dt = con.Check();
                     conn.chenvaoDATA(dt);
 
-                    pbcapnhat.Image = Properties.Resources.hetupdate;
+                    btnUPDATE.Image = Properties.Resources.hetupdate;
                 }));
 
 
@@ -115,38 +115,33 @@ namespace khocnf
             dulieu.xoabangtam2();
         }
 
-        private void pbtatmoamthanh_Click(object sender, EventArgs e)
-        {
-            chay = !chay;
-            amthanh.amluong(chay);
-            if (chay)
-            {
-                pbtatmoamthanh.Image = Properties.Resources.spacker;
-            }
-            else
-            {
-                pbtatmoamthanh.Image = Properties.Resources.mute;
-            }
-        }
-        
+       
         
         private void Form1_Load(object sender, EventArgs e)
         {
             uskiemhang.Location = new Point(190, 30);
             uskiemhang.Name = "tabkiemhang";
-            this.Controls.Add(uskiemhang);
+            uskiemhang.Dock = DockStyle.Fill;
+            this.panMain.Controls.Add(uskiemhang);
+            //this.Controls.Add(uskiemhang);
+
 
             uschuyenhang.Location = new Point(190, 30);
             uschuyenhang.Name = "tabchuyenhang";
-            this.Controls.Add(uschuyenhang);
+            uschuyenhang.Dock = DockStyle.Fill;
+            this.panMain.Controls.Add(uschuyenhang);
+            //this.Controls.Add(uschuyenhang);
 
             ustimkiem.Location = new Point(190, 30);
             ustimkiem.Name = "tabtimkiem";
-            this.Controls.Add(ustimkiem);
+            ustimkiem.Dock = DockStyle.Fill;
+            this.panMain.Controls.Add(ustimkiem);
+           // this.Controls.Add(ustimkiem);
 
             uschuyenhang.Hide();
             ustimkiem.Hide();
-            
+
+            xulyThugon(true);
         }
 
         #region xu ly su kien ban phim 
@@ -164,7 +159,13 @@ namespace khocnf
                     uschuyenhang.pbdunglaidi_Click(uschuyenhang.pbdunglai, new KeyEventArgs(keyData));
                 }
             }
-            
+            else if (keyData == Keys.Down)
+            {
+                if (tabnao == 1)
+                {
+                    uskiemhang.chonhangcuoi2();
+                }
+            }
             else if (keyData == Keys.Delete)
             {
                 if (tabnao == 2)
@@ -187,7 +188,46 @@ namespace khocnf
         }
         #endregion
 
-        private void pbcapnhat_Click(object sender, EventArgs e)
+
+
+        private bool thugonhaykhong = true;
+        void xulyThugon(bool thugon)
+        {
+            if (thugon)
+            {
+                pantieude.Width = 70;
+                xulyBTN(btnkiemhang, "", thugon);
+                xulyBTN(btnchuyenhang, "", thugon);
+                xulyBTN(btntimkiem, "", thugon);
+                xulyBTN(btnUPDATE, "", thugon);
+                xulyBTN(btnAMTHANH, "", thugon);
+            }
+            else
+            {
+                pantieude.Width = 190;
+                xulyBTN(btnkiemhang, "Kiểm hàng", thugon);
+                xulyBTN(btnchuyenhang, "Chuyển hàng", thugon);
+                xulyBTN(btntimkiem, "Tìm kiếm", thugon);
+                xulyBTN(btnUPDATE, "", thugon);
+                xulyBTN(btnAMTHANH, "", thugon);
+            }
+        }
+        void xulyBTN(Button btn,string noidung, bool thu)
+        {
+            if (thu)
+            {
+                btn.Width = 50;
+                btn.ImageAlign = ContentAlignment.MiddleCenter;
+                btn.Text = noidung;
+            }
+            else
+            {
+                btn.Width = 150;
+                btn.ImageAlign = ContentAlignment.TopCenter;
+                btn.Text = noidung;
+            }
+        }
+        private void btnUPDATE_Click(object sender, EventArgs e)
         {
             try
             {
@@ -201,8 +241,26 @@ namespace khocnf
 
                 hamtao.notifi_hts("Có vấn đề, xem lại");
             }
-            
         }
-        
+
+        private void btnAMTHANH_Click(object sender, EventArgs e)
+        {
+            chay = !chay;
+            amthanh.amluong(chay);
+            if (chay)
+            {
+                btnAMTHANH.Image = Properties.Resources.spacker;
+            }
+            else
+            {
+                btnAMTHANH.Image = Properties.Resources.mute;
+            }
+        }
+
+        private void btnTHUGON_Click(object sender, EventArgs e)
+        {
+            thugonhaykhong = !thugonhaykhong;
+            xulyThugon(thugonhaykhong);
+        }
     }
 }

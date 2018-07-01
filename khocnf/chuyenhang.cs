@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using System.Text.RegularExpressions;
 using System.Data.SQLite;
+using System.Threading;
 
 namespace khocnf
 {
@@ -21,6 +22,7 @@ namespace khocnf
         static bool chinhsizecot = false;
         static bool chinhsuama = false;
 
+        Thread laydataHts;  
         public chuyenhang()
         {
             InitializeComponent();
@@ -369,48 +371,116 @@ namespace khocnf
         {
             try
             {
+                laydataHts = new Thread(hamLaydata);
+                laydataHts.IsBackground = true;
+                laydataHts.Start();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+        //void laydatagoc()
+        //{
+        //    try
+        //    {
+        //        var dulieu = ketnoi.Khoitao();
+        //        datag3.DataSource = hamtao.layvungcopy();
+        //        if (datag3.RowCount > 0)
+        //        {
+        //            DataGridViewColumn column = datag3.Columns[1];
+        //            column.Width = 40;
+        //            datag3.DefaultCellStyle.Font = new Font("Comic Sans MS", 12.0f);
+        //        }
+        //        dulieu.xoabangtamchuyenhang1();
+        //        string StrQuery = "";
+        //        string mau = @"\d\w{2}\d{2}[SWAC]\d{3}-\w{2}\d{3}-\w+";
+        //        string mau1 = @"\d\w{2}\d{2}[SWAC]\d{3}";
+
+        //        dulieu.Open();
+        //        for (int i = 0; i < datag3.Rows.Count - 1; i++)
+        //        {
+        //            string magoc = datag3.Rows[i].Cells[0].Value.ToString().Trim();
+        //            if (Regex.IsMatch(magoc, mau))
+        //            {
+        //                StrQuery = "INSERT INTO bangtamchuyenhang1(masp,soluong1) VALUES ('" + magoc + "', '" + datag3.Rows[i].Cells[1].Value.ToString() + "')";
+        //            }
+        //            else if (Regex.IsMatch(magoc, mau1))
+        //            {
+        //                StrQuery = "INSERT INTO bangtamchuyenhang1(matong,soluong2) VALUES ('" + magoc + "', '" + datag3.Rows[i].Cells[1].Value.ToString() + "')";
+        //            }
+        //            SQLiteCommand cmd = new SQLiteCommand(StrQuery, dulieu.returncon);
+        //            cmd.ExecuteNonQuery();
+        //        }
+
+        //        dulieu.Close();
+        //        lbsoluongdon.Text = dulieu.tongsoluongcannhat("bangtamchuyenhang1");
+        //        dulieu.updatebangthuathieukhichendon(datag2);
+        //    }
+
+        //    catch (Exception)
+        //    {
+        //        hamtao.notifi_hts("Lỗi rồi:\n-Chỉ được chọn 2 cột (2xn) n bao nhiêu cũng được");
+        //        return;
+        //    }
+        //}
+        void hamLaydata() // ham xu ly trong thread
+        {
+            try
+            {
                 var dulieu = ketnoi.Khoitao();
-                datag3.DataSource = hamtao.layvungcopy();
-                if (datag3.RowCount > 0)
+                datag3.Invoke(new MethodInvoker(delegate ()
                 {
-                    DataGridViewColumn column = datag3.Columns[1];
-                    column.Width = 40;
-                    datag3.DefaultCellStyle.Font = new Font("Comic Sans MS", 12.0f);
-                }
-                dulieu.xoabangtamchuyenhang1();
-                string StrQuery = "";
-                string mau = @"\d\w{2}\d{2}[SWAC]\d{3}-\w{2}\d{3}-\w+";
-                string mau1 = @"\d\w{2}\d{2}[SWAC]\d{3}";
+                    
+                    datag3.DataSource = hamtao.layvungcopy();
+                    if (datag3.RowCount > 0)
+                    {
+                        DataGridViewColumn column = datag3.Columns[1];
+                        column.Width = 40;
+                        datag3.DefaultCellStyle.Font = new Font("Comic Sans MS", 12.0f);
+                    }
+                    dulieu.xoabangtamchuyenhang1();
+                    string StrQuery = "";
+                    string mau = @"\d\w{2}\d{2}[SWAC]\d{3}-\w{2}\d{3}-\w+";
+                    string mau1 = @"\d\w{2}\d{2}[SWAC]\d{3}";
 
-                dulieu.Open();
-                for (int i = 0; i < datag3.Rows.Count -1; i++)
+                    dulieu.Open();
+                    for (int i = 0; i < datag3.Rows.Count - 1; i++)
+                    {
+                        string magoc = datag3.Rows[i].Cells[0].Value.ToString().Trim();
+                        if (Regex.IsMatch(magoc, mau))
+                        {
+                            StrQuery = "INSERT INTO bangtamchuyenhang1(masp,soluong1) VALUES ('" + magoc + "', '" + datag3.Rows[i].Cells[1].Value.ToString() + "')";
+                        }
+                        else if (Regex.IsMatch(magoc, mau1))
+                        {
+                            StrQuery = "INSERT INTO bangtamchuyenhang1(matong,soluong2) VALUES ('" + magoc + "', '" + datag3.Rows[i].Cells[1].Value.ToString() + "')";
+                        }
+                        SQLiteCommand cmd = new SQLiteCommand(StrQuery, dulieu.returncon);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    dulieu.Close();
+                }));
+                lbsoluongdon.Invoke(new MethodInvoker(delegate ()
                 {
-                    string magoc = datag3.Rows[i].Cells[0].Value.ToString().Trim();
-                    if (Regex.IsMatch(magoc, mau))
-                    {
-                        StrQuery = "INSERT INTO bangtamchuyenhang1(masp,soluong1) VALUES ('" + magoc + "', '" + datag3.Rows[i].Cells[1].Value.ToString() + "')";
-                    }
-                    else if (Regex.IsMatch(magoc, mau1))
-                    {
-                        StrQuery = "INSERT INTO bangtamchuyenhang1(matong,soluong2) VALUES ('" + magoc + "', '" + datag3.Rows[i].Cells[1].Value.ToString() + "')";
-                    }
-                    SQLiteCommand cmd = new SQLiteCommand(StrQuery, dulieu.returncon);
-                    cmd.ExecuteNonQuery();
-                }
-
-                dulieu.Close();
-                lbsoluongdon.Text = dulieu.tongsoluongcannhat("bangtamchuyenhang1");
-                dulieu.updatebangthuathieukhichendon(datag2);
+                    lbsoluongdon.Text = dulieu.tongsoluongcannhat("bangtamchuyenhang1");
+                }));
+                datag2.Invoke(new MethodInvoker(delegate ()
+                {
+                    dulieu.updatebangthuathieukhichendon(datag2);
+                }));
+                
             }
 
             catch (Exception)
             {
-                hamtao.notifi_hts("Lỗi rồi:\n-Chỉ được chọn 2 cột (2xn) n bao nhiêu cũng được");
+               
                 return;
             }
-
         }
-
         private void btninnhat_Click(object sender, EventArgs e)
         {
 

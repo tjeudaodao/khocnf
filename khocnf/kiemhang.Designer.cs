@@ -51,6 +51,9 @@
             this.grbthongtindon = new System.Windows.Forms.GroupBox();
             this.lbnoidungdon = new System.Windows.Forms.Label();
             this.lbsophieu = new System.Windows.Forms.Label();
+            this.pbLoading = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panKiemhang = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.datag1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datag2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -59,6 +62,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbdelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbsave)).BeginInit();
             this.grbthongtindon.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLoading)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panKiemhang.SuspendLayout();
             this.SuspendLayout();
             // 
             // datag1
@@ -68,7 +74,7 @@
             this.datag1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.datag1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.datag1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.datag1.Location = new System.Drawing.Point(22, 319);
+            this.datag1.Location = new System.Drawing.Point(22, 311);
             this.datag1.MultiSelect = false;
             this.datag1.Name = "datag1";
             this.datag1.RowHeadersVisible = false;
@@ -82,7 +88,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(19, 21);
+            this.label1.Location = new System.Drawing.Point(19, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 19);
             this.label1.TabIndex = 1;
@@ -91,7 +97,7 @@
             // txtsophieu
             // 
             this.txtsophieu.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtsophieu.Location = new System.Drawing.Point(165, 21);
+            this.txtsophieu.Location = new System.Drawing.Point(165, 13);
             this.txtsophieu.Name = "txtsophieu";
             this.txtsophieu.Size = new System.Drawing.Size(265, 26);
             this.txtsophieu.TabIndex = 2;
@@ -102,7 +108,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(19, 67);
+            this.label2.Location = new System.Drawing.Point(19, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 19);
             this.label2.TabIndex = 1;
@@ -111,7 +117,7 @@
             // txtbarcode
             // 
             this.txtbarcode.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbarcode.Location = new System.Drawing.Point(165, 64);
+            this.txtbarcode.Location = new System.Drawing.Point(165, 56);
             this.txtbarcode.Name = "txtbarcode";
             this.txtbarcode.Size = new System.Drawing.Size(265, 26);
             this.txtbarcode.TabIndex = 2;
@@ -123,7 +129,7 @@
             this.lbmasp.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lbmasp.Font = new System.Drawing.Font("Comic Sans MS", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbmasp.ForeColor = System.Drawing.Color.DimGray;
-            this.lbmasp.Location = new System.Drawing.Point(23, 112);
+            this.lbmasp.Location = new System.Drawing.Point(23, 104);
             this.lbmasp.Name = "lbmasp";
             this.lbmasp.Size = new System.Drawing.Size(407, 54);
             this.lbmasp.TabIndex = 1;
@@ -135,7 +141,7 @@
             this.txtsoluong.BackColor = System.Drawing.Color.White;
             this.txtsoluong.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtsoluong.Font = new System.Drawing.Font("Comic Sans MS", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtsoluong.Location = new System.Drawing.Point(165, 191);
+            this.txtsoluong.Location = new System.Drawing.Point(165, 183);
             this.txtsoluong.Name = "txtsoluong";
             this.txtsoluong.Size = new System.Drawing.Size(265, 28);
             this.txtsoluong.TabIndex = 2;
@@ -147,9 +153,9 @@
             this.lbtongsoluong.BackColor = System.Drawing.Color.White;
             this.lbtongsoluong.Font = new System.Drawing.Font("Comic Sans MS", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbtongsoluong.ForeColor = System.Drawing.Color.SpringGreen;
-            this.lbtongsoluong.Location = new System.Drawing.Point(475, 13);
+            this.lbtongsoluong.Location = new System.Drawing.Point(10, 13);
             this.lbtongsoluong.Name = "lbtongsoluong";
-            this.lbtongsoluong.Size = new System.Drawing.Size(656, 217);
+            this.lbtongsoluong.Size = new System.Drawing.Size(689, 217);
             this.lbtongsoluong.TabIndex = 1;
             this.lbtongsoluong.Text = "-";
             this.lbtongsoluong.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -177,12 +183,12 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.datag2.DefaultCellStyle = dataGridViewCellStyle2;
-            this.datag2.Location = new System.Drawing.Point(474, 319);
+            this.datag2.Location = new System.Drawing.Point(4, 312);
             this.datag2.Name = "datag2";
             this.datag2.RowHeadersVisible = false;
             this.datag2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.datag2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datag2.Size = new System.Drawing.Size(657, 343);
+            this.datag2.Size = new System.Drawing.Size(699, 343);
             this.datag2.TabIndex = 0;
             // 
             // btnsosanh
@@ -190,7 +196,7 @@
             this.btnsosanh.BackColor = System.Drawing.Color.SpringGreen;
             this.btnsosanh.Font = new System.Drawing.Font("Comic Sans MS", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnsosanh.ForeColor = System.Drawing.Color.DimGray;
-            this.btnsosanh.Location = new System.Drawing.Point(328, 258);
+            this.btnsosanh.Location = new System.Drawing.Point(328, 250);
             this.btnsosanh.Name = "btnsosanh";
             this.btnsosanh.Size = new System.Drawing.Size(102, 43);
             this.btnsosanh.TabIndex = 4;
@@ -215,7 +221,7 @@
             this.btnbatdaukiemhang.BackColor = System.Drawing.Color.SpringGreen;
             this.btnbatdaukiemhang.Font = new System.Drawing.Font("Comic Sans MS", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnbatdaukiemhang.ForeColor = System.Drawing.Color.DimGray;
-            this.btnbatdaukiemhang.Location = new System.Drawing.Point(22, 187);
+            this.btnbatdaukiemhang.Location = new System.Drawing.Point(22, 179);
             this.btnbatdaukiemhang.Name = "btnbatdaukiemhang";
             this.btnbatdaukiemhang.Size = new System.Drawing.Size(129, 43);
             this.btnbatdaukiemhang.TabIndex = 4;
@@ -226,7 +232,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(121, 61);
+            this.pictureBox4.Location = new System.Drawing.Point(121, 53);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(38, 33);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -236,7 +242,7 @@
             // pbedit
             // 
             this.pbedit.Image = ((System.Drawing.Image)(resources.GetObject("pbedit.Image")));
-            this.pbedit.Location = new System.Drawing.Point(90, 261);
+            this.pbedit.Location = new System.Drawing.Point(90, 253);
             this.pbedit.Name = "pbedit";
             this.pbedit.Size = new System.Drawing.Size(55, 38);
             this.pbedit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -247,7 +253,7 @@
             // pbdunglaidi
             // 
             this.pbdunglaidi.Image = global::khocnf.Properties.Resources.pausegif;
-            this.pbdunglaidi.Location = new System.Drawing.Point(23, 261);
+            this.pbdunglaidi.Location = new System.Drawing.Point(23, 253);
             this.pbdunglaidi.Name = "pbdunglaidi";
             this.pbdunglaidi.Size = new System.Drawing.Size(51, 38);
             this.pbdunglaidi.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -259,7 +265,7 @@
             // pbdelete
             // 
             this.pbdelete.Image = ((System.Drawing.Image)(resources.GetObject("pbdelete.Image")));
-            this.pbdelete.Location = new System.Drawing.Point(176, 261);
+            this.pbdelete.Location = new System.Drawing.Point(176, 253);
             this.pbdelete.Name = "pbdelete";
             this.pbdelete.Size = new System.Drawing.Size(50, 38);
             this.pbdelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -270,7 +276,7 @@
             // pbsave
             // 
             this.pbsave.Image = ((System.Drawing.Image)(resources.GetObject("pbsave.Image")));
-            this.pbsave.Location = new System.Drawing.Point(265, 261);
+            this.pbsave.Location = new System.Drawing.Point(265, 253);
             this.pbsave.Name = "pbsave";
             this.pbsave.Size = new System.Drawing.Size(42, 38);
             this.pbsave.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -283,12 +289,13 @@
             this.grbthongtindon.Controls.Add(this.lbnoidungdon);
             this.grbthongtindon.Controls.Add(this.lbsophieu);
             this.grbthongtindon.Controls.Add(this.lbsoluongdon);
-            this.grbthongtindon.Location = new System.Drawing.Point(474, 241);
+            this.grbthongtindon.Location = new System.Drawing.Point(6, 233);
             this.grbthongtindon.Name = "grbthongtindon";
-            this.grbthongtindon.Size = new System.Drawing.Size(657, 72);
+            this.grbthongtindon.Size = new System.Drawing.Size(693, 72);
             this.grbthongtindon.TabIndex = 6;
             this.grbthongtindon.TabStop = false;
             this.grbthongtindon.Text = "Mô tả thông tin đơn";
+            this.grbthongtindon.Enter += new System.EventHandler(this.grbthongtindon_Enter);
             // 
             // lbnoidungdon
             // 
@@ -314,32 +321,63 @@
             this.lbsophieu.Text = "-";
             this.lbsophieu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pbLoading
+            // 
+            this.pbLoading.Image = ((System.Drawing.Image)(resources.GetObject("pbLoading.Image")));
+            this.pbLoading.Location = new System.Drawing.Point(33, 323);
+            this.pbLoading.Name = "pbLoading";
+            this.pbLoading.Size = new System.Drawing.Size(647, 331);
+            this.pbLoading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbLoading.TabIndex = 7;
+            this.pbLoading.TabStop = false;
+            this.pbLoading.Visible = false;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.txtsophieu);
+            this.panel1.Controls.Add(this.datag1);
+            this.panel1.Controls.Add(this.pictureBox4);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.btnbatdaukiemhang);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.btnsosanh);
+            this.panel1.Controls.Add(this.lbmasp);
+            this.panel1.Controls.Add(this.pbedit);
+            this.panel1.Controls.Add(this.txtbarcode);
+            this.panel1.Controls.Add(this.pbdunglaidi);
+            this.panel1.Controls.Add(this.txtsoluong);
+            this.panel1.Controls.Add(this.pbdelete);
+            this.panel1.Controls.Add(this.pbsave);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(447, 680);
+            this.panel1.TabIndex = 9;
+            // 
+            // panKiemhang
+            // 
+            this.panKiemhang.Controls.Add(this.pbLoading);
+            this.panKiemhang.Controls.Add(this.datag2);
+            this.panKiemhang.Controls.Add(this.lbtongsoluong);
+            this.panKiemhang.Controls.Add(this.grbthongtindon);
+            this.panKiemhang.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panKiemhang.Location = new System.Drawing.Point(447, 0);
+            this.panKiemhang.Name = "panKiemhang";
+            this.panKiemhang.Size = new System.Drawing.Size(713, 680);
+            this.panKiemhang.TabIndex = 10;
+            // 
             // kiemhang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.grbthongtindon);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.btnbatdaukiemhang);
-            this.Controls.Add(this.btnsosanh);
-            this.Controls.Add(this.pbedit);
-            this.Controls.Add(this.pbdunglaidi);
-            this.Controls.Add(this.pbdelete);
-            this.Controls.Add(this.pbsave);
-            this.Controls.Add(this.txtsoluong);
-            this.Controls.Add(this.txtbarcode);
-            this.Controls.Add(this.txtsophieu);
-            this.Controls.Add(this.lbtongsoluong);
-            this.Controls.Add(this.lbmasp);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.datag2);
-            this.Controls.Add(this.datag1);
+            this.Controls.Add(this.panKiemhang);
+            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "kiemhang";
             this.Size = new System.Drawing.Size(1160, 680);
             this.Load += new System.EventHandler(this.kiemhang_Load);
+            this.Resize += new System.EventHandler(this.kiemhang_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.datag1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datag2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -348,8 +386,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbdelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbsave)).EndInit();
             this.grbthongtindon.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbLoading)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panKiemhang.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -375,5 +416,8 @@
         private System.Windows.Forms.GroupBox grbthongtindon;
         private System.Windows.Forms.Label lbsophieu;
         private System.Windows.Forms.Label lbnoidungdon;
+        private System.Windows.Forms.PictureBox pbLoading;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panKiemhang;
     }
 }

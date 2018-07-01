@@ -23,8 +23,8 @@ namespace khocnf
         static bool cochuthaydoi = true;
         static string idrows = null;
         static bool chinhsuama = false;
-        
-        
+
+        Thread chayHts;
         public kiemhang()
         {
             InitializeComponent();
@@ -290,6 +290,31 @@ namespace khocnf
                 return;
             }
         }
+        public void chonhangcuoi2()
+        {
+            try
+            {
+                int RowIndex = datag1.RowCount - 2;
+                DataGridViewRow row = datag1.Rows[RowIndex];
+                idrows = row.Cells[0].Value.ToString();
+                lbmasp.Text = row.Cells[2].Value.ToString();
+                txtsoluong.Text = row.Cells[3].Value.ToString();
+
+                pbedit.Image = Properties.Resources.editgif;
+                pbdelete.Image = Properties.Resources.taygif;
+                txtsoluong.Enabled = true;
+                txtsoluong.Focus();
+                txtsoluong.SelectAll();
+
+                chinhsuama = true;
+            }
+            catch (Exception)
+            {
+
+
+                hamtao.notifi_hts("Có vân đề \n Xem lại đi");
+            }
+        }
         public PictureBox pbxoa
         {
             get { return pbdelete; }
@@ -321,9 +346,133 @@ namespace khocnf
 
         private void btnsosanh_Click(object sender, EventArgs e)
         {
-            sosanhdulieu();
+            // sosanhdulieu();
+            try
+            {
+                luuFilechon = Chonfile();
+                chayHts = new Thread(xulysosanh);
+                chayHts.IsBackground = true;
+                chayHts.Start();
+            }
+            catch (Exception)
+            {
+
+                hamtao.notifi_hts("Có vân đề \n Xem lại đi");
+            }
+            
         }
-        
+        /* nhap so sanh trong thread
+         * 
+         * 
+         * 
+         * 
+         * */
+        public string[] luuFilechon;
+        public string[] Chonfile()
+        {
+            string[] hh = null;
+            OpenFileDialog chonfile = new OpenFileDialog();
+            chonfile.Filter = "Mời các anh chọn file excel (*.xlsx)|*.xlsx";
+            chonfile.Multiselect = true;
+            if (chonfile.ShowDialog() == DialogResult.OK)
+            {
+                hh = chonfile.FileNames;
+            }
+            return hh;
+        }
+        void xulysosanh()
+        {
+            if (luuFilechon != null)
+            {
+                var dulieu = ketnoi.Khoitao();
+                dulieu.xoabangtam2();
+
+                pbLoading.Invoke(new MethodInvoker(delegate ()
+                {
+                    pbLoading.Visible = true;
+                }));
+                string sophieu = null;
+                string noidung = null;
+                string dieuphoi = null;
+                string tongsoluong = null;
+
+                foreach (string file in luuFilechon)
+                {
+                    string matong = null;
+                    string soluong = null;
+                    string masp = null;
+                    ExcelPackage filechon = new ExcelPackage(new FileInfo(file));
+                    ExcelWorksheet ws = filechon.Workbook.Worksheets[1];
+                    var sodong = ws.Dimension.End.Row;
+                    if (sodong < 2)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            sophieu = ws.Cells[2, 3].Value.ToString();
+                            noidung = ws.Cells[2, 11].Value.ToString();
+                            dieuphoi = ws.Cells[2, 18].Value.ToString();
+                            tongsoluong = ws.Cells[2, 14].Value.ToString();
+
+                            for (int i = 3; i < sodong; i++)
+                            {
+                                matong = ws.Cells[i, 10].Value.ToString();
+                                masp = ws.Cells[i, 12].Value.ToString();
+                                soluong = ws.Cells[i, 14].Value.ToString();
+                                dulieu.laydataexcel(matong, soluong);
+                                dulieu.chenthongtinphieu(sophieu, masp, soluong);
+                            }
+                            dulieu.chenthongtinphieu(sophieu, noidung, dieuphoi, tongsoluong);
+                        }
+                        catch (Exception)
+                        {
+                            return;
+                        }
+
+
+                    }
+
+                    filechon.Dispose();
+
+                }
+                datag2.Invoke(new MethodInvoker(delegate ()
+                {
+                    datag2.DataSource = hamtao.bangdasosanh(dulieu.sosanhdulieu());
+                    datag2.DefaultCellStyle.Font = new Font("Comic Sans MS", 20.0F);
+                    DataGridViewColumn column = datag2.Columns[1];
+                    column.Width = 40;
+                    column = datag2.Columns[3];
+                    column.Width = 40;
+                    column = datag2.Columns[4];
+                    column.Width = 150;
+
+                    chinhsizecot = true;
+                    cochuthaydoi = true;
+                }));
+                pbLoading.Invoke(new MethodInvoker(delegate ()
+                {
+                    pbLoading.Visible = false;
+                }));
+                lbsophieu.Invoke(new MethodInvoker(delegate ()
+                {
+                    lbsophieu.Text = sophieu;
+                }));
+                lbnoidungdon.Invoke(new MethodInvoker(delegate ()
+                {
+                    lbnoidungdon.Text = noidung;
+                }));
+                lbsoluongdon.Invoke(new MethodInvoker(delegate ()
+                {
+                    lbsoluongdon.Text = dulieu.tongsoluongbt2();
+                }));
+                
+                
+                
+            }
+        }
         void sosanhdulieu()
         {
             OpenFileDialog chonfile = new OpenFileDialog();
@@ -434,6 +583,23 @@ namespace khocnf
         public PictureBox pbdunglai
         {
             get { return pbdunglaidi; }
+        }
+
+        private void grbthongtindon_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void kiemhang_Resize(object sender, EventArgs e)
+        {
+            if (this.Width > 1160)
+            {
+                datag2.Width = 820;
+            }
+            else
+            {
+                datag2.Width = 700;
+            }
         }
     }
 }
