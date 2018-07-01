@@ -158,7 +158,7 @@ namespace khocnf
                             lbtinhtrang.Text = dulieu.tinhtrang(masp);
                             dulieu.insertdl1(txtbarcode.Text, lbmasp.Text, "1", ngay, gio,txtnoinhan.Text);
                             dulieu.loadvaodatag1(datag1);
-                            if (datag3.RowCount > 0)
+                            if (datag3.RowCount > 1)
                             {
 
                                 dulieu.baoamthanh(masp);
@@ -586,6 +586,24 @@ namespace khocnf
             {
                 radioTatca.BackColor = Color.White;
                 radioTatca.ForeColor = Color.DimGray;
+            }
+        }
+
+        private void chuyenhang_Resize(object sender, EventArgs e)
+        {
+            if (this.Width > 1170)
+            {
+                datag2.Width = 610;
+                grbthongtindon.Width = 610;
+                lbtongsoluong.Width = 610;
+                btnlaydata.Width = 250;
+            }
+            else if (this.Width <= 1170)
+            {
+                datag2.Width = 495;
+                grbthongtindon.Width = 490;
+                lbtongsoluong.Width = 495;
+                btnlaydata.Width = 127;
             }
         }
     }

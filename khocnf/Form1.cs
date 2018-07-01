@@ -26,8 +26,7 @@ namespace khocnf
         public Form1()
         {
             InitializeComponent();
-            kiemtra = new Thread(hamkiemtra);
-            kiemtra.IsBackground = true;
+            
            
             tabnao = 1;
 
@@ -37,7 +36,7 @@ namespace khocnf
         {
             try
             {
-                Thread.Sleep(5000);
+                Thread.Sleep(1000);
                 var con = ketnoimysql.Khoitao();
                 var conn = ketnoi.Khoitao();
 
@@ -49,10 +48,7 @@ namespace khocnf
 
                     btnUPDATE.Image = Properties.Resources.hetupdate;
                 }));
-
-
-
-
+                
             }
             catch (Exception)
             {
@@ -195,12 +191,15 @@ namespace khocnf
         {
             if (thugon)
             {
-                pantieude.Width = 70;
+                pantieude.Width = 80;
                 xulyBTN(btnkiemhang, "", thugon);
                 xulyBTN(btnchuyenhang, "", thugon);
                 xulyBTN(btntimkiem, "", thugon);
                 xulyBTN(btnUPDATE, "", thugon);
                 xulyBTN(btnAMTHANH, "", thugon);
+                btnTHUGON.Width = 50;
+                btnTHUGON.Image = Properties.Resources.menu_mau;
+                pbANHNEN.Width = 78;
             }
             else
             {
@@ -210,6 +209,9 @@ namespace khocnf
                 xulyBTN(btntimkiem, "Tìm kiếm", thugon);
                 xulyBTN(btnUPDATE, "", thugon);
                 xulyBTN(btnAMTHANH, "", thugon);
+                btnTHUGON.Width = 150;
+                btnTHUGON.Image = Properties.Resources.menu_goc;
+                pbANHNEN.Width = 180;
             }
         }
         void xulyBTN(Button btn,string noidung, bool thu)
@@ -231,9 +233,12 @@ namespace khocnf
         {
             try
             {
+                kiemtra = new Thread(hamkiemtra);
+                kiemtra.IsBackground = true;
                 if (!kiemtra.IsAlive)
                 {
                     kiemtra.Start();
+                    kiemtra.Abort();
                 }
             }
             catch (Exception)

@@ -737,7 +737,7 @@ namespace khocnf
         }
         public DataTable loadbangPhieu(string ngay)
         {
-            string sql = "select sophieu as 'Số phiếu',noidung as 'Nội dung',dieuphoi as 'User',tongsoluong as 'Số lượng' from bangphieu where ngay ='" + ngay + "'";
+            string sql = "select sophieu as 'Số phiếu',noidung as 'Nội dung',dieuphoi as 'User',tongsoluong as 'SL',ngay as 'Ngày' from bangphieu where ngay ='" + ngay + "'";
             Open();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
             DataTable dt = new DataTable();
@@ -819,7 +819,7 @@ namespace khocnf
         }
         public DataTable loctheoSophieubang3(string sophieu)
         {
-            string sql = "select sophieu as 'Số phiếu',noidung as 'Nội dung',dieuphoi as 'User',tongsoluong as 'Số lượng' from bangphieu where sophieu like 'CNF01/INT/" + sophieu + "%'";
+            string sql = "select sophieu as 'Số phiếu',noidung as 'Nội dung',dieuphoi as 'User',tongsoluong as 'SL',ngay as 'Ngày' from bangphieu where sophieu like 'CNF01/INT/" + sophieu + "%'";
             Open();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
             DataTable dt = new DataTable();

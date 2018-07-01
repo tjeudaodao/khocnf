@@ -240,6 +240,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="github_8vo_icon.ico" />
+    <None Include="Resources\menu %283%29.png" />
+    <None Include="Resources\menu %281%29.png" />
+    <None Include="Resources\menu %282%29.png" />
+    <None Include="Resources\menu.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets')" />

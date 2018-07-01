@@ -18,13 +18,31 @@ namespace khocnf
         {
             InitializeComponent();
         }
+        void demSLPHIEU()
+        {
+            try
+            {
+                lbsoluongphieu.Text = (datag3.RowCount - 1).ToString();
+            }
+            catch (Exception)
+            {
 
+                lbsoluongphieu.Text = "-";
+            }
+            
+        }
         private void timkiem_Load(object sender, EventArgs e)
         {
             ngaymuontim = DateTime.Now.ToString("dd/MM/yyyy");
             hamloadBang(ngaymuontim);
             var dulieu = ketnoi.Khoitao();
             datag4.DataSource = dulieu.loadbangchitietPhieu();
+            DataGridViewColumn column = datag3.Columns[3];
+            column.Width = 50;
+            column = datag3.Columns[4];
+            column.Width = 80;
+            column = datag3.Columns[2];
+            column.Width = 80;
         }
         // ham ho tro
         void hamloadBang(string ngay)
@@ -38,6 +56,7 @@ namespace khocnf
             lbsldonchuyenhang.Text = dulieu.laysodontrongngay(ngay, "chuyenhang");
             lbtongslkiemhang.Text = dulieu.laysoluongtrongngay(ngay, "kiemhang");
             lbtongslchuyenhang.Text = dulieu.laysoluongtrongngay(ngay, "chuyenhang");
+            demSLPHIEU();
         }
 
         //
@@ -61,31 +80,58 @@ namespace khocnf
 
         private void datag3_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = datag3.Rows[e.RowIndex];
-            string sophieu = row.Cells[0].Value.ToString();
-            var dulieu = ketnoi.Khoitao();
+            try
+            {
+                DataGridViewRow row = datag3.Rows[e.RowIndex];
+                string sophieu = row.Cells[0].Value.ToString();
+                var dulieu = ketnoi.Khoitao();
 
-            datag4.DataSource = dulieu.loadbangchitietPhieu(sophieu);
+                datag4.DataSource = dulieu.loadbangchitietPhieu(sophieu);
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
+            
         }
 
         private void datag1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = datag1.Rows[e.RowIndex];
-            string ngay = row.Cells[1].Value.ToString();
-            string gio = row.Cells[2].Value.ToString();
-            var dulieu = ketnoi.Khoitao();
+            try
+            {
+                DataGridViewRow row = datag1.Rows[e.RowIndex];
+                string ngay = row.Cells[1].Value.ToString();
+                string gio = row.Cells[2].Value.ToString();
+                var dulieu = ketnoi.Khoitao();
 
-            lbtongslkiemhang.Text = dulieu.laysoluong1dontrongngay(ngay,gio,"kiemhang");
+                lbtongslkiemhang.Text = dulieu.laysoluong1dontrongngay(ngay, gio, "kiemhang");
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
+            
         }
 
         private void datag2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = datag2.Rows[e.RowIndex];
-            string ngay = row.Cells[1].Value.ToString();
-            string gio = row.Cells[2].Value.ToString();
-            var dulieu = ketnoi.Khoitao();
+            try
+            {
+                DataGridViewRow row = datag2.Rows[e.RowIndex];
+                string ngay = row.Cells[1].Value.ToString();
+                string gio = row.Cells[2].Value.ToString();
+                var dulieu = ketnoi.Khoitao();
 
-            lbtongslchuyenhang.Text = dulieu.laysoluong1dontrongngay(ngay, gio, "chuyenhang");
+                lbtongslchuyenhang.Text = dulieu.laysoluong1dontrongngay(ngay, gio, "chuyenhang");
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
+            
         }
 
         private void btnxuatKH_Click(object sender, EventArgs e)
@@ -111,12 +157,41 @@ namespace khocnf
             var dulieu = ketnoi.Khoitao();
             datag1.DataSource = dulieu.loctheoSophieubang1(txtsophieu.Text);
             datag3.DataSource = dulieu.loctheoSophieubang3(txtsophieu.Text);
+            demSLPHIEU();
         }
 
         private void txtnoinhan_TextChanged(object sender, EventArgs e)
         {
             var dulieu = ketnoi.Khoitao();
             datag2.DataSource = dulieu.loctheoNoinhan(txtnoinhan.Text);
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbtongslkiemhang_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timkiem_Resize(object sender, EventArgs e)
+        {
+            if (this.Width > 1170)
+            {
+                datag2.Width = 580;
+                datag1.Width = 580;
+                lbtongslchuyenhang.Width = 200;
+                lbtongslkiemhang.Width = 200;
+            }
+            else if (this.Width <= 1170)
+            {
+                datag2.Width = 463;
+                datag1.Width = 463;
+                lbtongslchuyenhang.Width = 77;
+                lbtongslkiemhang.Width = 77;
+            }
         }
     }
 }

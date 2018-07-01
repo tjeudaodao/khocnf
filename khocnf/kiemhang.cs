@@ -473,91 +473,91 @@ namespace khocnf
                 
             }
         }
-        void sosanhdulieu()
-        {
-            OpenFileDialog chonfile = new OpenFileDialog();
-            chonfile.Filter = "Mời các anh chọn file excel (*.xlsx)|*.xlsx";
-            chonfile.Multiselect = true;
-            if (chonfile.ShowDialog() == DialogResult.OK)
-            {
-                string[] cacfiledachon = chonfile.FileNames;
-                try
-                {
-                    var dulieu = ketnoi.Khoitao();
-                    dulieu.xoabangtam2();
+        //void sosanhdulieu()
+        //{
+        //    OpenFileDialog chonfile = new OpenFileDialog();
+        //    chonfile.Filter = "Mời các anh chọn file excel (*.xlsx)|*.xlsx";
+        //    chonfile.Multiselect = true;
+        //    if (chonfile.ShowDialog() == DialogResult.OK)
+        //    {
+        //        string[] cacfiledachon = chonfile.FileNames;
+        //        try
+        //        {
+        //            var dulieu = ketnoi.Khoitao();
+        //            dulieu.xoabangtam2();
 
-                    string sophieu = null;
-                    string noidung = null;
-                    string dieuphoi = null;
-                    string tongsoluong = null;
+        //            string sophieu = null;
+        //            string noidung = null;
+        //            string dieuphoi = null;
+        //            string tongsoluong = null;
 
-                    foreach (string file in cacfiledachon)
-                    {
-                        string matong = null;
-                        string soluong = null;
-                        string masp = null;
-                        ExcelPackage filechon = new ExcelPackage(new FileInfo(file));
-                        ExcelWorksheet ws = filechon.Workbook.Worksheets[1];
-                        var sodong = ws.Dimension.End.Row;
-                        if (sodong < 2)
-                        {
-                            MessageBox.Show("Lỗi rồi. File đã chọn chưa có dữ liệu");
-                        }
-                        else
-                        {
-                            try
-                            {
-                                sophieu = ws.Cells[2, 3].Value.ToString();
-                                noidung = ws.Cells[2, 11].Value.ToString();
-                                dieuphoi = ws.Cells[2, 18].Value.ToString();
-                                tongsoluong = ws.Cells[2, 14].Value.ToString();
+        //            foreach (string file in cacfiledachon)
+        //            {
+        //                string matong = null;
+        //                string soluong = null;
+        //                string masp = null;
+        //                ExcelPackage filechon = new ExcelPackage(new FileInfo(file));
+        //                ExcelWorksheet ws = filechon.Workbook.Worksheets[1];
+        //                var sodong = ws.Dimension.End.Row;
+        //                if (sodong < 2)
+        //                {
+        //                    MessageBox.Show("Lỗi rồi. File đã chọn chưa có dữ liệu");
+        //                }
+        //                else
+        //                {
+        //                    try
+        //                    {
+        //                        sophieu = ws.Cells[2, 3].Value.ToString();
+        //                        noidung = ws.Cells[2, 11].Value.ToString();
+        //                        dieuphoi = ws.Cells[2, 18].Value.ToString();
+        //                        tongsoluong = ws.Cells[2, 14].Value.ToString();
 
-                                for (int i = 3; i < sodong; i++)
-                                {
-                                    matong = ws.Cells[i, 10].Value.ToString();
-                                    masp = ws.Cells[i, 12].Value.ToString();
-                                    soluong = ws.Cells[i, 14].Value.ToString();
-                                    dulieu.laydataexcel(matong, soluong);
-                                    dulieu.chenthongtinphieu(sophieu, masp, soluong);
-                                }
-                                dulieu.chenthongtinphieu(sophieu, noidung, dieuphoi, tongsoluong);
-                            }
-                            catch (Exception)
-                            {
-                                return;
-                            }
+        //                        for (int i = 3; i < sodong; i++)
+        //                        {
+        //                            matong = ws.Cells[i, 10].Value.ToString();
+        //                            masp = ws.Cells[i, 12].Value.ToString();
+        //                            soluong = ws.Cells[i, 14].Value.ToString();
+        //                            dulieu.laydataexcel(matong, soluong);
+        //                            dulieu.chenthongtinphieu(sophieu, masp, soluong);
+        //                        }
+        //                        dulieu.chenthongtinphieu(sophieu, noidung, dieuphoi, tongsoluong);
+        //                    }
+        //                    catch (Exception)
+        //                    {
+        //                        return;
+        //                    }
 
 
-                        }
+        //                }
 
-                        filechon.Dispose();
+        //                filechon.Dispose();
 
-                    }
+        //            }
 
-                    datag2.DataSource = hamtao.bangdasosanh(dulieu.sosanhdulieu());
-                    datag2.DefaultCellStyle.Font = new Font("Comic Sans MS", 20.0F);
-                    DataGridViewColumn column = datag2.Columns[1];
-                    column.Width = 40;
-                    column = datag2.Columns[3];
-                    column.Width = 40;
-                    column = datag2.Columns[4];
-                    column.Width = 150;
+        //            datag2.DataSource = hamtao.bangdasosanh(dulieu.sosanhdulieu());
+        //            datag2.DefaultCellStyle.Font = new Font("Comic Sans MS", 20.0F);
+        //            DataGridViewColumn column = datag2.Columns[1];
+        //            column.Width = 40;
+        //            column = datag2.Columns[3];
+        //            column.Width = 40;
+        //            column = datag2.Columns[4];
+        //            column.Width = 150;
 
-                    chinhsizecot = true;
-                    cochuthaydoi = true;
+        //            chinhsizecot = true;
+        //            cochuthaydoi = true;
 
-                    lbsophieu.Text = sophieu;
-                    lbnoidungdon.Text = noidung;
-                    lbsoluongdon.Text = dulieu.tongsoluongbt2();
-                    hamtao.notifi_hts( "Đã xong - Đối chiếu xem sao!\n Nếu OK thì ấn vào nút lưu.");
-                }
-                catch (Exception)
-                {
-                    return;
-                }
-            }
+        //            lbsophieu.Text = sophieu;
+        //            lbnoidungdon.Text = noidung;
+        //            lbsoluongdon.Text = dulieu.tongsoluongbt2();
+        //            hamtao.notifi_hts( "Đã xong - Đối chiếu xem sao!\n Nếu OK thì ấn vào nút lưu.");
+        //        }
+        //        catch (Exception)
+        //        {
+        //            return;
+        //        }
+        //    }
 
-        }
+        //}
 
         private void pbsave_Click(object sender, EventArgs e)
         {
@@ -592,15 +592,23 @@ namespace khocnf
 
         private void kiemhang_Resize(object sender, EventArgs e)
         {
-            if (this.Width > 1160)
+            if (this.Width > 1170)
             {
                 datag2.Width = 820;
+                grbthongtindon.Width = 810;
+                lbtongsoluong.Width = 820;
+                pbLoading.Width = 820;
             }
-            else
+            else if (this.Width <= 1170)
             {
-                datag2.Width = 700;
+                datag2.Width = 680;
+                grbthongtindon.Width = 670;
+                lbtongsoluong.Width = 690;
+                pbLoading.Width = 680;
             }
         }
+
+        
     }
 }
 
