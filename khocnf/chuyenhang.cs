@@ -232,7 +232,6 @@ namespace khocnf
                         txtbarcode.Enabled = true;
                         txtbarcode.Focus();
                         btnbatdaukiemhang.Enabled = false;
-                        datag3.DataSource = dulieu.laybangmatongchuyenhang1();
                     }
                     catch (Exception)
                     {
@@ -252,7 +251,6 @@ namespace khocnf
                     txtbarcode.Enabled = true;
                     txtbarcode.Focus();
                     btnbatdaukiemhang.Enabled = false;
-                    datag3.DataSource = dulieu.laybangmatongchuyenhang1();
                 }
                 catch (Exception)
                 {

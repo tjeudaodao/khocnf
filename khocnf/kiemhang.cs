@@ -598,6 +598,7 @@ namespace khocnf
                 grbthongtindon.Width = 810;
                 lbtongsoluong.Width = 820;
                 pbLoading.Width = 820;
+                lbsoluongdon.Width = 250;
             }
             else if (this.Width <= 1170)
             {
@@ -605,6 +606,7 @@ namespace khocnf
                 grbthongtindon.Width = 670;
                 lbtongsoluong.Width = 690;
                 pbLoading.Width = 680;
+                lbsoluongdon.Width = 107;
             }
         }
 

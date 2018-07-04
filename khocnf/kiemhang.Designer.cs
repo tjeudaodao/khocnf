@@ -324,9 +324,9 @@
             // pbLoading
             // 
             this.pbLoading.Image = ((System.Drawing.Image)(resources.GetObject("pbLoading.Image")));
-            this.pbLoading.Location = new System.Drawing.Point(6, 312);
+            this.pbLoading.Location = new System.Drawing.Point(3, 312);
             this.pbLoading.Name = "pbLoading";
-            this.pbLoading.Size = new System.Drawing.Size(697, 342);
+            this.pbLoading.Size = new System.Drawing.Size(700, 342);
             this.pbLoading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbLoading.TabIndex = 7;
             this.pbLoading.TabStop = false;

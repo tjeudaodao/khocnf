@@ -30,25 +30,25 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pantieude = new System.Windows.Forms.Panel();
-            this.panthaydoi = new System.Windows.Forms.Panel();
-            this.panTop = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panMain = new System.Windows.Forms.Panel();
-            this.pbclose = new System.Windows.Forms.PictureBox();
-            this.pbminimize = new System.Windows.Forms.PictureBox();
+            this.pbANHNEN = new System.Windows.Forms.PictureBox();
             this.btnTHUGON = new System.Windows.Forms.Button();
+            this.panthaydoi = new System.Windows.Forms.Panel();
             this.btnAMTHANH = new System.Windows.Forms.Button();
             this.btnUPDATE = new System.Windows.Forms.Button();
             this.btntimkiem = new System.Windows.Forms.Button();
             this.btnchuyenhang = new System.Windows.Forms.Button();
             this.btnkiemhang = new System.Windows.Forms.Button();
-            this.pbANHNEN = new System.Windows.Forms.PictureBox();
+            this.panTop = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pbclose = new System.Windows.Forms.PictureBox();
+            this.pbminimize = new System.Windows.Forms.PictureBox();
+            this.panMain = new System.Windows.Forms.Panel();
             this.pantieude.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbANHNEN)).BeginInit();
             this.panTop.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbclose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbminimize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbANHNEN)).BeginInit();
             this.SuspendLayout();
             // 
             // pantieude
@@ -65,65 +65,18 @@
             this.pantieude.Dock = System.Windows.Forms.DockStyle.Left;
             this.pantieude.Location = new System.Drawing.Point(0, 0);
             this.pantieude.Name = "pantieude";
-            this.pantieude.Size = new System.Drawing.Size(190, 720);
+            this.pantieude.Size = new System.Drawing.Size(190, 730);
             this.pantieude.TabIndex = 0;
             // 
-            // panthaydoi
+            // pbANHNEN
             // 
-            this.panthaydoi.BackColor = System.Drawing.Color.SpringGreen;
-            this.panthaydoi.Location = new System.Drawing.Point(7, 73);
-            this.panthaydoi.Name = "panthaydoi";
-            this.panthaydoi.Size = new System.Drawing.Size(6, 90);
-            this.panthaydoi.TabIndex = 1;
-            // 
-            // panTop
-            // 
-            this.panTop.Controls.Add(this.panel1);
-            this.panTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panTop.Location = new System.Drawing.Point(190, 0);
-            this.panTop.Name = "panTop";
-            this.panTop.Size = new System.Drawing.Size(1170, 30);
-            this.panTop.TabIndex = 2;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.pbclose);
-            this.panel1.Controls.Add(this.pbminimize);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(1071, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(99, 30);
-            this.panel1.TabIndex = 2;
-            // 
-            // panMain
-            // 
-            this.panMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panMain.Location = new System.Drawing.Point(190, 30);
-            this.panMain.Name = "panMain";
-            this.panMain.Size = new System.Drawing.Size(1170, 690);
-            this.panMain.TabIndex = 3;
-            // 
-            // pbclose
-            // 
-            this.pbclose.Image = ((System.Drawing.Image)(resources.GetObject("pbclose.Image")));
-            this.pbclose.Location = new System.Drawing.Point(57, 0);
-            this.pbclose.Name = "pbclose";
-            this.pbclose.Size = new System.Drawing.Size(30, 30);
-            this.pbclose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbclose.TabIndex = 1;
-            this.pbclose.TabStop = false;
-            this.pbclose.Click += new System.EventHandler(this.pbclose_Click);
-            // 
-            // pbminimize
-            // 
-            this.pbminimize.Image = ((System.Drawing.Image)(resources.GetObject("pbminimize.Image")));
-            this.pbminimize.Location = new System.Drawing.Point(17, 0);
-            this.pbminimize.Name = "pbminimize";
-            this.pbminimize.Size = new System.Drawing.Size(30, 30);
-            this.pbminimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbminimize.TabIndex = 1;
-            this.pbminimize.TabStop = false;
-            this.pbminimize.Click += new System.EventHandler(this.pbminimize_Click);
+            this.pbANHNEN.Image = ((System.Drawing.Image)(resources.GetObject("pbANHNEN.Image")));
+            this.pbANHNEN.Location = new System.Drawing.Point(1, 615);
+            this.pbANHNEN.Name = "pbANHNEN";
+            this.pbANHNEN.Size = new System.Drawing.Size(180, 95);
+            this.pbANHNEN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbANHNEN.TabIndex = 2;
+            this.pbANHNEN.TabStop = false;
             // 
             // btnTHUGON
             // 
@@ -137,6 +90,14 @@
             this.btnTHUGON.TabIndex = 0;
             this.btnTHUGON.UseVisualStyleBackColor = false;
             this.btnTHUGON.Click += new System.EventHandler(this.btnTHUGON_Click);
+            // 
+            // panthaydoi
+            // 
+            this.panthaydoi.BackColor = System.Drawing.Color.SpringGreen;
+            this.panthaydoi.Location = new System.Drawing.Point(7, 73);
+            this.panthaydoi.Name = "panthaydoi";
+            this.panthaydoi.Size = new System.Drawing.Size(6, 90);
+            this.panthaydoi.TabIndex = 1;
             // 
             // btnAMTHANH
             // 
@@ -224,15 +185,54 @@
             this.btnkiemhang.UseVisualStyleBackColor = false;
             this.btnkiemhang.Click += new System.EventHandler(this.btnkiemhang_Click);
             // 
-            // pbANHNEN
+            // panTop
             // 
-            this.pbANHNEN.Image = ((System.Drawing.Image)(resources.GetObject("pbANHNEN.Image")));
-            this.pbANHNEN.Location = new System.Drawing.Point(1, 615);
-            this.pbANHNEN.Name = "pbANHNEN";
-            this.pbANHNEN.Size = new System.Drawing.Size(180, 95);
-            this.pbANHNEN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbANHNEN.TabIndex = 2;
-            this.pbANHNEN.TabStop = false;
+            this.panTop.Controls.Add(this.panel1);
+            this.panTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panTop.Location = new System.Drawing.Point(190, 0);
+            this.panTop.Name = "panTop";
+            this.panTop.Size = new System.Drawing.Size(1170, 30);
+            this.panTop.TabIndex = 2;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.pbclose);
+            this.panel1.Controls.Add(this.pbminimize);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(1071, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(99, 30);
+            this.panel1.TabIndex = 2;
+            // 
+            // pbclose
+            // 
+            this.pbclose.Image = ((System.Drawing.Image)(resources.GetObject("pbclose.Image")));
+            this.pbclose.Location = new System.Drawing.Point(57, 0);
+            this.pbclose.Name = "pbclose";
+            this.pbclose.Size = new System.Drawing.Size(30, 30);
+            this.pbclose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbclose.TabIndex = 1;
+            this.pbclose.TabStop = false;
+            this.pbclose.Click += new System.EventHandler(this.pbclose_Click);
+            // 
+            // pbminimize
+            // 
+            this.pbminimize.Image = ((System.Drawing.Image)(resources.GetObject("pbminimize.Image")));
+            this.pbminimize.Location = new System.Drawing.Point(17, 0);
+            this.pbminimize.Name = "pbminimize";
+            this.pbminimize.Size = new System.Drawing.Size(30, 30);
+            this.pbminimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbminimize.TabIndex = 1;
+            this.pbminimize.TabStop = false;
+            this.pbminimize.Click += new System.EventHandler(this.pbminimize_Click);
+            // 
+            // panMain
+            // 
+            this.panMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panMain.Location = new System.Drawing.Point(190, 30);
+            this.panMain.Name = "panMain";
+            this.panMain.Size = new System.Drawing.Size(1170, 700);
+            this.panMain.TabIndex = 3;
             // 
             // Form1
             // 
@@ -240,7 +240,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1360, 720);
+            this.ClientSize = new System.Drawing.Size(1360, 730);
             this.Controls.Add(this.panMain);
             this.Controls.Add(this.panTop);
             this.Controls.Add(this.pantieude);
@@ -254,11 +254,11 @@
             this.Text = "Kho CNF";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.pantieude.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbANHNEN)).EndInit();
             this.panTop.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbclose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbminimize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbANHNEN)).EndInit();
             this.ResumeLayout(false);
 
         }
