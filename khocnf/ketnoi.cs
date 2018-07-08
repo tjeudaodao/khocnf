@@ -251,6 +251,26 @@ namespace khocnf
             cmd.ExecuteNonQuery();
             Close();
         }
+        public bool kiemtraSophieu(string sophieu)
+        {
+            string h = null;
+            bool kt;
+            string sql = string.Format("select sophieu from bangphieu where sophieu ='{0}'", sophieu);
+            Open();
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            SQLiteDataReader dtr = cmd.ExecuteReader();
+            while (dtr.Read())
+            {
+                h = dtr[0].ToString();
+            }
+            Close();
+            if (h != null)
+            {
+                kt = true;
+            }
+            else kt = false;
+            return kt;
+        }
         public void chenthongtinphieu(string sophieu,string masp, string sl)
         {
             string sql = string.Format("insert into chitietphieu values('{0}','{1}','{2}')", sophieu, masp, sl);
@@ -259,10 +279,10 @@ namespace khocnf
             cmd.ExecuteNonQuery();
             Close();
         }
-        public void chenthongtinphieu(string sophieu, string noidung, string dieuphoi,string sl)
+        public void chenthongtinphieu(string sophieu, string noidung, string dieuphoi,string sl,string ngaytrenphieu)
         {
             string ngay = DateTime.Now.ToString("dd-MM-yyyy");
-            string sql = string.Format("insert into bangphieu values('{0}','{1}','{2}','{3}','{4}')", sophieu, noidung, dieuphoi,sl,ngay);
+            string sql = string.Format("insert into bangphieu values('{0}','{1}','{2}','{3}','{4}','{5}')", sophieu, noidung, dieuphoi,sl,ngay,ngaytrenphieu);
             Open();
             SQLiteCommand cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
@@ -737,7 +757,7 @@ namespace khocnf
         }
         public DataTable loadbangPhieu(string ngay)
         {
-            string sql = "select sophieu as 'Số phiếu',noidung as 'Nội dung',dieuphoi as 'User',tongsoluong as 'SL',ngay as 'Ngày' from bangphieu where ngay ='" + ngay + "'";
+            string sql = "select sophieu as 'Số phiếu',noidung as 'Nội dung',dieuphoi as 'User',tongsoluong as 'SL',ngay as 'Ngày kiểm',ngaytrenphieu as 'Ngày / Phiếu' from bangphieu where ngay ='" + ngay + "'";
             Open();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
             DataTable dt = new DataTable();
@@ -819,7 +839,7 @@ namespace khocnf
         }
         public DataTable loctheoSophieubang3(string sophieu)
         {
-            string sql = "select sophieu as 'Số phiếu',noidung as 'Nội dung',dieuphoi as 'User',tongsoluong as 'SL',ngay as 'Ngày' from bangphieu where sophieu like 'CNF01/INT/" + sophieu + "%'";
+            string sql = "select sophieu as 'Số phiếu',noidung as 'Nội dung',dieuphoi as 'User',tongsoluong as 'SL',ngay as 'Ngày',ngaytrenphieu as 'Ngày / Phiếu' from bangphieu where sophieu like 'CNF01/INT/" + sophieu + "%'";
             Open();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
             DataTable dt = new DataTable();

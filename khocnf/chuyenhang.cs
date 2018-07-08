@@ -225,6 +225,7 @@ namespace khocnf
                 {
                     try
                     {
+                        dulieu.savevaobangchuyenhang(ngay, gio);
                         dulieu.xoabangtamchuyenhang();
                         dulieu.xoabangthuathieu();
                         ngay = DateTime.Now.ToString("dd-MM-yyyy");

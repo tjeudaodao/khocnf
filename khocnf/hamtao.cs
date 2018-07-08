@@ -155,9 +155,9 @@ namespace khocnf
                 dt.Columns.Add("SL");
                 dt.AcceptChanges();
                 string goc = o.GetData(DataFormats.Text).ToString().TrimEnd("\r\n".ToCharArray());
-                string mau = @"\d\w{2}\d{2}[SWAC]\d{3}-\w{2}\d{3}-\w+\s+\d+";
+                string mau = @"\d\w{2}\d{2}[SWACswac]\d{3}-\w{2}\d{3}-\w+\s+\d+";
                 //string mau1 = @"\d\w{2}\d{2}[SWAC]\d{3}\s+\w+";
-                string mau1_1 = @"(?<matong>\d\w{2}\d{2}[SWAC]\d{3}\s+.*)";
+                string mau1_1 = @"(?<matong>\d\w{2}\d{2}[SWACswac]\d{3}\s+.*)";
                 string mau2 = @"\s+";
                 MatchCollection matchhts = Regex.Matches(goc, mau);
                 //MatchCollection matchmatong = Regex.Matches(goc, mau1);
@@ -168,12 +168,14 @@ namespace khocnf
                     string[] hang = Regex.Split(h.Value.ToString(), mau2);
 
                     DataRow rowadd = dt.NewRow();
-                    for (int i = 0; i < hang.Length; i++)
-                    {
+                    //for (int i = 0; i < hang.Length; i++)
+                    //{
 
-                        rowadd[i] = hang[i];
+                    //    rowadd[i] = hang[i];
 
-                    }
+                    //}
+                    rowadd[0] = hang[0].ToUpper();
+                    rowadd[1] = hang[1];
                     dt.Rows.Add(rowadd);
                 }
                 //foreach (Match h in matchmatong)
@@ -194,7 +196,7 @@ namespace khocnf
                     string[] hang = Regex.Split(mm.Groups["matong"].Value.ToString(), mau2);
 
                     DataRow rowadd = dt.NewRow();
-                    rowadd[0] = hang[0];
+                    rowadd[0] = hang[0].ToUpper();
                     string hh = null;
                     for (int i = 1; i < hang.Length; i++)
                     {

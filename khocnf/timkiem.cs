@@ -37,10 +37,10 @@ namespace khocnf
             hamloadBang(ngaymuontim);
             var dulieu = ketnoi.Khoitao();
             datag4.DataSource = dulieu.loadbangchitietPhieu();
-            DataGridViewColumn column = datag3.Columns[3];
-            column.Width = 50;
-            column = datag3.Columns[4];
-            column.Width = 80;
+            DataGridViewColumn column = datag3.Columns[0];
+            column.Width = 130;
+            column = datag3.Columns[1];
+            column.Width = 180;
             column = datag3.Columns[2];
             column.Width = 80;
         }

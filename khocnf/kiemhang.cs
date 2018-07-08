@@ -395,6 +395,7 @@ namespace khocnf
                 string noidung = null;
                 string dieuphoi = null;
                 string tongsoluong = null;
+                string ngaytrenphieu = null;
 
                 foreach (string file in luuFilechon)
                 {
@@ -416,6 +417,9 @@ namespace khocnf
                             noidung = ws.Cells[2, 11].Value.ToString();
                             dieuphoi = ws.Cells[2, 18].Value.ToString();
                             tongsoluong = ws.Cells[2, 14].Value.ToString();
+                            ngaytrenphieu = ws.Cells[3, 1].Value.ToString();
+
+                            bool kiemtraSP = dulieu.kiemtraSophieu(sophieu);
 
                             for (int i = 3; i < sodong; i++)
                             {
@@ -423,9 +427,17 @@ namespace khocnf
                                 masp = ws.Cells[i, 12].Value.ToString();
                                 soluong = ws.Cells[i, 14].Value.ToString();
                                 dulieu.laydataexcel(matong, soluong);
-                                dulieu.chenthongtinphieu(sophieu, masp, soluong);
+                                if (!kiemtraSP)
+                                {
+                                    dulieu.chenthongtinphieu(sophieu, masp, soluong);
+                                }
+                                
                             }
-                            dulieu.chenthongtinphieu(sophieu, noidung, dieuphoi, tongsoluong);
+                            if (!kiemtraSP)
+                            {
+                                dulieu.chenthongtinphieu(sophieu, noidung, dieuphoi, tongsoluong,ngaytrenphieu);
+                            }
+                            
                         }
                         catch (Exception)
                         {
@@ -443,11 +455,11 @@ namespace khocnf
                     datag2.DataSource = hamtao.bangdasosanh(dulieu.sosanhdulieu());
                     datag2.DefaultCellStyle.Font = new Font("Comic Sans MS", 20.0F);
                     DataGridViewColumn column = datag2.Columns[1];
-                    column.Width = 40;
+                    column.Width = 60;
                     column = datag2.Columns[3];
-                    column.Width = 40;
+                    column.Width = 60;
                     column = datag2.Columns[4];
-                    column.Width = 150;
+                    column.Width = 180;
 
                     chinhsizecot = true;
                     cochuthaydoi = true;
