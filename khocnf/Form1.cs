@@ -21,15 +21,18 @@ namespace khocnf
         kiemhang uskiemhang = new kiemhang();
         chuyenhang uschuyenhang = new chuyenhang();
         timkiem ustimkiem = new timkiem();
+        Thread ngayData;
+        string luungayData = null;
 
-        Thread kiemtra;
         public Form1()
         {
             InitializeComponent();
             
            
             tabnao = 1;
-
+            ngayData = new Thread(hamngayData);
+            ngayData.IsBackground = true;
+            ngayData.Start();
         }
         
         void hamkiemtra()
@@ -57,7 +60,16 @@ namespace khocnf
             }
             
         }
-        
+        void hamngayData()
+        {
+            Thread.Sleep(2000);
+            var con = ketnoimysql.Khoitao();
+            luungayData = con.LayNgaycapnhat();
+            btnUPDATE.Invoke(new MethodInvoker(delegate ()
+            {
+                btnUPDATE.Text = luungayData;
+            }));
+        }
 
         private void btnchuyenhang_Click(object sender, EventArgs e)
         {
@@ -195,7 +207,7 @@ namespace khocnf
                 xulyBTN(btnkiemhang, "", thugon);
                 xulyBTN(btnchuyenhang, "", thugon);
                 xulyBTN(btntimkiem, "", thugon);
-                xulyBTN(btnUPDATE, "", thugon);
+                xulyBTN(btnUPDATE, luungayData, thugon);
                 xulyBTN(btnAMTHANH, "", thugon);
                 btnTHUGON.Width = 50;
                 btnTHUGON.Image = Properties.Resources.menu_mau;
@@ -207,7 +219,7 @@ namespace khocnf
                 xulyBTN(btnkiemhang, "Kiểm hàng", thugon);
                 xulyBTN(btnchuyenhang, "Chuyển hàng", thugon);
                 xulyBTN(btntimkiem, "Tìm kiếm", thugon);
-                xulyBTN(btnUPDATE, "", thugon);
+                xulyBTN(btnUPDATE, luungayData, thugon);
                 xulyBTN(btnAMTHANH, "", thugon);
                 btnTHUGON.Width = 150;
                 btnTHUGON.Image = Properties.Resources.menu_goc;
@@ -233,13 +245,15 @@ namespace khocnf
         {
             try
             {
-                kiemtra = new Thread(hamkiemtra);
+                
+                Thread kiemtra = new Thread(hamkiemtra);
                 kiemtra.IsBackground = true;
                 if (!kiemtra.IsAlive)
                 {
                     kiemtra.Start();
-                    kiemtra.Abort();
                 }
+                   
+                
             }
             catch (Exception)
             {

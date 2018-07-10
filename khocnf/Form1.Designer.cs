@@ -71,7 +71,7 @@
             // pbANHNEN
             // 
             this.pbANHNEN.Image = ((System.Drawing.Image)(resources.GetObject("pbANHNEN.Image")));
-            this.pbANHNEN.Location = new System.Drawing.Point(1, 615);
+            this.pbANHNEN.Location = new System.Drawing.Point(3, 632);
             this.pbANHNEN.Name = "pbANHNEN";
             this.pbANHNEN.Size = new System.Drawing.Size(180, 95);
             this.pbANHNEN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -107,9 +107,9 @@
             this.btnAMTHANH.Font = new System.Drawing.Font("Comic Sans MS", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAMTHANH.ForeColor = System.Drawing.SystemColors.Control;
             this.btnAMTHANH.Image = global::khocnf.Properties.Resources.spacker;
-            this.btnAMTHANH.Location = new System.Drawing.Point(22, 559);
+            this.btnAMTHANH.Location = new System.Drawing.Point(22, 588);
             this.btnAMTHANH.Name = "btnAMTHANH";
-            this.btnAMTHANH.Size = new System.Drawing.Size(150, 50);
+            this.btnAMTHANH.Size = new System.Drawing.Size(150, 38);
             this.btnAMTHANH.TabIndex = 1;
             this.btnAMTHANH.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAMTHANH.UseVisualStyleBackColor = false;
@@ -120,12 +120,13 @@
             this.btnUPDATE.BackColor = System.Drawing.Color.DimGray;
             this.btnUPDATE.FlatAppearance.BorderSize = 0;
             this.btnUPDATE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUPDATE.Font = new System.Drawing.Font("Comic Sans MS", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUPDATE.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnUPDATE.Font = new System.Drawing.Font("Comic Sans MS", 4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUPDATE.ForeColor = System.Drawing.Color.SpringGreen;
             this.btnUPDATE.Image = ((System.Drawing.Image)(resources.GetObject("btnUPDATE.Image")));
-            this.btnUPDATE.Location = new System.Drawing.Point(22, 482);
+            this.btnUPDATE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnUPDATE.Location = new System.Drawing.Point(22, 465);
             this.btnUPDATE.Name = "btnUPDATE";
-            this.btnUPDATE.Size = new System.Drawing.Size(150, 52);
+            this.btnUPDATE.Size = new System.Drawing.Size(150, 104);
             this.btnUPDATE.TabIndex = 1;
             this.btnUPDATE.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnUPDATE.UseVisualStyleBackColor = false;
@@ -140,7 +141,7 @@
             this.btntimkiem.ForeColor = System.Drawing.SystemColors.Control;
             this.btntimkiem.Image = ((System.Drawing.Image)(resources.GetObject("btntimkiem.Image")));
             this.btntimkiem.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btntimkiem.Location = new System.Drawing.Point(22, 360);
+            this.btntimkiem.Location = new System.Drawing.Point(22, 335);
             this.btntimkiem.Name = "btntimkiem";
             this.btntimkiem.Size = new System.Drawing.Size(150, 90);
             this.btntimkiem.TabIndex = 1;
@@ -158,7 +159,7 @@
             this.btnchuyenhang.ForeColor = System.Drawing.SystemColors.Control;
             this.btnchuyenhang.Image = ((System.Drawing.Image)(resources.GetObject("btnchuyenhang.Image")));
             this.btnchuyenhang.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnchuyenhang.Location = new System.Drawing.Point(22, 221);
+            this.btnchuyenhang.Location = new System.Drawing.Point(22, 205);
             this.btnchuyenhang.Name = "btnchuyenhang";
             this.btnchuyenhang.Size = new System.Drawing.Size(150, 90);
             this.btnchuyenhang.TabIndex = 1;

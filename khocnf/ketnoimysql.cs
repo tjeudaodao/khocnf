@@ -63,5 +63,20 @@ namespace khocnf
             Close();
             return dt;
         }
+        public string LayNgaycapnhat()
+        {
+            string h = null;
+            string sql = "select ngaydata from ngaycapnhat";
+
+            Open();
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader dtr = cmd.ExecuteReader();
+            while (dtr.Read())
+            {
+                h = dtr[0].ToString();
+            }
+            Close();
+            return h;
+        }
     }
 }
