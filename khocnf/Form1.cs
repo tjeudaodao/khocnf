@@ -21,8 +21,8 @@ namespace khocnf
         kiemhang uskiemhang = new kiemhang();
         chuyenhang uschuyenhang = new chuyenhang();
         timkiem ustimkiem = new timkiem();
-        Thread ngayData;
-        string luungayData = null;
+        Thread tuCapnhat;
+        static string luungayData = null;
 
         public Form1()
         {
@@ -30,28 +30,48 @@ namespace khocnf
             
            
             tabnao = 1;
-            ngayData = new Thread(hamngayData);
-            ngayData.IsBackground = true;
-            ngayData.Start();
+            tuCapnhat = new Thread(hamkiemtra);
+            tuCapnhat.IsBackground = true;
+            tuCapnhat.Start();
         }
         
         void hamkiemtra()
         {
             try
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
                 var con = ketnoimysql.Khoitao();
-                var conn = ketnoi.Khoitao();
+                ftp ftpClient = new ftp(@"ftp://27.72.29.28/", "hts", "hoanglaota");
 
-                btnUPDATE.Invoke(new MethodInvoker(delegate ()
+                luungayData = con.LayNgaycapnhat();
+                lbNgayCapnhat.Invoke(new MethodInvoker(delegate ()
                 {
-                    btnUPDATE.Image = Properties.Resources.update;
-                    DataTable dt = con.Check();
-                    conn.chenvaoDATA(dt);
-
-                    btnUPDATE.Image = Properties.Resources.hetupdate;
+                    lbNgayCapnhat.Text = luungayData;
                 }));
-                
+                while (true)
+                {
+                    string ngaylay = con.LayNgaycapnhat();
+                    if (ngaylay != luungayData)
+                    {
+                        btnUPDATE.Invoke(new MethodInvoker(delegate ()
+                        {
+                            btnUPDATE.Image = Properties.Resources.update;
+                            if (File.Exists(Application.StartupPath + @"\databarcode.db"))
+                            {
+                                File.Delete(Application.StartupPath + @"\databarcode.db");
+                            }
+                            ftpClient.download("app/luutru/databarcode.db", Application.StartupPath + @"\databarcode.db");
+
+                            luungayData = ngaylay;
+                            lbNgayCapnhat.Invoke(new MethodInvoker(delegate ()
+                            {
+                                lbNgayCapnhat.Text = luungayData;
+                            }));
+                            btnUPDATE.Image = Properties.Resources.hetupdate;
+                        }));
+                    }
+                    Thread.Sleep(300000);
+                }
             }
             catch (Exception)
             {
@@ -60,16 +80,41 @@ namespace khocnf
             }
             
         }
-        void hamngayData()
+        void hamKiemtay()
         {
-            Thread.Sleep(2000);
             var con = ketnoimysql.Khoitao();
-            luungayData = con.LayNgaycapnhat();
-            btnUPDATE.Invoke(new MethodInvoker(delegate ()
+            ftp ftpClient = new ftp(@"ftp://27.72.29.28/", "hts", "hoanglaota");
+            string ngaylay = con.LayNgaycapnhat();
+            if (ngaylay != luungayData)
             {
-                btnUPDATE.Text = luungayData;
-            }));
+                btnUPDATE.Invoke(new MethodInvoker(delegate ()
+                {
+                    btnUPDATE.Image = Properties.Resources.update;
+                    if (File.Exists(Application.StartupPath + @"\databarcode.db"))
+                    {
+                        File.Delete(Application.StartupPath + @"\databarcode.db");
+                    }
+                    ftpClient.download("app/luutru/databarcode.db", Application.StartupPath + @"\databarcode.db");
+
+                    luungayData = ngaylay;
+                    lbNgayCapnhat.Invoke(new MethodInvoker(delegate ()
+                    {
+                        lbNgayCapnhat.Text = luungayData;
+                    }));
+                    btnUPDATE.Image = Properties.Resources.hetupdate;
+                }));
+            }
         }
+        //void hamngayData()
+        //{
+        //    Thread.Sleep(2000);
+        //    var con = ketnoimysql.Khoitao();
+        //    luungayData = con.LayNgaycapnhat();
+        //    btnUPDATE.Invoke(new MethodInvoker(delegate ()
+        //    {
+        //        btnUPDATE.Text = luungayData;
+        //    }));
+        //}
 
         private void btnchuyenhang_Click(object sender, EventArgs e)
         {
@@ -207,7 +252,7 @@ namespace khocnf
                 xulyBTN(btnkiemhang, "", thugon);
                 xulyBTN(btnchuyenhang, "", thugon);
                 xulyBTN(btntimkiem, "", thugon);
-                xulyBTN(btnUPDATE, luungayData, thugon);
+                xulyBTN(btnUPDATE, "", thugon);
                 xulyBTN(btnAMTHANH, "", thugon);
                 btnTHUGON.Width = 50;
                 btnTHUGON.Image = Properties.Resources.menu_mau;
@@ -219,7 +264,7 @@ namespace khocnf
                 xulyBTN(btnkiemhang, "Kiểm hàng", thugon);
                 xulyBTN(btnchuyenhang, "Chuyển hàng", thugon);
                 xulyBTN(btntimkiem, "Tìm kiếm", thugon);
-                xulyBTN(btnUPDATE, luungayData, thugon);
+                xulyBTN(btnUPDATE, "", thugon);
                 xulyBTN(btnAMTHANH, "", thugon);
                 btnTHUGON.Width = 150;
                 btnTHUGON.Image = Properties.Resources.menu_goc;
@@ -246,9 +291,9 @@ namespace khocnf
             try
             {
                 
-                Thread kiemtra = new Thread(hamkiemtra);
+                Thread kiemtra = new Thread(hamKiemtay);
                 kiemtra.IsBackground = true;
-                if (!kiemtra.IsAlive)
+                if (!kiemtra.IsAlive && !tuCapnhat.IsAlive)
                 {
                     kiemtra.Start();
                 }

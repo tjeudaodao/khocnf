@@ -142,7 +142,8 @@ namespace khocnf
                 if (!string.IsNullOrEmpty(txtbarcode.Text))
                 {
                     var dulieu = ketnoi.Khoitao();
-                    string masp = dulieu.laymasp(txtbarcode.Text);
+                    var con = ketnoibarcode.Khoitao();
+                    string masp = con.laymasp(txtbarcode.Text);
                     if (masp == null)
                     {
                         amthanh.phatbaoloi();

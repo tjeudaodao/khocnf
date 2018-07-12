@@ -99,8 +99,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ftp.cs" />
     <Compile Include="hamtao.cs" />
     <Compile Include="ketnoi.cs" />
+    <Compile Include="ketnoibarcode.cs" />
     <Compile Include="ketnoimysql.cs" />
     <Compile Include="kiemhang.cs">
       <SubType>UserControl</SubType>

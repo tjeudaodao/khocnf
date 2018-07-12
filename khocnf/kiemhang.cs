@@ -145,7 +145,8 @@ namespace khocnf
                     try
                     {
                         var dulieu = ketnoi.Khoitao();
-                        string masp = dulieu.laymasp(txtbarcode.Text);
+                        var con = ketnoibarcode.Khoitao();
+                        string masp = con.laymasp(txtbarcode.Text);
                         chinhsuama = false;
                         if (masp == null)
                         {

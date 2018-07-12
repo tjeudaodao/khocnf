@@ -43,12 +43,16 @@
             this.pbclose = new System.Windows.Forms.PictureBox();
             this.pbminimize = new System.Windows.Forms.PictureBox();
             this.panMain = new System.Windows.Forms.Panel();
+            this.panTop_Left = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lbNgayCapnhat = new System.Windows.Forms.Label();
             this.pantieude.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbANHNEN)).BeginInit();
             this.panTop.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbclose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbminimize)).BeginInit();
+            this.panTop_Left.SuspendLayout();
             this.SuspendLayout();
             // 
             // pantieude
@@ -124,9 +128,9 @@
             this.btnUPDATE.ForeColor = System.Drawing.Color.SpringGreen;
             this.btnUPDATE.Image = ((System.Drawing.Image)(resources.GetObject("btnUPDATE.Image")));
             this.btnUPDATE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnUPDATE.Location = new System.Drawing.Point(22, 465);
+            this.btnUPDATE.Location = new System.Drawing.Point(22, 499);
             this.btnUPDATE.Name = "btnUPDATE";
-            this.btnUPDATE.Size = new System.Drawing.Size(150, 104);
+            this.btnUPDATE.Size = new System.Drawing.Size(150, 70);
             this.btnUPDATE.TabIndex = 1;
             this.btnUPDATE.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnUPDATE.UseVisualStyleBackColor = false;
@@ -141,7 +145,7 @@
             this.btntimkiem.ForeColor = System.Drawing.SystemColors.Control;
             this.btntimkiem.Image = ((System.Drawing.Image)(resources.GetObject("btntimkiem.Image")));
             this.btntimkiem.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btntimkiem.Location = new System.Drawing.Point(22, 335);
+            this.btntimkiem.Location = new System.Drawing.Point(22, 357);
             this.btntimkiem.Name = "btntimkiem";
             this.btntimkiem.Size = new System.Drawing.Size(150, 90);
             this.btntimkiem.TabIndex = 1;
@@ -159,7 +163,7 @@
             this.btnchuyenhang.ForeColor = System.Drawing.SystemColors.Control;
             this.btnchuyenhang.Image = ((System.Drawing.Image)(resources.GetObject("btnchuyenhang.Image")));
             this.btnchuyenhang.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnchuyenhang.Location = new System.Drawing.Point(22, 205);
+            this.btnchuyenhang.Location = new System.Drawing.Point(22, 233);
             this.btnchuyenhang.Name = "btnchuyenhang";
             this.btnchuyenhang.Size = new System.Drawing.Size(150, 90);
             this.btnchuyenhang.TabIndex = 1;
@@ -188,6 +192,7 @@
             // 
             // panTop
             // 
+            this.panTop.Controls.Add(this.panTop_Left);
             this.panTop.Controls.Add(this.panel1);
             this.panTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panTop.Location = new System.Drawing.Point(190, 0);
@@ -235,6 +240,37 @@
             this.panMain.Size = new System.Drawing.Size(1170, 700);
             this.panMain.TabIndex = 3;
             // 
+            // panTop_Left
+            // 
+            this.panTop_Left.Controls.Add(this.lbNgayCapnhat);
+            this.panTop_Left.Controls.Add(this.label1);
+            this.panTop_Left.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panTop_Left.Location = new System.Drawing.Point(0, 0);
+            this.panTop_Left.Name = "panTop_Left";
+            this.panTop_Left.Size = new System.Drawing.Size(562, 30);
+            this.panTop_Left.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(189, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Dữ liệu cập nhật mới nhất ngày :";
+            // 
+            // lbNgayCapnhat
+            // 
+            this.lbNgayCapnhat.AutoSize = true;
+            this.lbNgayCapnhat.Font = new System.Drawing.Font("Comic Sans MS", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNgayCapnhat.ForeColor = System.Drawing.Color.Crimson;
+            this.lbNgayCapnhat.Location = new System.Drawing.Point(224, 7);
+            this.lbNgayCapnhat.Name = "lbNgayCapnhat";
+            this.lbNgayCapnhat.Size = new System.Drawing.Size(15, 18);
+            this.lbNgayCapnhat.TabIndex = 0;
+            this.lbNgayCapnhat.Text = "-";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -260,6 +296,8 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbclose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbminimize)).EndInit();
+            this.panTop_Left.ResumeLayout(false);
+            this.panTop_Left.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -280,6 +318,9 @@
         private System.Windows.Forms.Button btnUPDATE;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pbANHNEN;
+        private System.Windows.Forms.Panel panTop_Left;
+        private System.Windows.Forms.Label lbNgayCapnhat;
+        private System.Windows.Forms.Label label1;
     }
 }
 

@@ -23,6 +23,7 @@ namespace khocnf
             string connstring = @"Data source=data.db;version=3;new=false";
             conn = new SQLiteConnection(connstring);
         }
+        
         private static ketnoi _khoitao = null;
         public static ketnoi Khoitao()
         {
@@ -57,48 +58,35 @@ namespace khocnf
         #endregion
 
         // xu ly thread
-        public void chenvaoDATA(DataTable dt)
-        {
-            string barcode = null;
-            string masp = null;
-            if (dt!= null)
-            {
-                foreach (DataRow row in dt.Rows)
-                {
-                    barcode = row[0].ToString();
-                    masp = row[1].ToString();
-                    if (barcode != null && masp != null)
-                    {
-                        if (laymasp(barcode) == null)
-                        {
-                            string sql = "insert into data(barcode,masp) values('" + barcode + "','" + masp + "')";
-                            Open();
-                            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
-                            cmd.ExecuteNonQuery();
-                            Close();
-                        }
+        //public void chenvaoDATA(DataTable dt)
+        //{
+        //    string barcode = null;
+        //    string masp = null;
+        //    if (dt!= null)
+        //    {
+        //        foreach (DataRow row in dt.Rows)
+        //        {
+        //            barcode = row[0].ToString();
+        //            masp = row[1].ToString();
+        //            if (barcode != null && masp != null)
+        //            {
+        //                if (laymasp(barcode) == null)
+        //                {
+        //                    string sql = "insert into data(barcode,masp) values('" + barcode + "','" + masp + "')";
+        //                    Open();
+        //                    SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+        //                    cmd.ExecuteNonQuery();
+        //                    Close();
+        //                }
                         
-                    }
+        //            }
                    
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
         
         #region xuly kiemhang
-        public string laymasp(string barcode)
-        {
-            string h = null;
-            string sql = string.Format("select masp from data where barcode ='{0}'", barcode);
-            Open();
-            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
-            SQLiteDataReader dtr = cmd.ExecuteReader();
-            while (dtr.Read())
-            {
-                h = dtr[0].ToString();
-            }
-            Close();
-            return h;
-        }
+        
         public string laymatong(string masp)
         {
             string m = null;

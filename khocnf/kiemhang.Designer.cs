@@ -71,7 +71,7 @@
             // 
             this.datag1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.datag1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.datag1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.datag1.BackgroundColor = System.Drawing.Color.White;
             this.datag1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.datag1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datag1.Location = new System.Drawing.Point(22, 311);
@@ -126,7 +126,7 @@
             // 
             // lbmasp
             // 
-            this.lbmasp.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbmasp.BackColor = System.Drawing.Color.White;
             this.lbmasp.Font = new System.Drawing.Font("Comic Sans MS", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbmasp.ForeColor = System.Drawing.Color.DimGray;
             this.lbmasp.Location = new System.Drawing.Point(23, 104);
@@ -209,7 +209,7 @@
             this.lbsoluongdon.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lbsoluongdon.Font = new System.Drawing.Font("Comic Sans MS", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbsoluongdon.ForeColor = System.Drawing.Color.SpringGreen;
-            this.lbsoluongdon.Location = new System.Drawing.Point(531, 19);
+            this.lbsoluongdon.Location = new System.Drawing.Point(544, 19);
             this.lbsoluongdon.Name = "lbsoluongdon";
             this.lbsoluongdon.Size = new System.Drawing.Size(107, 38);
             this.lbsoluongdon.TabIndex = 1;
@@ -304,7 +304,7 @@
             this.lbnoidungdon.ForeColor = System.Drawing.Color.DimGray;
             this.lbnoidungdon.Location = new System.Drawing.Point(221, 24);
             this.lbnoidungdon.Name = "lbnoidungdon";
-            this.lbnoidungdon.Size = new System.Drawing.Size(274, 29);
+            this.lbnoidungdon.Size = new System.Drawing.Size(304, 29);
             this.lbnoidungdon.TabIndex = 1;
             this.lbnoidungdon.Text = "-";
             this.lbnoidungdon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -353,7 +353,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(447, 680);
             this.panel1.TabIndex = 9;
-//            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panKiemhang
             // 
