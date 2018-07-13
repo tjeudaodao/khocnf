@@ -84,7 +84,29 @@ namespace khocnf
         //        }
         //    }
         //}
-        
+        // them bang luu ngay
+        public string layngayData()
+        {
+            string sql = "select ngaydata from ngaycapnhat";
+            string sl = null;
+            Open();
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            SQLiteDataReader dtr = cmd.ExecuteReader();
+            while (dtr.Read())
+            {
+                sl = dtr[0].ToString();
+            }
+            Close();
+            return sl;
+        }
+        public void updatengayData(string ngay)
+        {
+            string sql = "update ngaycapnhat set ngaydata='" + ngay + "'";
+            Open();
+            SQLiteCommand cmd = new SQLiteCommand();
+            cmd.ExecuteNonQuery();
+            Close();
+        }
         #region xuly kiemhang
         
         public string laymatong(string masp)

@@ -17,7 +17,6 @@ namespace khocnf
         private ketnoimysql()
         {
             string connstring = string.Format("Server=27.72.29.28;port=3306; database=cnf; User Id=kho; password=1234");
-            //string connstring = string.Format("Server=localhost;port=3306; database=cnf; User Id=hts; password=1211");
             conn = new MySqlConnection(connstring);
         }
         private static ketnoimysql _khoitao = null;
@@ -41,6 +40,7 @@ namespace khocnf
                 {
 
                     MessageBox.Show("Không kết nối được đến máy chủ ", "Lỗi");
+                    return;
                 }
             }
         }
