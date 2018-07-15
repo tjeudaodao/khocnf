@@ -418,7 +418,16 @@ namespace khocnf
                             noidung = ws.Cells[2, 11].Value.ToString();
                             dieuphoi = ws.Cells[2, 18].Value.ToString();
                             tongsoluong = ws.Cells[2, 14].Value.ToString();
-                            ngaytrenphieu = ws.Cells[3, 1].Value.ToString();
+                            try
+                            {
+                                ngaytrenphieu = ws.Cells[3, 1].Value.ToString();
+                            }
+                            catch (Exception)
+                            {
+
+                                ngaytrenphieu = "-";
+                            }
+                            
 
                             bool kiemtraSP = dulieu.kiemtraSophieu(sophieu);
 
@@ -430,7 +439,7 @@ namespace khocnf
                                 dulieu.laydataexcel(matong, soluong);
                                 if (!kiemtraSP)
                                 {
-                                    dulieu.chenthongtinphieu(sophieu, masp, soluong);
+                                    dulieu.chenthongtinphieu(sophieu, masp, soluong,matong);
                                 }
                                 
                             }

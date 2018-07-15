@@ -57,6 +57,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnxuatKH = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnInphieu = new System.Windows.Forms.Button();
             this.lbsoluongphieu = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.datag1)).BeginInit();
@@ -363,7 +364,7 @@
             this.btnxuatKH.ForeColor = System.Drawing.SystemColors.Control;
             this.btnxuatKH.Location = new System.Drawing.Point(20, 616);
             this.btnxuatKH.Name = "btnxuatKH";
-            this.btnxuatKH.Size = new System.Drawing.Size(649, 40);
+            this.btnxuatKH.Size = new System.Drawing.Size(365, 40);
             this.btnxuatKH.TabIndex = 13;
             this.btnxuatKH.Text = "Xuất Excel Bảng Tổng hợp";
             this.btnxuatKH.UseVisualStyleBackColor = false;
@@ -372,6 +373,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.btnInphieu);
             this.panel1.Controls.Add(this.btnxuatKH);
             this.panel1.Controls.Add(this.lbsoluongphieu);
             this.panel1.Controls.Add(this.monthC);
@@ -384,6 +386,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(678, 680);
             this.panel1.TabIndex = 14;
+            // 
+            // btnInphieu
+            // 
+            this.btnInphieu.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnInphieu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInphieu.Font = new System.Drawing.Font("Comic Sans MS", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInphieu.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnInphieu.Location = new System.Drawing.Point(510, 616);
+            this.btnInphieu.Name = "btnInphieu";
+            this.btnInphieu.Size = new System.Drawing.Size(159, 40);
+            this.btnInphieu.TabIndex = 13;
+            this.btnInphieu.Text = "In phiếu";
+            this.btnInphieu.UseVisualStyleBackColor = false;
+            this.btnInphieu.Click += new System.EventHandler(this.btnInphieu_Click);
             // 
             // lbsoluongphieu
             // 
@@ -466,5 +482,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbsoluongphieu;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnInphieu;
     }
 }

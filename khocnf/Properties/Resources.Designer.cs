@@ -70,6 +70,16 @@ namespace khocnf.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap down {
+            get {
+                object obj = ResourceManager.GetObject("down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream Du {
@@ -231,6 +241,16 @@ namespace khocnf.Properties {
         internal static System.Drawing.Bitmap totoro {
             get {
                 object obj = ResourceManager.GetObject("totoro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap totoro1 {
+            get {
+                object obj = ResourceManager.GetObject("totoro1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

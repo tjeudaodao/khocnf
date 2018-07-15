@@ -226,11 +226,12 @@ namespace khocnf
                 {
                     try
                     {
+                        
+                        ngay = DateTime.Now.ToString("dd-MM-yyyy");
+                        gio = DateTime.Now.ToString("HH:mm");
                         dulieu.savevaobangchuyenhang(ngay, gio);
                         dulieu.xoabangtamchuyenhang();
                         dulieu.xoabangthuathieu();
-                        ngay = DateTime.Now.ToString("dd-MM-yyyy");
-                        gio = DateTime.Now.ToString("HH:mm");
                         txtbarcode.Enabled = true;
                         txtbarcode.Focus();
                         btnbatdaukiemhang.Enabled = false;

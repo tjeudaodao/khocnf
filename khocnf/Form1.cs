@@ -38,45 +38,62 @@ namespace khocnf
         {
             try
             {
-                Thread.Sleep(5000);
-                var con = ketnoimysql.Khoitao();
-                var consqlite = ketnoi.Khoitao();
-                ftp ftpClient = new ftp(@"ftp://27.72.29.28/", "hts", "hoanglaota");
-
-                string luungayData = consqlite.layngayData();
-                lbNgayCapnhat.Invoke(new MethodInvoker(delegate ()
-                {
-                    if (luungayData == null)
-                    {
-                        lbNgayCapnhat.Text = "-";
-                    }
-                    lbNgayCapnhat.Text = luungayData;
-                }));
                 while (true)
                 {
-                    string ngayclient = consqlite.layngayData();
+                    Thread.Sleep(1000);
+                    var con = ketnoimysql.Khoitao();
+                    var consqlite = ketnoi.Khoitao();
                     string ngaylay = con.LayNgaycapnhat();
-                    if (ngaylay != ngayclient)
+                    string luungayData = consqlite.layngayData();
+                    lbNgayCapnhat.Invoke(new MethodInvoker(delegate ()
                     {
+                        if (luungayData == null)
+                        {
+                            lbNgayCapnhat.Text = "-";
+                        }
+                        lbNgayCapnhat.Text = luungayData;
+                    }));
+                    if (luungayData != ngaylay)
+                    {
+                        pbANHNEN.Invoke(new MethodInvoker(delegate ()
+                        {
+                            pbANHNEN.Image = Properties.Resources.down;
+                        }));
+
                         btnUPDATE.Invoke(new MethodInvoker(delegate ()
                         {
                             btnUPDATE.Image = Properties.Resources.update;
-                            if (File.Exists(Application.StartupPath + @"\databarcode.db"))
-                            {
-                                File.Delete(Application.StartupPath + @"\databarcode.db");
-                            }
-                            ftpClient.download("app/luutru/databarcode.db", Application.StartupPath + @"\databarcode.db");
-                            
-                            lbNgayCapnhat.Invoke(new MethodInvoker(delegate ()
-                            {
-                                lbNgayCapnhat.Text = ngaylay;
-                            }));
-                            btnUPDATE.Image = Properties.Resources.hetupdate;
-                            consqlite.updatengayData(ngaylay);
                         }));
                     }
-                    Thread.Sleep(600000);
+                    Thread.Sleep(300000);
                 }
+                
+
+                //while (true)
+                //{
+                //    string ngayclient = consqlite.layngayData();
+                //    string ngaylay = con.LayNgaycapnhat();
+                //    if (ngaylay != ngayclient)
+                //    {
+                //        btnUPDATE.Invoke(new MethodInvoker(delegate ()
+                //        {
+                //            btnUPDATE.Image = Properties.Resources.update;
+                //            if (File.Exists(Application.StartupPath + @"\databarcode.db"))
+                //            {
+                //                File.Delete(Application.StartupPath + @"\databarcode.db");
+                //            }
+                //            ftpClient.download("app/luutru/databarcode.db", Application.StartupPath + @"\databarcode.db");
+                            
+                //            lbNgayCapnhat.Invoke(new MethodInvoker(delegate ()
+                //            {
+                //                lbNgayCapnhat.Text = ngaylay;
+                //            }));
+                //            btnUPDATE.Image = Properties.Resources.hetupdate;
+                //            consqlite.updatengayData(ngaylay);
+                //        }));
+                //    }
+                //    Thread.Sleep(600000);
+                //}
             }
             catch (Exception)
             {
@@ -87,31 +104,47 @@ namespace khocnf
         }
         void hamKiemtay()
         {
-            var con = ketnoimysql.Khoitao();
-            var consqlite = ketnoi.Khoitao();
-            ftp ftpClient = new ftp(@"ftp://27.72.29.28/", "hts", "hoanglaota");
-            string ngaylay = con.LayNgaycapnhat();
-            string ngayclient = consqlite.layngayData();
-
-            if (ngaylay != ngayclient)
+            try
             {
-                btnUPDATE.Invoke(new MethodInvoker(delegate ()
+                var con = ketnoimysql.Khoitao();
+                var consqlite = ketnoi.Khoitao();
+                ftp ftpClient = new ftp(@"ftp://27.72.29.28/", "hts", "hoanglaota");
+                string ngaylay = con.LayNgaycapnhat();
+                string ngayclient = consqlite.layngayData();
+                Console.WriteLine(ngaylay + "-" + ngayclient);
+
+                if (ngaylay != ngayclient)
                 {
-                    btnUPDATE.Image = Properties.Resources.update;
-                    if (File.Exists(Application.StartupPath + @"\databarcode.db"))
+                    btnUPDATE.Invoke(new MethodInvoker(delegate ()
                     {
-                        File.Delete(Application.StartupPath + @"\databarcode.db");
-                    }
-                    ftpClient.download("app/luutru/databarcode.db", Application.StartupPath + @"\databarcode.db");
-                    
+                        btnUPDATE.Image = Properties.Resources.update;
+                        //if (File.Exists(Application.StartupPath + @"\databarcode.db"))
+                        //{
+                        //    File.Delete(Application.StartupPath + @"\databarcode.db");
+                        //}
+                        ftpClient.download("app/luutru/databarcode.db", Application.StartupPath + @"\databarcode.db");
+
+
+                        btnUPDATE.Image = Properties.Resources.hetupdate;
+                        
+                    }));
                     lbNgayCapnhat.Invoke(new MethodInvoker(delegate ()
                     {
                         lbNgayCapnhat.Text = ngaylay;
                     }));
-                    btnUPDATE.Image = Properties.Resources.hetupdate;
+                    pbANHNEN.Invoke(new MethodInvoker(delegate ()
+                    {
+                        pbANHNEN.Image = Properties.Resources.totoro1;
+                    }));
                     consqlite.updatengayData(ngaylay);
-                }));
+                }
             }
+            catch (Exception)
+            {
+
+                return;
+            }
+
         }
         //void hamngayData()
         //{
@@ -301,10 +334,9 @@ namespace khocnf
                 
                 Thread kiemtra = new Thread(hamKiemtay);
                 kiemtra.IsBackground = true;
-                if (!kiemtra.IsAlive)
-                {
+                
                     kiemtra.Start();
-                }
+
                    
                 
             }

@@ -97,13 +97,17 @@ namespace khocnf
                 sl = dtr[0].ToString();
             }
             Close();
+            if (sl == null)
+            {
+                sl = "-";
+            }
             return sl;
         }
         public void updatengayData(string ngay)
         {
             string sql = "update ngaycapnhat set ngaydata='" + ngay + "'";
             Open();
-            SQLiteCommand cmd = new SQLiteCommand();
+            SQLiteCommand cmd = new SQLiteCommand(sql,conn);
             cmd.ExecuteNonQuery();
             Close();
         }
@@ -281,9 +285,9 @@ namespace khocnf
             else kt = false;
             return kt;
         }
-        public void chenthongtinphieu(string sophieu,string masp, string sl)
+        public void chenthongtinphieu(string sophieu,string masp, string sl,string matong)
         {
-            string sql = string.Format("insert into chitietphieu values('{0}','{1}','{2}')", sophieu, masp, sl);
+            string sql = string.Format("insert into chitietphieu values('{0}','{1}','{2}','{3}')", sophieu, masp, sl,matong);
             Open();
             SQLiteCommand cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
@@ -788,6 +792,16 @@ namespace khocnf
         public DataTable loadbangchitietPhieu(string sophieu)
         {
             string sql = "select sophieu as 'Số phiếu',masp as 'Mã sản phẩm',soluong as 'Số lượng' from chitietphieu where sophieu ='" + sophieu + "'";
+            Open();
+            SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
+            DataTable dt = new DataTable();
+            dta.Fill(dt);
+            Close();
+            return dt;
+        }
+        public DataTable banginSp(string sophieu)
+        {
+            string sql = "select matong as 'Mã sản phẩm',sum(soluong) as 'Số lượng' from chitietphieu where sophieu ='" + sophieu + "' group by matong";
             Open();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
             DataTable dt = new DataTable();

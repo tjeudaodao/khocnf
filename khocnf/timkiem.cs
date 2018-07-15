@@ -76,8 +76,31 @@ namespace khocnf
             }
         }
 
-        
 
+        static string sophieu = null;
+        static string noidung = null;
+        static string tongsoluong = null;
+        static string ngaytrenphieu = null;
+        static bool laythongtinP = false;
+
+        public static bool laythongtinPhieu(string sophieu1,string noidung1,string tongsoluong1,string ngaytrenphieu1)
+        {
+            bool ok = false;
+            try
+            {
+                sophieu = sophieu1;
+                noidung = noidung1;
+                tongsoluong = tongsoluong1;
+                ngaytrenphieu = ngaytrenphieu1;
+                ok = true;
+            }
+            catch (Exception)
+            {
+
+                ok = false;
+            }
+            return ok;
+        }
         private void datag3_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -85,7 +108,7 @@ namespace khocnf
                 DataGridViewRow row = datag3.Rows[e.RowIndex];
                 string sophieu = row.Cells[0].Value.ToString();
                 var dulieu = ketnoi.Khoitao();
-
+                laythongtinP = laythongtinPhieu(sophieu, row.Cells[1].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[5].Value.ToString());
                 datag4.DataSource = dulieu.loadbangchitietPhieu(sophieu);
             }
             catch (Exception)
@@ -191,6 +214,23 @@ namespace khocnf
                 datag1.Width = 463;
                 lbtongslchuyenhang.Width = 77;
                 lbtongslkiemhang.Width = 77;
+            }
+        }
+
+        private void btnInphieu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (laythongtinP)
+                {
+                    var con = ketnoi.Khoitao();
+                    hamtao.taovainfileexceltheoPhieu(con.banginSp(sophieu), sophieu, noidung, tongsoluong, ngaytrenphieu);
+                }
+            }
+            catch (Exception)
+            {
+
+                hamtao.notifi_hts("co van de");
             }
         }
     }

@@ -386,6 +386,46 @@ namespace khocnf
                 }
             }
         }
+        public static void taovainfileexceltheoPhieu(DataTable dt, string sophieu, string noidung,string soluong,string ngay)
+        {
+            ExcelPackage ExcelPkg = new ExcelPackage();
+            ExcelWorksheet worksheet = ExcelPkg.Workbook.Worksheets.Add("hts");
+            worksheet.Cells["A1"].Value =sophieu ;
+            worksheet.Cells["A2"].Value = noidung;
+            worksheet.Cells["A3"].Value = soluong;
+            worksheet.Cells["A4"].Value = ngay;
+
+            worksheet.Cells["A5"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
+
+            worksheet.Column(1).Width = 28;
+            worksheet.Column(2).Width = 4;
+            
+            var allCells = worksheet.Cells[1, 1, worksheet.Dimension.End.Row, worksheet.Dimension.End.Column];
+            var cellFont = allCells.Style.Font;
+            cellFont.SetFromFont(new Font("Calibri", 10));
+
+            worksheet.PrinterSettings.LeftMargin = 0.2M / 2.54M;
+            worksheet.PrinterSettings.RightMargin = 0.2M / 2.54M;
+            worksheet.PrinterSettings.TopMargin = 0.2M / 2.54M;
+            worksheet.Protection.IsProtected = false;
+            worksheet.Protection.AllowSelectLockedCells = false;
+            if (File.Exists("hts.xlsx"))
+            {
+                File.Delete("hts.xlsx");
+
+            }
+            ExcelPkg.SaveAs(new FileInfo("hts.xlsx"));
+            ExcelPkg.Dispose();
+
+            var app = new excel.Application();
+
+            excel.Workbooks book = app.Workbooks;
+            excel.Workbook sh = book.Open(Path.GetFullPath("hts.xlsx"));
+            //app.Visible = true;
+            sh.PrintOutEx();
+            book.Close();
+            app.Quit();
+        }
         #endregion
 
         #region xuly thugon

@@ -39,20 +39,20 @@
             this.btnchuyenhang = new System.Windows.Forms.Button();
             this.btnkiemhang = new System.Windows.Forms.Button();
             this.panTop = new System.Windows.Forms.Panel();
+            this.panTop_Left = new System.Windows.Forms.Panel();
+            this.lbNgayCapnhat = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pbclose = new System.Windows.Forms.PictureBox();
             this.pbminimize = new System.Windows.Forms.PictureBox();
             this.panMain = new System.Windows.Forms.Panel();
-            this.panTop_Left = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lbNgayCapnhat = new System.Windows.Forms.Label();
             this.pantieude.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbANHNEN)).BeginInit();
             this.panTop.SuspendLayout();
+            this.panTop_Left.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbclose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbminimize)).BeginInit();
-            this.panTop_Left.SuspendLayout();
             this.SuspendLayout();
             // 
             // pantieude
@@ -200,6 +200,36 @@
             this.panTop.Size = new System.Drawing.Size(1170, 30);
             this.panTop.TabIndex = 2;
             // 
+            // panTop_Left
+            // 
+            this.panTop_Left.Controls.Add(this.lbNgayCapnhat);
+            this.panTop_Left.Controls.Add(this.label1);
+            this.panTop_Left.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panTop_Left.Location = new System.Drawing.Point(0, 0);
+            this.panTop_Left.Name = "panTop_Left";
+            this.panTop_Left.Size = new System.Drawing.Size(562, 30);
+            this.panTop_Left.TabIndex = 3;
+            // 
+            // lbNgayCapnhat
+            // 
+            this.lbNgayCapnhat.AutoSize = true;
+            this.lbNgayCapnhat.Font = new System.Drawing.Font("Comic Sans MS", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNgayCapnhat.ForeColor = System.Drawing.Color.Crimson;
+            this.lbNgayCapnhat.Location = new System.Drawing.Point(261, 6);
+            this.lbNgayCapnhat.Name = "lbNgayCapnhat";
+            this.lbNgayCapnhat.Size = new System.Drawing.Size(15, 18);
+            this.lbNgayCapnhat.TabIndex = 0;
+            this.lbNgayCapnhat.Text = "-";
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(240, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Dữ liệu cập nhật mới nhất ngày :";
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.pbclose);
@@ -240,37 +270,6 @@
             this.panMain.Size = new System.Drawing.Size(1170, 700);
             this.panMain.TabIndex = 3;
             // 
-            // panTop_Left
-            // 
-            this.panTop_Left.Controls.Add(this.lbNgayCapnhat);
-            this.panTop_Left.Controls.Add(this.label1);
-            this.panTop_Left.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panTop_Left.Location = new System.Drawing.Point(0, 0);
-            this.panTop_Left.Name = "panTop_Left";
-            this.panTop_Left.Size = new System.Drawing.Size(562, 30);
-            this.panTop_Left.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(189, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Dữ liệu cập nhật mới nhất ngày :";
-            // 
-            // lbNgayCapnhat
-            // 
-            this.lbNgayCapnhat.AutoSize = true;
-            this.lbNgayCapnhat.Font = new System.Drawing.Font("Comic Sans MS", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNgayCapnhat.ForeColor = System.Drawing.Color.Crimson;
-            this.lbNgayCapnhat.Location = new System.Drawing.Point(224, 7);
-            this.lbNgayCapnhat.Name = "lbNgayCapnhat";
-            this.lbNgayCapnhat.Size = new System.Drawing.Size(15, 18);
-            this.lbNgayCapnhat.TabIndex = 0;
-            this.lbNgayCapnhat.Text = "-";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -293,11 +292,11 @@
             this.pantieude.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbANHNEN)).EndInit();
             this.panTop.ResumeLayout(false);
+            this.panTop_Left.ResumeLayout(false);
+            this.panTop_Left.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbclose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbminimize)).EndInit();
-            this.panTop_Left.ResumeLayout(false);
-            this.panTop_Left.PerformLayout();
             this.ResumeLayout(false);
 
         }
