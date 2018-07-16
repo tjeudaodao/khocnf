@@ -13,7 +13,7 @@ namespace khocnf
     class ketnoi
     {
         #region khoitao
-        private SQLiteConnection conn = null;
+        private static SQLiteConnection conn = null;
         public SQLiteConnection returncon
         {
             get { return conn; }
