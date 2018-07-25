@@ -293,7 +293,9 @@ namespace khocnf
             ExcelWorksheet worksheet = ExcelPkg.Workbook.Worksheets.Add("hts");
             worksheet.Cells["A1"].Value = "27 Lê Văn Lương _ Điều chuyển";
             worksheet.Cells["A2"].Value = "Đến :" +noinhan;
-            worksheet.Cells["A4"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
+            worksheet.Cells["A3"].Value = "Ngày tạo :" + DateTime.Now.ToString("dd-MM-yyyy");
+            worksheet.Cells["A4"].Value = "Tổng SP :" + tongsp +" sp";
+            worksheet.Cells["A6"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
 
             worksheet.Column(1).Width = 28;
             worksheet.Column(2).Width = 4;
@@ -390,12 +392,12 @@ namespace khocnf
         {
             ExcelPackage ExcelPkg = new ExcelPackage();
             ExcelWorksheet worksheet = ExcelPkg.Workbook.Worksheets.Add("hts");
-            worksheet.Cells["A1"].Value =sophieu ;
-            worksheet.Cells["A2"].Value = noidung;
-            worksheet.Cells["A3"].Value = soluong;
-            worksheet.Cells["A4"].Value = ngay;
+            worksheet.Cells["A1"].Value ="Số phiếu: "+ sophieu ;
+            worksheet.Cells["A2"].Value ="Nội dung: "+ noidung;
+            worksheet.Cells["A3"].Value ="Tổng SL: "+ soluong +"sp";
+            worksheet.Cells["A4"].Value ="Ngày/Phiếu: "+ ngay;
 
-            worksheet.Cells["A5"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
+            worksheet.Cells["A6"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
 
             worksheet.Column(1).Width = 28;
             worksheet.Column(2).Width = 4;

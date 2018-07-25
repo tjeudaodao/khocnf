@@ -71,6 +71,7 @@
             this.pantieude.Name = "pantieude";
             this.pantieude.Size = new System.Drawing.Size(190, 730);
             this.pantieude.TabIndex = 0;
+            this.pantieude.Paint += new System.Windows.Forms.PaintEventHandler(this.pantieude_Paint);
             // 
             // pbANHNEN
             // 
@@ -163,7 +164,7 @@
             this.btnchuyenhang.ForeColor = System.Drawing.SystemColors.Control;
             this.btnchuyenhang.Image = ((System.Drawing.Image)(resources.GetObject("btnchuyenhang.Image")));
             this.btnchuyenhang.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnchuyenhang.Location = new System.Drawing.Point(22, 233);
+            this.btnchuyenhang.Location = new System.Drawing.Point(22, 209);
             this.btnchuyenhang.Name = "btnchuyenhang";
             this.btnchuyenhang.Size = new System.Drawing.Size(150, 90);
             this.btnchuyenhang.TabIndex = 1;

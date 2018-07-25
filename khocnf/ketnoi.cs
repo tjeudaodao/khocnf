@@ -561,6 +561,21 @@ namespace khocnf
             Close();
             return cohaykhong;
         }
+        public string[] layngaygiodaluuCHuyenhang()
+        {
+            string[] h = new string[2];
+            string sql = "select ngay,gio from bangtamchuyenhang";
+            Open();
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            SQLiteDataReader dtr = cmd.ExecuteReader();
+            while (dtr.Read())
+            {
+                h[0] = dtr[0].ToString();
+                h[1] = dtr[1].ToString();
+            }
+            Close();
+            return h;
+        }
         public void xoabangtamchuyenhang()
         {
             string sql = "delete from bangtamchuyenhang ; delete from sqlite_sequence where name='bangtamchuyenhang'";
@@ -781,7 +796,7 @@ namespace khocnf
         }
         public DataTable loadbangchitietPhieu()
         {
-            string sql = "select sophieu as 'Số phiếu',masp as 'Mã sản phẩm',soluong as 'Số lượng' from chitietphieu";
+            string sql = "select sophieu as 'Số phiếu',matong as 'Mã sản phẩm',soluong as 'Số lượng' from chitietphieu";
             Open();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
             DataTable dt = new DataTable();
@@ -791,7 +806,7 @@ namespace khocnf
         }
         public DataTable loadbangchitietPhieu(string sophieu)
         {
-            string sql = "select sophieu as 'Số phiếu',masp as 'Mã sản phẩm',soluong as 'Số lượng' from chitietphieu where sophieu ='" + sophieu + "'";
+            string sql = "select sophieu as 'Số phiếu',matong as 'Mã sản phẩm',sum(soluong) as 'Số lượng' from chitietphieu where sophieu ='" + sophieu + "' group by matong";
             Open();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
             DataTable dt = new DataTable();
@@ -801,7 +816,7 @@ namespace khocnf
         }
         public DataTable banginSp(string sophieu)
         {
-            string sql = "select matong as 'Mã sản phẩm',sum(soluong) as 'Số lượng' from chitietphieu where sophieu ='" + sophieu + "' group by matong";
+            string sql = "select matong as 'Mã sản phẩm',sum(soluong) as 'SL' from chitietphieu where sophieu ='" + sophieu + "' group by matong";
             Open();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
             DataTable dt = new DataTable();
@@ -839,7 +854,7 @@ namespace khocnf
         }
         public string laysoluong1dontrongngay(string ngay,string gio, string tenbang)
         {
-            string sql = "select count(gio) from '"+tenbang+"' where ngay ='"+ngay+"' and gio ='"+gio+"'";
+            string sql = "select sum(soluong) from '"+tenbang+"' where ngay ='"+ngay+"' and gio ='"+gio+"'";
             string sl = null;
             Open();
             SQLiteCommand cmd = new SQLiteCommand(sql, conn);

@@ -366,5 +366,10 @@ namespace khocnf
             thugonhaykhong = !thugonhaykhong;
             xulyThugon(thugonhaykhong);
         }
+
+        private void pantieude_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
