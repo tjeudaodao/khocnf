@@ -22,7 +22,7 @@ namespace khocnf
         chuyenhang uschuyenhang = new chuyenhang();
         timkiem ustimkiem = new timkiem();
         Thread tuCapnhat;
-
+        string duongdanAPP = Application.StartupPath;
         public Form1()
         {
             InitializeComponent();
@@ -295,6 +295,8 @@ namespace khocnf
                 xulyBTN(btntimkiem, "", thugon);
                 xulyBTN(btnUPDATE, "", thugon);
                 xulyBTN(btnAMTHANH, "", thugon);
+                xulyBTN(btn_Backup, "", thugon);
+                xulyBTN(btn_restore, "", thugon);
                 btnTHUGON.Width = 50;
                 btnTHUGON.Image = Properties.Resources.menu_mau;
                 pbANHNEN.Width = 78;
@@ -307,6 +309,8 @@ namespace khocnf
                 xulyBTN(btntimkiem, "Tìm kiếm", thugon);
                 xulyBTN(btnUPDATE, "", thugon);
                 xulyBTN(btnAMTHANH, "", thugon);
+                xulyBTN(btn_Backup, "", thugon);
+                xulyBTN(btn_restore, "", thugon);
                 btnTHUGON.Width = 150;
                 btnTHUGON.Image = Properties.Resources.menu_goc;
                 pbANHNEN.Width = 180;
@@ -370,6 +374,62 @@ namespace khocnf
         private void pantieude_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btn_Backup_Click(object sender, EventArgs e)
+        {
+            DialogResult backup = MessageBox.Show("Backup dữ liệu. Chú ý: Nếu nhấn 'OK' sẽ lưu dữ liệu cũ ra 1 file mới và file dữ liệu hiện tại sẽ bi 'XÓA'.!\nKhông cần lưu thường xuyên (có thể sau 3 đến 6 tháng lưu 1 lần, tùy vào trường hợp có kiểm hàng và chuyển hàng nhiều hay không)", "CAUTION: ĐỌC KĨ HƯỚNG DẪN TRƯỚC KHI DÙNG", MessageBoxButtons.OKCancel);
+            if (backup == DialogResult.OK)
+            {
+                if (!Directory.Exists(duongdanAPP + @"\backup"))
+                {
+                    Directory.CreateDirectory(duongdanAPP + @"\backup");
+                }
+                Random rd = new Random();
+
+                string tenfilenew = "data_backup_" + DateTime.Now.ToString("dd-MM-yyy_HH-mm") + "_" + rd.Next(1, 1000);
+                if (File.Exists(duongdanAPP+@"\backup\"+tenfilenew))
+                {
+                    tenfilenew += "_1";
+                }
+                File.Copy(duongdanAPP + @"\data.db", duongdanAPP + @"\backup\" + tenfilenew +".db");
+                var con = ketnoi.Khoitao();
+                con.xoatatca_backup();
+                MessageBox.Show("Backup thành công\nFile backup được lưu trong thư mục backup của Folder chứa chương trình.\nTrong trường hợp muốn lấy lại hoặc xem lại dữ liệu cũ thì dùng chức năng 'KHÔI PHỤC DỮ LIỆU' bên dưới", "Backup Done !");
+            }
+        }
+
+        private void btn_restore_Click(object sender, EventArgs e)
+        {
+            DialogResult restore = MessageBox.Show("Nên khởi động lại chương trình trước khi khôi phục để tránh bị lỗi (nhớ lưu lại công việc đang làm)\nKhôi phục lại dữ liệu từ các lần lưu trước.\nNếu nhấn 'OK' sẽ lưu tạm 1 bản tạm thời dùng trong trường hợp lỗi có thể khôi phục lại", "CAUTION: ĐỌC KĨ HƯỚNG DẪN TRƯỚC KHI DÙNG", MessageBoxButtons.OKCancel);
+            if (restore == DialogResult.OK)
+            {
+                if (!Directory.Exists(duongdanAPP + @"\backup"))
+                {
+                    Directory.CreateDirectory(duongdanAPP + @"\backup");
+                }
+                OpenFileDialog opendig = new OpenFileDialog();
+                opendig.Filter = "File sqlite (*.db)|*.db";
+                opendig.Multiselect = false;
+                opendig.InitialDirectory = duongdanAPP + @"\backup";
+                if (opendig.ShowDialog() == DialogResult.OK)
+                {
+                    
+                    Random rd = new Random();
+
+                    string tenfilenew = "data_backup_" + DateTime.Now.ToString("dd-MM-yyy_HH-mm") + "_" + rd.Next(1, 1000);
+                    if (File.Exists(duongdanAPP + @"\backup\" + tenfilenew))
+                    {
+                        tenfilenew += "_1";
+                    }
+                    File.Copy(duongdanAPP + @"\data.db", duongdanAPP + @"\backup\" + tenfilenew + ".db");
+                    var con = ketnoi.Khoitao();
+                    con.xoatatca_backup();
+                    
+                    File.Copy(opendig.FileName, duongdanAPP + @"\data.db",true);
+                    MessageBox.Show("Khôi phục hoàn tất");
+                }
+            }
         }
     }
 }

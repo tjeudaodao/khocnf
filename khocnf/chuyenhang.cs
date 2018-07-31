@@ -233,6 +233,8 @@ namespace khocnf
                         txtbarcode.Enabled = true;
                         txtbarcode.Focus();
                         btnbatdaukiemhang.Enabled = false;
+                        ngay = DateTime.Now.ToString("dd-MM-yyyy");
+                        gio = DateTime.Now.ToString("HH:mm");
                     }
                     catch (Exception)
                     {
@@ -370,9 +372,14 @@ namespace khocnf
         {
             try
             {
-                laydataHts = new Thread(hamLaydata);
-                laydataHts.IsBackground = true;
-                laydataHts.Start();
+                DialogResult dilog = MessageBox.Show("Lấy dữ liệu vửa copy từ clipbroad.?","COPY",MessageBoxButtons.YesNo);
+                if (dilog == DialogResult.Yes)
+                {
+                    laydataHts = new Thread(hamLaydata);
+                    laydataHts.IsBackground = true;
+                    laydataHts.Start();
+                }
+                
             }
             catch (Exception)
             {
@@ -525,6 +532,8 @@ namespace khocnf
                     var dulieu = ketnoi.Khoitao();
                     xuatexcel();
                     dulieu.savevaobangchuyenhang(ngay, gio);
+                    dulieu.xoabangtamchuyenhang();
+                    dulieu.xoabangthuathieu();
                     datag3.DataSource = dulieu.tachdonmoi(datag2,"bangtamchuyenhang1");
                     
                     lammoitatca();

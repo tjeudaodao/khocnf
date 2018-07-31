@@ -46,6 +46,8 @@
             this.pbclose = new System.Windows.Forms.PictureBox();
             this.pbminimize = new System.Windows.Forms.PictureBox();
             this.panMain = new System.Windows.Forms.Panel();
+            this.btn_Backup = new System.Windows.Forms.Button();
+            this.btn_restore = new System.Windows.Forms.Button();
             this.pantieude.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbANHNEN)).BeginInit();
             this.panTop.SuspendLayout();
@@ -61,7 +63,8 @@
             this.pantieude.Controls.Add(this.pbANHNEN);
             this.pantieude.Controls.Add(this.btnTHUGON);
             this.pantieude.Controls.Add(this.panthaydoi);
-            this.pantieude.Controls.Add(this.btnAMTHANH);
+            this.pantieude.Controls.Add(this.btn_restore);
+            this.pantieude.Controls.Add(this.btn_Backup);
             this.pantieude.Controls.Add(this.btnUPDATE);
             this.pantieude.Controls.Add(this.btntimkiem);
             this.pantieude.Controls.Add(this.btnchuyenhang);
@@ -76,9 +79,9 @@
             // pbANHNEN
             // 
             this.pbANHNEN.Image = ((System.Drawing.Image)(resources.GetObject("pbANHNEN.Image")));
-            this.pbANHNEN.Location = new System.Drawing.Point(3, 632);
+            this.pbANHNEN.Location = new System.Drawing.Point(3, 658);
             this.pbANHNEN.Name = "pbANHNEN";
-            this.pbANHNEN.Size = new System.Drawing.Size(180, 95);
+            this.pbANHNEN.Size = new System.Drawing.Size(180, 69);
             this.pbANHNEN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbANHNEN.TabIndex = 2;
             this.pbANHNEN.TabStop = false;
@@ -101,20 +104,20 @@
             this.panthaydoi.BackColor = System.Drawing.Color.SpringGreen;
             this.panthaydoi.Location = new System.Drawing.Point(7, 73);
             this.panthaydoi.Name = "panthaydoi";
-            this.panthaydoi.Size = new System.Drawing.Size(6, 90);
+            this.panthaydoi.Size = new System.Drawing.Size(6, 80);
             this.panthaydoi.TabIndex = 1;
             // 
             // btnAMTHANH
             // 
-            this.btnAMTHANH.BackColor = System.Drawing.Color.DimGray;
+            this.btnAMTHANH.BackColor = System.Drawing.Color.White;
             this.btnAMTHANH.FlatAppearance.BorderSize = 0;
             this.btnAMTHANH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAMTHANH.Font = new System.Drawing.Font("Comic Sans MS", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAMTHANH.ForeColor = System.Drawing.SystemColors.Control;
             this.btnAMTHANH.Image = global::khocnf.Properties.Resources.spacker;
-            this.btnAMTHANH.Location = new System.Drawing.Point(22, 588);
+            this.btnAMTHANH.Location = new System.Drawing.Point(377, 0);
             this.btnAMTHANH.Name = "btnAMTHANH";
-            this.btnAMTHANH.Size = new System.Drawing.Size(150, 38);
+            this.btnAMTHANH.Size = new System.Drawing.Size(70, 28);
             this.btnAMTHANH.TabIndex = 1;
             this.btnAMTHANH.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAMTHANH.UseVisualStyleBackColor = false;
@@ -129,9 +132,9 @@
             this.btnUPDATE.ForeColor = System.Drawing.Color.SpringGreen;
             this.btnUPDATE.Image = ((System.Drawing.Image)(resources.GetObject("btnUPDATE.Image")));
             this.btnUPDATE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnUPDATE.Location = new System.Drawing.Point(22, 499);
+            this.btnUPDATE.Location = new System.Drawing.Point(22, 400);
             this.btnUPDATE.Name = "btnUPDATE";
-            this.btnUPDATE.Size = new System.Drawing.Size(150, 70);
+            this.btnUPDATE.Size = new System.Drawing.Size(150, 50);
             this.btnUPDATE.TabIndex = 1;
             this.btnUPDATE.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnUPDATE.UseVisualStyleBackColor = false;
@@ -146,9 +149,9 @@
             this.btntimkiem.ForeColor = System.Drawing.SystemColors.Control;
             this.btntimkiem.Image = ((System.Drawing.Image)(resources.GetObject("btntimkiem.Image")));
             this.btntimkiem.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btntimkiem.Location = new System.Drawing.Point(22, 357);
+            this.btntimkiem.Location = new System.Drawing.Point(22, 292);
             this.btntimkiem.Name = "btntimkiem";
-            this.btntimkiem.Size = new System.Drawing.Size(150, 90);
+            this.btntimkiem.Size = new System.Drawing.Size(150, 80);
             this.btntimkiem.TabIndex = 1;
             this.btntimkiem.Text = "Tìm kiếm";
             this.btntimkiem.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -164,9 +167,9 @@
             this.btnchuyenhang.ForeColor = System.Drawing.SystemColors.Control;
             this.btnchuyenhang.Image = ((System.Drawing.Image)(resources.GetObject("btnchuyenhang.Image")));
             this.btnchuyenhang.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnchuyenhang.Location = new System.Drawing.Point(22, 209);
+            this.btnchuyenhang.Location = new System.Drawing.Point(22, 179);
             this.btnchuyenhang.Name = "btnchuyenhang";
-            this.btnchuyenhang.Size = new System.Drawing.Size(150, 90);
+            this.btnchuyenhang.Size = new System.Drawing.Size(150, 80);
             this.btnchuyenhang.TabIndex = 1;
             this.btnchuyenhang.Text = "Chuyển hàng";
             this.btnchuyenhang.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -184,7 +187,7 @@
             this.btnkiemhang.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnkiemhang.Location = new System.Drawing.Point(22, 73);
             this.btnkiemhang.Name = "btnkiemhang";
-            this.btnkiemhang.Size = new System.Drawing.Size(150, 90);
+            this.btnkiemhang.Size = new System.Drawing.Size(150, 80);
             this.btnkiemhang.TabIndex = 1;
             this.btnkiemhang.Text = "Kiểm hàng";
             this.btnkiemhang.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -205,10 +208,11 @@
             // 
             this.panTop_Left.Controls.Add(this.lbNgayCapnhat);
             this.panTop_Left.Controls.Add(this.label1);
+            this.panTop_Left.Controls.Add(this.btnAMTHANH);
             this.panTop_Left.Dock = System.Windows.Forms.DockStyle.Left;
             this.panTop_Left.Location = new System.Drawing.Point(0, 0);
             this.panTop_Left.Name = "panTop_Left";
-            this.panTop_Left.Size = new System.Drawing.Size(562, 30);
+            this.panTop_Left.Size = new System.Drawing.Size(476, 30);
             this.panTop_Left.TabIndex = 3;
             // 
             // lbNgayCapnhat
@@ -271,6 +275,40 @@
             this.panMain.Size = new System.Drawing.Size(1170, 700);
             this.panMain.TabIndex = 3;
             // 
+            // btn_Backup
+            // 
+            this.btn_Backup.BackColor = System.Drawing.Color.DimGray;
+            this.btn_Backup.FlatAppearance.BorderSize = 0;
+            this.btn_Backup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Backup.Font = new System.Drawing.Font("Comic Sans MS", 4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Backup.ForeColor = System.Drawing.Color.SpringGreen;
+            this.btn_Backup.Image = ((System.Drawing.Image)(resources.GetObject("btn_Backup.Image")));
+            this.btn_Backup.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btn_Backup.Location = new System.Drawing.Point(22, 490);
+            this.btn_Backup.Name = "btn_Backup";
+            this.btn_Backup.Size = new System.Drawing.Size(150, 50);
+            this.btn_Backup.TabIndex = 1;
+            this.btn_Backup.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_Backup.UseVisualStyleBackColor = false;
+            this.btn_Backup.Click += new System.EventHandler(this.btn_Backup_Click);
+            // 
+            // btn_restore
+            // 
+            this.btn_restore.BackColor = System.Drawing.Color.DimGray;
+            this.btn_restore.FlatAppearance.BorderSize = 0;
+            this.btn_restore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_restore.Font = new System.Drawing.Font("Comic Sans MS", 4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_restore.ForeColor = System.Drawing.Color.SpringGreen;
+            this.btn_restore.Image = ((System.Drawing.Image)(resources.GetObject("btn_restore.Image")));
+            this.btn_restore.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btn_restore.Location = new System.Drawing.Point(22, 592);
+            this.btn_restore.Name = "btn_restore";
+            this.btn_restore.Size = new System.Drawing.Size(150, 50);
+            this.btn_restore.TabIndex = 1;
+            this.btn_restore.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_restore.UseVisualStyleBackColor = false;
+            this.btn_restore.Click += new System.EventHandler(this.btn_restore_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -321,6 +359,8 @@
         private System.Windows.Forms.Panel panTop_Left;
         private System.Windows.Forms.Label lbNgayCapnhat;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btn_Backup;
+        private System.Windows.Forms.Button btn_restore;
     }
 }
 

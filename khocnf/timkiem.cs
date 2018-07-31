@@ -33,7 +33,7 @@ namespace khocnf
         }
         private void timkiem_Load(object sender, EventArgs e)
         {
-            ngaymuontim = DateTime.Now.ToString("dd/MM/yyyy");
+            ngaymuontim = DateTime.Now.ToString("dd/mm/yyyy");
             hamloadBang(ngaymuontim);
             var dulieu = ketnoi.Khoitao();
             datag4.DataSource = dulieu.loadbangchitietPhieu();
@@ -57,6 +57,7 @@ namespace khocnf
             lbtongslkiemhang.Text = dulieu.laysoluongtrongngay(ngay, "kiemhang");
             lbtongslchuyenhang.Text = dulieu.laysoluongtrongngay(ngay, "chuyenhang");
             demSLPHIEU();
+            
         }
 
         //
@@ -159,18 +160,18 @@ namespace khocnf
 
         private void btnxuatKH_Click(object sender, EventArgs e)
         {
-            try
+            //try
             {
                 var dulieu = ketnoi.Khoitao();
                 
-                hamtao.xuatfileexceltabtimkiem(dulieu.loadbangkiemhang(ngaymuontim),dulieu.loadbangchuyenhang(ngaymuontim),dulieu.loadbangchitietPhieu(), ngaymuontim);
+                hamtao.xuatfileexceltabtimkiem(dulieu.loadbangkiemhang(ngaymuontim),dulieu.loadbangchuyenhang(ngaymuontim),dulieu.loadbangchitietPhieuxuatEXCEL(), ngaymuontim);
                 hamtao.notifi_hts("Đã xuất file tại:\n-->" + hamtao.layduongdan(),5);
             }
-            catch (Exception)
-            {
+            //catch (Exception)
+            //{
 
-                hamtao.notifi_hts("Có vấn đề \n- Xem lại đi");
-            }
+            //    hamtao.notifi_hts("Có vấn đề \n- Xem lại đi");
+            //}
         }
 
         

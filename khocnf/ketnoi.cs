@@ -111,6 +111,15 @@ namespace khocnf
             cmd.ExecuteNonQuery();
             Close();
         }
+        public void xoatatca_backup()
+        {
+            string sql = @"delete from bangphieu; delete from sqlite_sequence where name='bangphieu'; delete from chitietphieu; delete from sqlite_sequence where name='chitietphieu';delete from chuyenhang; delete from sqlite_sequence where name='chuyenhang'; delete from kiemhang; delete from sqlite_sequence where name='kiemhang'";
+            Open();
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            cmd.ExecuteNonQuery();
+            Close();
+        }
+
         #region xuly kiemhang
         
         public string laymatong(string masp)
@@ -807,6 +816,16 @@ namespace khocnf
         public DataTable loadbangchitietPhieu(string sophieu)
         {
             string sql = "select sophieu as 'Số phiếu',matong as 'Mã sản phẩm',sum(soluong) as 'Số lượng' from chitietphieu where sophieu ='" + sophieu + "' group by matong";
+            Open();
+            SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
+            DataTable dt = new DataTable();
+            dta.Fill(dt);
+            Close();
+            return dt;
+        }
+        public DataTable loadbangchitietPhieuxuatEXCEL()
+        {
+            string sql = "select ngay as 'Ngày kiểm',sophieu as 'Số phiếu',noidung as 'Nội dung',matong as 'Mã tổng',masp as 'Mã sản phẩm',soluong as 'Số lượng' from bangphieu  left join chitietphieu  using(sophieu);";
             Open();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
             DataTable dt = new DataTable();
