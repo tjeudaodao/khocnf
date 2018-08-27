@@ -689,9 +689,9 @@ namespace khocnf
             Close();
             return dt;
         }
-        public DataTable laybangdein()
+        public DataTable laybangdein() // sua lai lay du lieu in tu bangtamchuyenhang thay vi lay tu bangthuathieu
         {
-            string sql = "select masp as 'Mã thực tế', sum(soluong) as 'SL TT' from bangthuathieu group by masp";
+            string sql = "select masp as 'Mã thực tế', sum(soluong) as 'SL TT' from bangtamchuyenhang group by masp";
             Open();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
             DataTable dt = new DataTable();

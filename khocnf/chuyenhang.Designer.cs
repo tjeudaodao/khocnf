@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(chuyenhang));
             this.grbthongtindon = new System.Windows.Forms.GroupBox();
             this.btnlaydata = new System.Windows.Forms.Button();
@@ -61,6 +61,9 @@
             this.radioTatca = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.radioMacdinh = new System.Windows.Forms.RadioButton();
+            this.radioMamau = new System.Windows.Forms.RadioButton();
+            this.radioMatong = new System.Windows.Forms.RadioButton();
             this.grbthongtindon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datag2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datag1)).BeginInit();
@@ -75,8 +78,10 @@
             // 
             // grbthongtindon
             // 
+            this.grbthongtindon.Controls.Add(this.radioMatong);
+            this.grbthongtindon.Controls.Add(this.radioMamau);
+            this.grbthongtindon.Controls.Add(this.radioMacdinh);
             this.grbthongtindon.Controls.Add(this.btnlaydata);
-            this.grbthongtindon.Controls.Add(this.lbthongtin);
             this.grbthongtindon.Location = new System.Drawing.Point(378, 251);
             this.grbthongtindon.Name = "grbthongtindon";
             this.grbthongtindon.Size = new System.Drawing.Size(495, 65);
@@ -91,7 +96,7 @@
             this.btnlaydata.Location = new System.Drawing.Point(347, 14);
             this.btnlaydata.Name = "btnlaydata";
             this.btnlaydata.Size = new System.Drawing.Size(127, 43);
-            this.btnlaydata.TabIndex = 20;
+            this.btnlaydata.TabIndex = 21;
             this.btnlaydata.Text = "Lấy dữ liệu ";
             this.btnlaydata.UseVisualStyleBackColor = false;
             this.btnlaydata.Click += new System.EventHandler(this.btnlaydata_Click);
@@ -101,9 +106,9 @@
             this.lbthongtin.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lbthongtin.Font = new System.Drawing.Font("Comic Sans MS", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbthongtin.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.lbthongtin.Location = new System.Drawing.Point(7, 17);
+            this.lbthongtin.Location = new System.Drawing.Point(18, 153);
             this.lbthongtin.Name = "lbthongtin";
-            this.lbthongtin.Size = new System.Drawing.Size(319, 36);
+            this.lbthongtin.Size = new System.Drawing.Size(219, 42);
             this.lbthongtin.TabIndex = 1;
             this.lbthongtin.Text = "-";
             this.lbthongtin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -112,7 +117,7 @@
             // 
             this.btntachdon.Font = new System.Drawing.Font("Comic Sans MS", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btntachdon.ForeColor = System.Drawing.Color.DimGray;
-            this.btntachdon.Location = new System.Drawing.Point(16, 198);
+            this.btntachdon.Location = new System.Drawing.Point(16, 200);
             this.btntachdon.Name = "btntachdon";
             this.btntachdon.Size = new System.Drawing.Size(223, 43);
             this.btntachdon.TabIndex = 20;
@@ -125,9 +130,9 @@
             this.lbsoluongdon.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lbsoluongdon.Font = new System.Drawing.Font("Comic Sans MS", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbsoluongdon.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.lbsoluongdon.Location = new System.Drawing.Point(16, 148);
+            this.lbsoluongdon.Location = new System.Drawing.Point(18, 105);
             this.lbsoluongdon.Name = "lbsoluongdon";
-            this.lbsoluongdon.Size = new System.Drawing.Size(221, 44);
+            this.lbsoluongdon.Size = new System.Drawing.Size(219, 42);
             this.lbsoluongdon.TabIndex = 1;
             this.lbsoluongdon.Text = "-";
             this.lbsoluongdon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -148,9 +153,9 @@
             // 
             this.btninnhat.Font = new System.Drawing.Font("Comic Sans MS", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btninnhat.ForeColor = System.Drawing.Color.DimGray;
-            this.btninnhat.Location = new System.Drawing.Point(15, 22);
+            this.btninnhat.Location = new System.Drawing.Point(15, 16);
             this.btninnhat.Name = "btninnhat";
-            this.btninnhat.Size = new System.Drawing.Size(224, 43);
+            this.btninnhat.Size = new System.Drawing.Size(224, 34);
             this.btninnhat.TabIndex = 20;
             this.btninnhat.Text = "In nhặt";
             this.btninnhat.UseVisualStyleBackColor = true;
@@ -253,23 +258,23 @@
             this.datag2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.datag2.BackgroundColor = System.Drawing.Color.White;
             this.datag2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datag2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datag2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.datag2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datag2.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datag2.DefaultCellStyle = dataGridViewCellStyle6;
             this.datag2.Location = new System.Drawing.Point(378, 322);
             this.datag2.Name = "datag2";
             this.datag2.RowHeadersVisible = false;
@@ -301,23 +306,23 @@
             this.datag3.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.datag3.BackgroundColor = System.Drawing.Color.White;
             this.datag3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datag3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datag3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.datag3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datag3.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datag3.DefaultCellStyle = dataGridViewCellStyle8;
             this.datag3.Location = new System.Drawing.Point(11, 322);
             this.datag3.Name = "datag3";
             this.datag3.RowHeadersVisible = false;
@@ -386,6 +391,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btntachdon);
+            this.groupBox1.Controls.Add(this.lbthongtin);
             this.groupBox1.Controls.Add(this.btnxuatexcel);
             this.groupBox1.Controls.Add(this.lbsoluongdon);
             this.groupBox1.Controls.Add(this.radioMathieu);
@@ -401,7 +407,7 @@
             // radioMathieu
             // 
             this.radioMathieu.AutoSize = true;
-            this.radioMathieu.Location = new System.Drawing.Point(123, 86);
+            this.radioMathieu.Location = new System.Drawing.Point(120, 57);
             this.radioMathieu.Name = "radioMathieu";
             this.radioMathieu.Size = new System.Drawing.Size(119, 19);
             this.radioMathieu.TabIndex = 22;
@@ -416,7 +422,7 @@
             this.radioTatca.Checked = true;
             this.radioTatca.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
             this.radioTatca.ForeColor = System.Drawing.SystemColors.Control;
-            this.radioTatca.Location = new System.Drawing.Point(18, 86);
+            this.radioTatca.Location = new System.Drawing.Point(15, 57);
             this.radioTatca.Name = "radioTatca";
             this.radioTatca.Size = new System.Drawing.Size(74, 19);
             this.radioTatca.TabIndex = 21;
@@ -429,7 +435,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(18, 123);
+            this.label3.Location = new System.Drawing.Point(19, 80);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(124, 19);
             this.label3.TabIndex = 9;
@@ -444,6 +450,42 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(282, 680);
             this.panel1.TabIndex = 25;
+            // 
+            // radioMacdinh
+            // 
+            this.radioMacdinh.AutoSize = true;
+            this.radioMacdinh.BackColor = System.Drawing.Color.RoyalBlue;
+            this.radioMacdinh.Checked = true;
+            this.radioMacdinh.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioMacdinh.Location = new System.Drawing.Point(18, 27);
+            this.radioMacdinh.Name = "radioMacdinh";
+            this.radioMacdinh.Size = new System.Drawing.Size(75, 21);
+            this.radioMacdinh.TabIndex = 21;
+            this.radioMacdinh.TabStop = true;
+            this.radioMacdinh.Text = "Mặc định";
+            this.radioMacdinh.UseVisualStyleBackColor = false;
+            // 
+            // radioMamau
+            // 
+            this.radioMamau.AutoSize = true;
+            this.radioMamau.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioMamau.Location = new System.Drawing.Point(125, 27);
+            this.radioMamau.Name = "radioMamau";
+            this.radioMamau.Size = new System.Drawing.Size(66, 21);
+            this.radioMamau.TabIndex = 21;
+            this.radioMamau.Text = "Mã màu";
+            this.radioMamau.UseVisualStyleBackColor = true;
+            // 
+            // radioMatong
+            // 
+            this.radioMatong.AutoSize = true;
+            this.radioMatong.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioMatong.Location = new System.Drawing.Point(237, 27);
+            this.radioMatong.Name = "radioMatong";
+            this.radioMatong.Size = new System.Drawing.Size(71, 21);
+            this.radioMatong.TabIndex = 21;
+            this.radioMatong.Text = "Mã tổng";
+            this.radioMatong.UseVisualStyleBackColor = true;
             // 
             // chuyenhang
             // 
@@ -473,6 +515,7 @@
             this.Load += new System.EventHandler(this.chuyenhang_Load);
             this.Resize += new System.EventHandler(this.chuyenhang_Resize);
             this.grbthongtindon.ResumeLayout(false);
+            this.grbthongtindon.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datag2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datag1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datag3)).EndInit();
@@ -518,5 +561,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbthongtin;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton radioMatong;
+        private System.Windows.Forms.RadioButton radioMamau;
+        private System.Windows.Forms.RadioButton radioMacdinh;
     }
 }

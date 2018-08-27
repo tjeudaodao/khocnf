@@ -155,58 +155,60 @@ namespace khocnf
                 dt.Columns.Add("SL");
                 dt.AcceptChanges();
                 string goc = o.GetData(DataFormats.Text).ToString().TrimEnd("\r\n".ToCharArray());
-                string mau = @"\d\w{2}\d{2}[SWACswac]\d{3}-\w{2}\d{3}-\w+\s+\d+";
-                //string mau1 = @"\d\w{2}\d{2}[SWAC]\d{3}\s+\w+";
-                string mau1_1 = @"(?<matong>\d\w{2}\d{2}[SWACswac]\d{3}\s+.*)";
+                string mau = @"\d\w{2}\d{2}[SWACswac]\d{3}-\w{2}\d{3}-\w+\s+\d+"; // loc theo ma chi tiet
+                string mau1 = @"\d\w{2}\d{2}[SWACswac]\d{3}-\w{2}\d{3}\s+\d+"; // loc theo ma mau
+                string mau1_1 = @"(?<matong>\d\w{2}\d{2}[SWACswac]\d{3}\s+.*)"; // loc theo ma tong
                 string mau2 = @"\s+";
-                MatchCollection matchhts = Regex.Matches(goc, mau);
-                //MatchCollection matchmatong = Regex.Matches(goc, mau1);
-                MatchCollection matchmatong_1 = Regex.Matches(goc, mau1_1);
-                foreach (Match h in matchhts)
+                
+                if (Regex.IsMatch(goc,mau))
                 {
-
-                    string[] hang = Regex.Split(h.Value.ToString(), mau2);
-
-                    DataRow rowadd = dt.NewRow();
-                    //for (int i = 0; i < hang.Length; i++)
-                    //{
-
-                    //    rowadd[i] = hang[i];
-
-                    //}
-                    rowadd[0] = hang[0].ToUpper();
-                    rowadd[1] = hang[1];
-                    dt.Rows.Add(rowadd);
-                }
-                //foreach (Match h in matchmatong)
-                //{
-                //    string[] hang = Regex.Split(h.Value.ToString(), mau2);
-
-                //    DataRow rowadd = dt.NewRow();
-                //    for (int i = 0; i < hang.Length; i++)
-                //    {
-
-                //        rowadd[i] = hang[i];
-
-                //    }
-                //    dt.Rows.Add(rowadd);
-                //}
-                foreach (Match mm in matchmatong_1)
-                {
-                    string[] hang = Regex.Split(mm.Groups["matong"].Value.ToString(), mau2);
-
-                    DataRow rowadd = dt.NewRow();
-                    rowadd[0] = hang[0].ToUpper();
-                    string hh = null;
-                    for (int i = 1; i < hang.Length; i++)
+                    MatchCollection matchhts = Regex.Matches(goc, mau);
+                    foreach (Match h in matchhts)
                     {
 
-                        hh += hang[i] +" ";
+                        string[] hang = Regex.Split(h.Value.ToString(), mau2);
 
+                        DataRow rowadd = dt.NewRow();
+                        rowadd[0] = hang[0].ToUpper();
+                        rowadd[1] = hang[1];
+                        dt.Rows.Add(rowadd);
                     }
-                    rowadd[1] = hh;
-                    dt.Rows.Add(rowadd);
                 }
+                else if (Regex.IsMatch(goc,mau1))
+                {
+                    MatchCollection matchmamau = Regex.Matches(goc, mau1);
+                    foreach (Match h1 in matchmamau)
+                    {
+
+                        string[] hang = Regex.Split(h1.Value.ToString(), mau2);
+
+                        DataRow rowadd = dt.NewRow();
+                        rowadd[0] = hang[0].ToUpper();
+                        rowadd[1] = hang[1];
+                        dt.Rows.Add(rowadd);
+                    }
+                }
+                else if (Regex.IsMatch(goc,mau1_1))
+                {
+                    MatchCollection matchmatong_1 = Regex.Matches(goc, mau1_1);
+                    foreach (Match mm in matchmatong_1)
+                    {
+                        string[] hang = Regex.Split(mm.Groups["matong"].Value.ToString(), mau2);
+
+                        DataRow rowadd = dt.NewRow();
+                        rowadd[0] = hang[0].ToUpper();
+                        string hh = null;
+                        for (int i = 1; i < hang.Length; i++)
+                        {
+
+                            hh += hang[i] + " ";
+
+                        }
+                        rowadd[1] = hh;
+                        dt.Rows.Add(rowadd);
+                    }
+                }
+                
             }
             return dt;
         }

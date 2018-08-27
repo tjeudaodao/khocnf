@@ -149,7 +149,7 @@ namespace khocnf
                         amthanh.phatbaoloi();
                         pbdunglaidi.Visible = true;
                         txtbarcode.Enabled = false;
-                       // hamtao.notifi_hts("Có lỗi scan barcode rồi. Ấn biểu tượng tạm dừng để dừng âm thanh !");
+                        btnlaydata.Enabled = false;
                     }
                     else
                     {
@@ -283,7 +283,7 @@ namespace khocnf
                 txtbarcode.Enabled = true;
                 txtbarcode.Clear();
                 txtbarcode.Focus();
-                //txtsoluong.Enabled = true;
+                btnlaydata.Enabled = true;
             }
             catch (Exception)
             {
