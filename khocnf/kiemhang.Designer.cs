@@ -54,6 +54,7 @@
             this.pbLoading = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panKiemhang = new System.Windows.Forms.Panel();
+            this.lbthongbao = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.datag1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datag2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -351,7 +352,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(447, 680);
+            this.panel1.Size = new System.Drawing.Size(447, 700);
             this.panel1.TabIndex = 9;
             // 
             // panKiemhang
@@ -359,12 +360,24 @@
             this.panKiemhang.Controls.Add(this.pbLoading);
             this.panKiemhang.Controls.Add(this.datag2);
             this.panKiemhang.Controls.Add(this.lbtongsoluong);
+            this.panKiemhang.Controls.Add(this.lbthongbao);
             this.panKiemhang.Controls.Add(this.grbthongtindon);
             this.panKiemhang.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panKiemhang.Location = new System.Drawing.Point(447, 0);
             this.panKiemhang.Name = "panKiemhang";
-            this.panKiemhang.Size = new System.Drawing.Size(713, 680);
+            this.panKiemhang.Size = new System.Drawing.Size(713, 700);
             this.panKiemhang.TabIndex = 10;
+            // 
+            // lbthongbao
+            // 
+            this.lbthongbao.Font = new System.Drawing.Font("Comic Sans MS", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbthongbao.ForeColor = System.Drawing.Color.SpringGreen;
+            this.lbthongbao.Location = new System.Drawing.Point(3, 673);
+            this.lbthongbao.Name = "lbthongbao";
+            this.lbthongbao.Size = new System.Drawing.Size(707, 19);
+            this.lbthongbao.TabIndex = 1;
+            this.lbthongbao.Text = "-";
+            this.lbthongbao.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // kiemhang
             // 
@@ -375,7 +388,7 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "kiemhang";
-            this.Size = new System.Drawing.Size(1160, 680);
+            this.Size = new System.Drawing.Size(1160, 700);
             this.Load += new System.EventHandler(this.kiemhang_Load);
             this.Resize += new System.EventHandler(this.kiemhang_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.datag1)).EndInit();
@@ -419,5 +432,6 @@
         private System.Windows.Forms.PictureBox pbLoading;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panKiemhang;
+        private System.Windows.Forms.Label lbthongbao;
     }
 }

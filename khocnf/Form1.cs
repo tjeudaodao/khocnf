@@ -33,7 +33,16 @@ namespace khocnf
             tuCapnhat.IsBackground = true;
             tuCapnhat.Start();
         }
-        
+        protected override CreateParams CreateParams // hieu ung shadow cho form
+        {
+            get
+            {
+                const int CS_DROPSHADOW = 0x20000;
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= CS_DROPSHADOW;
+                return cp;
+            }
+        }
         void hamkiemtra()
         {
             try

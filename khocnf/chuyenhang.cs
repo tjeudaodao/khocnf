@@ -21,8 +21,8 @@ namespace khocnf
         static string gio = "";
         static bool chinhsizecot = false;
         static bool chinhsuama = false;
-
-        Thread laydataHts;  
+        static int kihieumasanpham = 1; // 1 la ma chi tiet ; 2 la ma mau ; 3 la ma tong
+        
         public chuyenhang()
         {
             InitializeComponent();
@@ -42,8 +42,8 @@ namespace khocnf
                 var dulieu = ketnoi.Khoitao();
                 if (datag2.RowCount > 0)
                 {
-                    hamtao.xuatfile(dulieu.laybangxuatchuyenhang(), lbtongsoluong.Text, txtnoinhan.Text);
-                    hamtao.taovainfileexcelchuyenhang(dulieu.laybangdein(), lbtongsoluong.Text, txtnoinhan.Text);
+                    hamtao.xuatfile(dulieu.laybangxuatchuyenhang(), lbtongsoluong.Text, txtnoinhan.Text,txtTencuahang.Text);
+                    hamtao.taovainfileexcelchuyenhang(dulieu.laybangdein(), lbtongsoluong.Text, txtnoinhan.Text,txtTencuahang.Text);
                     hamtao.notifi_hts("Đường dẫn:'" + hamtao.layduongdan() + "'", 5);
                     return;
                 }
@@ -101,6 +101,8 @@ namespace khocnf
             txtnoinhan.Select();
             txtnoinhan.Focus();
             datag2.DefaultCellStyle.Font = new Font("Comic Sans MS", 16.0f);
+            var con = ketnoi.Khoitao();
+            txtTencuahang.Text = con.LayTencuahang();
         }
         private void pbsave_Click(object sender, EventArgs e)
         {
@@ -144,20 +146,24 @@ namespace khocnf
                     var dulieu = ketnoi.Khoitao();
                     var con = ketnoibarcode.Khoitao();
                     string masp = con.laymasp(txtbarcode.Text);
+                    string mamau = masp.Substring(0,15); // 1bs18a001-sk010
+                    string matong = masp.Substring(0, 9);
+
                     if (masp == null)
                     {
                         amthanh.phatbaoloi();
                         pbdunglaidi.Visible = true;
                         txtbarcode.Enabled = false;
                         btnlaydata.Enabled = false;
+                        lbThongbao.Text = "Có lỗi barcode. Ấn dấu cách để tiếp tục";
                     }
                     else
                     {
                         try
                         {
                             lbmasp.Text = masp;
-                            lbtinhtrang.Text = dulieu.tinhtrang(masp);
-                            dulieu.insertdl1(txtbarcode.Text, lbmasp.Text, "1", ngay, gio,txtnoinhan.Text);
+                            
+                            dulieu.insertdl1(txtbarcode.Text, masp, "1", ngay, gio,txtnoinhan.Text);
                             dulieu.loadvaodatag1(datag1);
                             if (datag3.RowCount > 1)
                             {
@@ -165,7 +171,20 @@ namespace khocnf
                                 dulieu.baoamthanh(masp);
                             }
                             datag1.FirstDisplayedScrollingRowIndex = datag1.RowCount - 1;
-                            dulieu.chenvaobangthuathieu(masp);
+                            dulieu.chenvaobangthuathieu(masp,mamau,matong);
+                            if (kihieumasanpham == 1)
+                            {
+                                
+                            }
+                            else if (kihieumasanpham == 2)
+                            {
+
+                            }
+                            else if (kihieumasanpham ==3)
+                            {
+
+                            }
+                            lbtinhtrang.Text = dulieu.tinhtrang(masp);
                             datag2.DataSource = dulieu.laydulieubangthuathieu();
                             hamtao.tudongnhaydenmasp(datag2, masp);
                             //ham.tudongnhaydenmasp(datagrid3, txtmasp.Text);
@@ -284,6 +303,7 @@ namespace khocnf
                 txtbarcode.Clear();
                 txtbarcode.Focus();
                 btnlaydata.Enabled = true;
+                lbThongbao.Text = "-";
             }
             catch (Exception)
             {
@@ -304,7 +324,8 @@ namespace khocnf
                         var dulieu = ketnoi.Khoitao();
                         dulieu.deletemaspchuyenhang(idrows);
                         dulieu.updatebangthuathieu(lbmasp.Text);
-                        hamtao.notifi_hts("Vừa xóa mã :\n" + lbmasp.Text);
+                        //hamtao.notifi_hts("Vừa xóa mã :\n" + lbmasp.Text);
+                        lbThongbao.Text = "Vừa xóa mã :\n" + lbmasp.Text;
                         hamtao.tudongnhaydenmasp(datag2, lbmasp.Text);
                         updatetatca();
 
@@ -375,7 +396,7 @@ namespace khocnf
                 DialogResult dilog = MessageBox.Show("Lấy dữ liệu vửa copy từ clipbroad.?","COPY",MessageBoxButtons.YesNo);
                 if (dilog == DialogResult.Yes)
                 {
-                    laydataHts = new Thread(hamLaydata);
+                    Thread laydataHts = new Thread(hamLaydata);
                     laydataHts.IsBackground = true;
                     laydataHts.Start();
                 }
@@ -439,7 +460,6 @@ namespace khocnf
                 var dulieu = ketnoi.Khoitao();
                 datag3.Invoke(new MethodInvoker(delegate ()
                 {
-                    
                     datag3.DataSource = hamtao.layvungcopy();
                     if (datag3.RowCount > 0)
                     {
@@ -450,20 +470,27 @@ namespace khocnf
                     dulieu.xoabangtamchuyenhang1();
                     string StrQuery = "";
                     string mau = @"\d\w{2}\d{2}[SWAC]\d{3}-\w{2}\d{3}-\w+";
-                    string mau1 = @"\d\w{2}\d{2}[SWAC]\d{3}";
-
+                    string mau2 = @"\d\w{2}\d{2}[SWAC]\d{3}";
+                    string mau1 = @"\d\w{2}\d{2}[SWAC]\d{3}-\w{2}\d{3}";
+                    string maspgoc = datag3.Rows[2].Cells[0].Value.ToString().Trim();
+                    if (Regex.IsMatch(maspgoc,mau))
+                    {
+                        kihieumasanpham = 1;
+                    }
+                    else if (Regex.IsMatch(maspgoc,mau1))
+                    {
+                        kihieumasanpham = 2;
+                    }
+                    else if (Regex.IsMatch(maspgoc,mau2))
+                    {
+                        kihieumasanpham = 3;
+                    }
                     dulieu.Open();
                     for (int i = 0; i < datag3.Rows.Count - 1; i++)
                     {
                         string magoc = datag3.Rows[i].Cells[0].Value.ToString().Trim();
-                        if (Regex.IsMatch(magoc, mau))
-                        {
-                            StrQuery = "INSERT INTO bangtamchuyenhang1(masp,soluong1) VALUES ('" + magoc + "', '" + datag3.Rows[i].Cells[1].Value.ToString() + "')";
-                        }
-                        else if (Regex.IsMatch(magoc, mau1))
-                        {
-                            StrQuery = "INSERT INTO bangtamchuyenhang1(matong,soluong2) VALUES ('" + magoc + "', '" + datag3.Rows[i].Cells[1].Value.ToString() + "')";
-                        }
+                        
+                        StrQuery = "INSERT INTO bangtamchuyenhang1(masp,soluong1) VALUES ('" + magoc + "', '" + datag3.Rows[i].Cells[1].Value.ToString() + "')";
                         SQLiteCommand cmd = new SQLiteCommand(StrQuery, dulieu.returncon);
                         cmd.ExecuteNonQuery();
                     }
@@ -476,7 +503,11 @@ namespace khocnf
                 }));
                 datag2.Invoke(new MethodInvoker(delegate ()
                 {
-                    dulieu.updatebangthuathieukhichendon(datag2);
+                    if (datag2.RowCount > 0)
+                    {
+                        dulieu.updatebangthuathieukhichendon(datag2);
+                    }
+                    
                 }));
                 
             }
@@ -612,6 +643,16 @@ namespace khocnf
                 grbthongtindon.Width = 490;
                 lbtongsoluong.Width = 495;
                 btnlaydata.Width = 127;
+            }
+        }
+
+        private void btnSuaTencuahang_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtTencuahang.Text))
+            {
+                var con = ketnoi.Khoitao();
+                con.Suatencuahang(txtTencuahang.Text);
+                MessageBox.Show("Vừa sửa tên cửa hàng thành: " + txtTencuahang.Text + " \nTừ giờ mọi file xuất đều lấy theo tên này.");
             }
         }
     }

@@ -33,11 +33,13 @@
             this.pbANHNEN = new System.Windows.Forms.PictureBox();
             this.btnTHUGON = new System.Windows.Forms.Button();
             this.panthaydoi = new System.Windows.Forms.Panel();
-            this.btnAMTHANH = new System.Windows.Forms.Button();
+            this.btn_restore = new System.Windows.Forms.Button();
+            this.btn_Backup = new System.Windows.Forms.Button();
             this.btnUPDATE = new System.Windows.Forms.Button();
             this.btntimkiem = new System.Windows.Forms.Button();
             this.btnchuyenhang = new System.Windows.Forms.Button();
             this.btnkiemhang = new System.Windows.Forms.Button();
+            this.btnAMTHANH = new System.Windows.Forms.Button();
             this.panTop = new System.Windows.Forms.Panel();
             this.panTop_Left = new System.Windows.Forms.Panel();
             this.lbNgayCapnhat = new System.Windows.Forms.Label();
@@ -46,8 +48,6 @@
             this.pbclose = new System.Windows.Forms.PictureBox();
             this.pbminimize = new System.Windows.Forms.PictureBox();
             this.panMain = new System.Windows.Forms.Panel();
-            this.btn_Backup = new System.Windows.Forms.Button();
-            this.btn_restore = new System.Windows.Forms.Button();
             this.pantieude.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbANHNEN)).BeginInit();
             this.panTop.SuspendLayout();
@@ -107,21 +107,39 @@
             this.panthaydoi.Size = new System.Drawing.Size(6, 80);
             this.panthaydoi.TabIndex = 1;
             // 
-            // btnAMTHANH
+            // btn_restore
             // 
-            this.btnAMTHANH.BackColor = System.Drawing.Color.White;
-            this.btnAMTHANH.FlatAppearance.BorderSize = 0;
-            this.btnAMTHANH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAMTHANH.Font = new System.Drawing.Font("Comic Sans MS", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAMTHANH.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnAMTHANH.Image = global::khocnf.Properties.Resources.spacker;
-            this.btnAMTHANH.Location = new System.Drawing.Point(377, 0);
-            this.btnAMTHANH.Name = "btnAMTHANH";
-            this.btnAMTHANH.Size = new System.Drawing.Size(70, 28);
-            this.btnAMTHANH.TabIndex = 1;
-            this.btnAMTHANH.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAMTHANH.UseVisualStyleBackColor = false;
-            this.btnAMTHANH.Click += new System.EventHandler(this.btnAMTHANH_Click);
+            this.btn_restore.BackColor = System.Drawing.Color.DimGray;
+            this.btn_restore.FlatAppearance.BorderSize = 0;
+            this.btn_restore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_restore.Font = new System.Drawing.Font("Comic Sans MS", 4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_restore.ForeColor = System.Drawing.Color.SpringGreen;
+            this.btn_restore.Image = ((System.Drawing.Image)(resources.GetObject("btn_restore.Image")));
+            this.btn_restore.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btn_restore.Location = new System.Drawing.Point(22, 592);
+            this.btn_restore.Name = "btn_restore";
+            this.btn_restore.Size = new System.Drawing.Size(150, 50);
+            this.btn_restore.TabIndex = 1;
+            this.btn_restore.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_restore.UseVisualStyleBackColor = false;
+            this.btn_restore.Click += new System.EventHandler(this.btn_restore_Click);
+            // 
+            // btn_Backup
+            // 
+            this.btn_Backup.BackColor = System.Drawing.Color.DimGray;
+            this.btn_Backup.FlatAppearance.BorderSize = 0;
+            this.btn_Backup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Backup.Font = new System.Drawing.Font("Comic Sans MS", 4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Backup.ForeColor = System.Drawing.Color.SpringGreen;
+            this.btn_Backup.Image = ((System.Drawing.Image)(resources.GetObject("btn_Backup.Image")));
+            this.btn_Backup.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btn_Backup.Location = new System.Drawing.Point(22, 490);
+            this.btn_Backup.Name = "btn_Backup";
+            this.btn_Backup.Size = new System.Drawing.Size(150, 50);
+            this.btn_Backup.TabIndex = 1;
+            this.btn_Backup.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_Backup.UseVisualStyleBackColor = false;
+            this.btn_Backup.Click += new System.EventHandler(this.btn_Backup_Click);
             // 
             // btnUPDATE
             // 
@@ -193,6 +211,22 @@
             this.btnkiemhang.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnkiemhang.UseVisualStyleBackColor = false;
             this.btnkiemhang.Click += new System.EventHandler(this.btnkiemhang_Click);
+            // 
+            // btnAMTHANH
+            // 
+            this.btnAMTHANH.BackColor = System.Drawing.Color.White;
+            this.btnAMTHANH.FlatAppearance.BorderSize = 0;
+            this.btnAMTHANH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAMTHANH.Font = new System.Drawing.Font("Comic Sans MS", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAMTHANH.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnAMTHANH.Image = global::khocnf.Properties.Resources.spacker;
+            this.btnAMTHANH.Location = new System.Drawing.Point(377, 0);
+            this.btnAMTHANH.Name = "btnAMTHANH";
+            this.btnAMTHANH.Size = new System.Drawing.Size(70, 28);
+            this.btnAMTHANH.TabIndex = 1;
+            this.btnAMTHANH.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAMTHANH.UseVisualStyleBackColor = false;
+            this.btnAMTHANH.Click += new System.EventHandler(this.btnAMTHANH_Click);
             // 
             // panTop
             // 
@@ -274,40 +308,6 @@
             this.panMain.Name = "panMain";
             this.panMain.Size = new System.Drawing.Size(1170, 700);
             this.panMain.TabIndex = 3;
-            // 
-            // btn_Backup
-            // 
-            this.btn_Backup.BackColor = System.Drawing.Color.DimGray;
-            this.btn_Backup.FlatAppearance.BorderSize = 0;
-            this.btn_Backup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Backup.Font = new System.Drawing.Font("Comic Sans MS", 4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Backup.ForeColor = System.Drawing.Color.SpringGreen;
-            this.btn_Backup.Image = ((System.Drawing.Image)(resources.GetObject("btn_Backup.Image")));
-            this.btn_Backup.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btn_Backup.Location = new System.Drawing.Point(22, 490);
-            this.btn_Backup.Name = "btn_Backup";
-            this.btn_Backup.Size = new System.Drawing.Size(150, 50);
-            this.btn_Backup.TabIndex = 1;
-            this.btn_Backup.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btn_Backup.UseVisualStyleBackColor = false;
-            this.btn_Backup.Click += new System.EventHandler(this.btn_Backup_Click);
-            // 
-            // btn_restore
-            // 
-            this.btn_restore.BackColor = System.Drawing.Color.DimGray;
-            this.btn_restore.FlatAppearance.BorderSize = 0;
-            this.btn_restore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_restore.Font = new System.Drawing.Font("Comic Sans MS", 4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_restore.ForeColor = System.Drawing.Color.SpringGreen;
-            this.btn_restore.Image = ((System.Drawing.Image)(resources.GetObject("btn_restore.Image")));
-            this.btn_restore.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btn_restore.Location = new System.Drawing.Point(22, 592);
-            this.btn_restore.Name = "btn_restore";
-            this.btn_restore.Size = new System.Drawing.Size(150, 50);
-            this.btn_restore.TabIndex = 1;
-            this.btn_restore.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btn_restore.UseVisualStyleBackColor = false;
-            this.btn_restore.Click += new System.EventHandler(this.btn_restore_Click);
             // 
             // Form1
             // 

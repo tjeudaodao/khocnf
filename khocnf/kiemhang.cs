@@ -95,7 +95,8 @@ namespace khocnf
 
                     updatetatca();
 
-                    hamtao.notifi_hts(" Vừa sửa mã\n- '" + lbmasp.Text + "'");
+                    // hamtao.notifi_hts(" Vừa sửa mã\n- '" + lbmasp.Text + "'");
+                    lbthongbao.Text = " Vừa sửa mã\n- '" + lbmasp.Text + "'";
                     clearvungnhap();
                     txtbarcode.Focus();
                     chinhsuama = false;
@@ -110,15 +111,16 @@ namespace khocnf
         }
         public void hamxoama()
         {
-                try
-                {
-                    var dulieu = ketnoi.Khoitao();
-                    dulieu.deletemasp(idrows);
-                    hamtao.notifi_hts( " Vừa xóa mã\n- '" + lbmasp.Text + "'");
-                    updatetatca();
-                    clearvungnhap();
-                    txtbarcode.Focus();
-                }
+            try
+            {
+                var dulieu = ketnoi.Khoitao();
+                dulieu.deletemasp(idrows);
+                // hamtao.notifi_hts( " Vừa xóa mã\n- '" + lbmasp.Text + "'");
+                lbthongbao.Text = " Vừa xóa mã\n- '" + lbmasp.Text + "'";
+                updatetatca();
+                clearvungnhap();
+                txtbarcode.Focus();
+            }
             catch (Exception)
             {
 
@@ -155,8 +157,8 @@ namespace khocnf
                             pbdunglaidi.Focus();
                             txtbarcode.Enabled = false;
                             txtsoluong.Enabled = false;
-                            
-                           // hamtao.notifi_hts("Có lỗi scan barcode rồi. Ấn biểu tượng tạm dừng để dừng âm thanh !",1); // dung lenh nay gay cham khi nhan phim fai doi no show het moi nhan dc
+                            lbthongbao.Text = "Có lỗi barcode. Ấn dấu cách để tiếp tục";
+                            // hamtao.notifi_hts("Có lỗi scan barcode rồi. Ấn biểu tượng tạm dừng để dừng âm thanh !",1); // dung lenh nay gay cham khi nhan phim fai doi no show het moi nhan dc
                         }
                         else
                         {
@@ -239,7 +241,7 @@ namespace khocnf
             try
             {
                 amthanh.dungbaoloi();
-                
+                lbthongbao.Text = "-";
                 txtbarcode.Enabled = true;
                 txtbarcode.Clear();
                 txtbarcode.Focus();

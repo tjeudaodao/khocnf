@@ -252,7 +252,7 @@ namespace khocnf
             book.Close();
             app.Quit();
         }
-        public static void xuatfile(DataTable dt, string tongsp,string noinhan)
+        public static void xuatfile(DataTable dt, string tongsp,string noinhan,string tencuahang)
         {
             string tenfile = DateTime.Now.ToString("dd-MM");
             if (string.IsNullOrEmpty(noinhan))
@@ -260,11 +260,11 @@ namespace khocnf
                 noinhan = "-";
             }
             Random dr = new Random();
-            string ver = " " + dr.Next(1, 100).ToString();
+            string ver = " " + dr.Next(1, 10).ToString();
             using (SaveFileDialog saveDialog = new SaveFileDialog())
             {
                 saveDialog.Filter = "Excel (.xlsx)|*.xlsx";
-                saveDialog.FileName = noinhan + "-" + tongsp + "sp" +"-"+ "27LVL-ĐC ngày " + tenfile +ver;
+                saveDialog.FileName = noinhan + "-" + tongsp + "sp" +"-"+ tencuahang+ "-ĐC ngày " + tenfile +ver;
                 if (saveDialog.ShowDialog() != DialogResult.Cancel)
                 {
                     duongdanfileexcel = Path.GetFullPath(saveDialog.FileName);
@@ -273,7 +273,7 @@ namespace khocnf
                     using (var package = new ExcelPackage(newFile))
                     {
 
-                        ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("27LVL_Điều chuyển_"+tongsp+"sp");
+                        ExcelWorksheet worksheet = package.Workbook.Worksheets.Add(tencuahang+ "_Điều chuyển_"+tongsp+"sp");
 
                         worksheet.Cells["A1"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
 
@@ -289,11 +289,11 @@ namespace khocnf
                 }
             }
         }
-        public static void taovainfileexcelchuyenhang(DataTable dt, string tongsp,string noinhan)
+        public static void taovainfileexcelchuyenhang(DataTable dt, string tongsp,string noinhan,string tencuahang)
         {
             ExcelPackage ExcelPkg = new ExcelPackage();
             ExcelWorksheet worksheet = ExcelPkg.Workbook.Worksheets.Add("hts");
-            worksheet.Cells["A1"].Value = "27 Lê Văn Lương _ Điều chuyển";
+            worksheet.Cells["A1"].Value = tencuahang + " _ Điều chuyển";
             worksheet.Cells["A2"].Value = "Đến :" +noinhan;
             worksheet.Cells["A3"].Value = "Ngày tạo :" + DateTime.Now.ToString("dd-MM-yyyy");
             worksheet.Cells["A4"].Value = "Tổng SP :" + tongsp +" sp";
