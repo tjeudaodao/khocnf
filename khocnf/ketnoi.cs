@@ -338,12 +338,16 @@ namespace khocnf
                 {
                     ketqua = "Thừa";
                 }
+                else if (soluongtd == 0.0)
+                {
+                    ketqua = "Thiếu";
+                }
             }
             else if (kihieu == 2)
             {
                 string mamau = masp.Substring(0, 15);
                 double soluongtt = laysoluongthucte("bangthuathieu", mamau);
-                double soluongtd = laysoluongtudon(masp);
+                double soluongtd = laysoluongtudon(mamau);
 
                 if (soluongtd == 0)
                 {
@@ -360,13 +364,17 @@ namespace khocnf
                 else if (soluongtt > soluongtd)
                 {
                     ketqua = "Thừa";
+                }
+                else if (soluongtd == 0.0)
+                {
+                    ketqua = "Thiếu";
                 }
             }
             else if (kihieu == 3)
             {
                 string matong = masp.Substring(0, 9);
                 double soluongtt = laysoluongthucte("bangthuathieu", matong);
-                double soluongtd = laysoluongtudon(masp);
+                double soluongtd = laysoluongtudon(matong);
 
                 if (soluongtd == 0)
                 {
@@ -384,12 +392,16 @@ namespace khocnf
                 {
                     ketqua = "Thừa";
                 }
+                else if (soluongtd == 0.0)
+                {
+                    ketqua = "Thiếu";
+                }
             }
                 
                     
             return ketqua;
         }
-
+        
         public string kiemtracotrongbangthuathieu(string masp)
         {
             string sql = "select masp from bangthuathieu where masp='" + masp + "'";
@@ -433,7 +445,20 @@ namespace khocnf
             Close();
             return hamtao.ConvertToDouble(sl1);
         }
-        
+        public string laysoluongthongtintudon(string masp)
+        {
+            string sql = "select soluong1 from bangtamchuyenhang1 where masp='" + masp + "'";
+            Open();
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            SQLiteDataReader dtr = cmd.ExecuteReader();
+            string sl1 = null;
+            while (dtr.Read())
+            {
+                sl1 = dtr[0].ToString();
+            }
+            Close();
+            return sl1;
+        }
         public void insertdl1(string barcode, string masp, string sl, string ngay, string gio,string noinhan)
         {
             string sql = "insert into bangtamchuyenhang(barcode,masp,soluong,ngay,gio,noinhan) values('" + barcode + "','" + masp + "','" + sl + "','" + ngay + "','" + gio + "', '"+noinhan+"')";
@@ -452,18 +477,18 @@ namespace khocnf
             dta.Fill(dt);
             dgv.DataSource = dt;
         }
-        public void baoamthanh(string masp)
+        public void baoamthanh(string masp,int kihieu)
         {
-            if (tinhtrang(masp) == "Ngoài")
+            if (tinhtrang(masp,kihieu) == "Ngoài")
             {
                 amthanh.phatNGoai();
             }
             
-            else if (tinhtrang(masp) == "Đủ")
+            else if (tinhtrang(masp,kihieu) == "Đủ")
             {
                 amthanh.phatDu();
             }
-            else if (tinhtrang(masp) == "Thừa")
+            else if (tinhtrang(masp,kihieu) == "Thừa")
             {
                 amthanh.phatThua();
             }
@@ -487,9 +512,32 @@ namespace khocnf
             cmd.ExecuteNonQuery();
             Close();
         }
-        public DataTable laydulieubangthuathieu()
+        public DataTable laydulieubangthuathieu(int kihieu)
         {
-            string sql = "select masp as 'Mã thực tế', sum(soluong) as 'SL TT',tinhtrang as 'Tình trạng' from bangthuathieu group by masp";
+            string ma = null;
+            if (kihieu == 1)
+            {
+                ma = "masp";
+            }
+            else if (kihieu == 2)
+            {
+                ma = "mamau";
+            }
+            else if (kihieu == 3)
+            {
+                ma = "matong";
+            }
+            string sql = "select '"+ma+"' as 'Mã thực tế', sum(soluong) as 'SL TT',tinhtrang as 'Tình trạng' from bangthuathieu group by '"+ma+"'";
+            Open();
+            SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
+            DataTable dt = new DataTable();
+            dta.Fill(dt);
+            Close();
+            return dt;
+        }
+        public DataTable laydulieubangCOPY()
+        {
+            string sql = "select * from bangtamchuyenhang1";
             Open();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
             DataTable dt = new DataTable();
@@ -544,6 +592,27 @@ namespace khocnf
             Close();
             return cohaykhong;
         }
+        public bool kiemtraconDULIEUNHAT()
+        {
+            string sql = "select count(masp) from bangtamchuyenhang1";
+            Open();
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            SQLiteDataReader dtr = cmd.ExecuteReader();
+            bool kq = false;
+            while (dtr.Read())
+            { 
+                if (dtr[0].ToString() == "0")
+                {
+                    kq = false;
+                }
+                else
+                {
+                    kq = true;
+                }
+            }
+            Close();
+            return kq;
+        }
         public string[] layngaygiodaluuCHuyenhang()
         {
             string[] h = new string[2];
@@ -583,9 +652,9 @@ namespace khocnf
             cmd.ExecuteNonQuery();
             Close();
         }
-        public void updatebangthuathieu(string masp)
+        public void updatebangthuathieu(string masp,int kihieu)
         {
-            string sl = laysoluongthucte(masp).ToString();
+            string sl = laysoluongthucte("bangtamchuyenhang",masp).ToString();
             string sql = null;
             if (sl == "0")
             {
@@ -593,7 +662,7 @@ namespace khocnf
             }
             else
             {
-                sql = "update bangthuathieu set soluong='" + sl + "',tinhtrang='" + tinhtrang(masp) + "' where masp='" + masp + "'";
+                sql = "update bangthuathieu set soluong='" + sl + "',tinhtrang='" + tinhtrang(masp,kihieu) + "' where masp='" + masp + "'";
             }
 
             Open();
@@ -624,7 +693,7 @@ namespace khocnf
             Close();
             return sl;
         }
-        public void updatebangthuathieukhichendon(DataGridView dtv)
+        public void updatebangthuathieukhichendon(DataGridView dtv,int kihieu)
         {
             if (dtv.RowCount < 1)
             {
@@ -633,13 +702,13 @@ namespace khocnf
             for (int i = 0; i < dtv.RowCount - 1; i++)
             {
                 string masp = dtv.Rows[i].Cells[0].Value.ToString();
-                string sql = "update bangthuathieu set tinhtrang='" + tinhtrang(masp) + "' where masp='" + masp + "'";
+                string sql = "update bangthuathieu set tinhtrang='" + tinhtrang(masp,kihieu) + "' where masp='" + masp + "'";
                 Open();
                 SQLiteCommand cmd = new SQLiteCommand(sql, conn);
                 cmd.ExecuteNonQuery();
                 Close();
             }
-            dtv.DataSource = laydulieubangthuathieu();
+            dtv.DataSource = laydulieubangthuathieu(kihieu);
         }
         public DataTable laybangxuatchuyenhang()
         {
@@ -687,7 +756,7 @@ namespace khocnf
         }
         public DataTable tachdon1(string tenbang)
         {
-            string sql2 = "select masp as 'Mã sản phẩm',soluong1 as 'Sl sau tách' from '"+tenbang+"' where masp notnull";
+            string sql2 = "select masp as 'Mã sản phẩm',soluong1 as 'Sl' from '"+tenbang+"' where masp notnull";
             Open();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql2, conn);
             DataTable dt1 = new DataTable();

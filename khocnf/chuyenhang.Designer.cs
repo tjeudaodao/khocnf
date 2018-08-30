@@ -68,6 +68,7 @@
             this.btnSuaTencuahang = new System.Windows.Forms.Button();
             this.txtTencuahang = new System.Windows.Forms.TextBox();
             this.lbThongbao = new System.Windows.Forms.Label();
+            this.txtSLIN = new System.Windows.Forms.TextBox();
             this.grbthongtindon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datag2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datag1)).BeginInit();
@@ -102,6 +103,7 @@
             this.radioMatong.TabIndex = 21;
             this.radioMatong.Text = "Mã tổng";
             this.radioMatong.UseVisualStyleBackColor = true;
+            this.radioMatong.CheckedChanged += new System.EventHandler(this.radioMatong_CheckedChanged);
             // 
             // radioMamau
             // 
@@ -113,6 +115,7 @@
             this.radioMamau.TabIndex = 21;
             this.radioMamau.Text = "Mã màu";
             this.radioMamau.UseVisualStyleBackColor = true;
+            this.radioMamau.CheckedChanged += new System.EventHandler(this.radioMamau_CheckedChanged);
             // 
             // radioMacdinh
             // 
@@ -120,6 +123,7 @@
             this.radioMacdinh.BackColor = System.Drawing.Color.RoyalBlue;
             this.radioMacdinh.Checked = true;
             this.radioMacdinh.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioMacdinh.ForeColor = System.Drawing.Color.White;
             this.radioMacdinh.Location = new System.Drawing.Point(18, 27);
             this.radioMacdinh.Name = "radioMacdinh";
             this.radioMacdinh.Size = new System.Drawing.Size(75, 21);
@@ -127,6 +131,7 @@
             this.radioMacdinh.TabStop = true;
             this.radioMacdinh.Text = "Mặc định";
             this.radioMacdinh.UseVisualStyleBackColor = false;
+            this.radioMacdinh.CheckedChanged += new System.EventHandler(this.radioMacdinh_CheckedChanged);
             // 
             // btnlaydata
             // 
@@ -195,7 +200,7 @@
             this.btninnhat.ForeColor = System.Drawing.Color.DimGray;
             this.btninnhat.Location = new System.Drawing.Point(15, 16);
             this.btninnhat.Name = "btninnhat";
-            this.btninnhat.Size = new System.Drawing.Size(224, 34);
+            this.btninnhat.Size = new System.Drawing.Size(150, 34);
             this.btninnhat.TabIndex = 20;
             this.btninnhat.Text = "In nhặt";
             this.btninnhat.UseVisualStyleBackColor = true;
@@ -430,6 +435,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtSLIN);
             this.groupBox1.Controls.Add(this.btntachdon);
             this.groupBox1.Controls.Add(this.lbthongtin);
             this.groupBox1.Controls.Add(this.btnxuatexcel);
@@ -534,6 +540,18 @@
             this.lbThongbao.Text = "-";
             this.lbThongbao.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // txtSLIN
+            // 
+            this.txtSLIN.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSLIN.Font = new System.Drawing.Font("Comic Sans MS", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSLIN.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.txtSLIN.Location = new System.Drawing.Point(171, 19);
+            this.txtSLIN.Name = "txtSLIN";
+            this.txtSLIN.Size = new System.Drawing.Size(64, 28);
+            this.txtSLIN.TabIndex = 23;
+            this.txtSLIN.Text = "1";
+            this.txtSLIN.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // chuyenhang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -619,5 +637,6 @@
         private System.Windows.Forms.Button btnSuaTencuahang;
         private System.Windows.Forms.TextBox txtTencuahang;
         private System.Windows.Forms.Label lbThongbao;
+        private System.Windows.Forms.TextBox txtSLIN;
     }
 }

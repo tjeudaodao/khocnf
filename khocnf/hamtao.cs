@@ -90,6 +90,10 @@ namespace khocnf
             {
                 return 0;
             }
+            else if (Value == "0.0")
+            {
+                return 0.0;
+            }
             else
             {
                 double OutVal;
@@ -212,7 +216,7 @@ namespace khocnf
             }
             return dt;
         }
-        public static void taovainfileexcel(DataTable dt,string tongsp)
+        public static void taovainfileexcel(DataTable dt,string tongsp,int sobanin = 1)
         {
             ExcelPackage ExcelPkg = new ExcelPackage();
             ExcelWorksheet worksheet = ExcelPkg.Workbook.Worksheets.Add("hts");
@@ -248,7 +252,11 @@ namespace khocnf
             excel.Workbooks book = app.Workbooks;
             excel.Workbook sh = book.Open(Path.GetFullPath("hts.xlsx"));
             //app.Visible = true;
-            sh.PrintOutEx();
+            for (int i = 0; i < sobanin; i++)
+            {
+                sh.PrintOutEx();
+            }
+            
             book.Close();
             app.Quit();
         }
@@ -268,6 +276,7 @@ namespace khocnf
                 if (saveDialog.ShowDialog() != DialogResult.Cancel)
                 {
                     duongdanfileexcel = Path.GetFullPath(saveDialog.FileName);
+                    
                     string exportFilePath = saveDialog.FileName;
                     var newFile = new FileInfo(exportFilePath);
                     using (var package = new ExcelPackage(newFile))
