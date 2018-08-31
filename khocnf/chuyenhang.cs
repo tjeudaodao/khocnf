@@ -212,9 +212,6 @@ namespace khocnf
                     var dulieu = ketnoi.Khoitao();
                     var con = ketnoibarcode.Khoitao();
                     string masp = con.laymasp(txtbarcode.Text);
-                    string mamau = masp.Substring(0, 15); // 1bs18a001-sk010
-                    string matong = masp.Substring(0, 9);
-
                     if (masp == null)
                     {
                         amthanh.phatbaoloi();
@@ -228,7 +225,8 @@ namespace khocnf
                         try
                         {
                             lbmasp.Text = masp;
-
+                            string mamau = masp.Substring(0, 15); // 1bs18a001-sk010
+                            string matong = masp.Substring(0, 9);
                             dulieu.insertdl1(txtbarcode.Text, masp, "1", ngay, gio, txtnoinhan.Text);
                             dulieu.chenvaobangthuathieu(masp, mamau, matong, kihieumasanpham);
                             if (datag3.RowCount > 1)
@@ -349,12 +347,18 @@ namespace khocnf
                     }
                     else
                     {
-                        string[] ngaygio = dulieu.layngaygiodaluuCHuyenhang();
-                        dulieu.savevaobangchuyenhang(ngaygio[0], ngaygio[1]);
-                        dulieu.xoabangtamchuyenhang();
-                        dulieu.xoabangtamchuyenhang1();
-                        dulieu.xoabangthuathieu();
-                        HamBatDau();
+                        if (datag3.RowCount > 0)
+                        {
+                            dulieu.xoabangthuathieu();
+                            HamBatDau();
+                        }
+                        else
+                        {
+                            dulieu.xoabangtamchuyenhang1();
+                            dulieu.xoabangthuathieu();
+                            HamBatDau();
+                        }
+                        
                     }
                 }
                 else
