@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(kiemhang));
             this.datag1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -55,6 +55,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panKiemhang = new System.Windows.Forms.Panel();
             this.lbthongbao = new System.Windows.Forms.Label();
+            this.pbXoaNhap = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.datag1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datag2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -66,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbLoading)).BeginInit();
             this.panel1.SuspendLayout();
             this.panKiemhang.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbXoaNhap)).BeginInit();
             this.SuspendLayout();
             // 
             // datag1
@@ -167,23 +169,23 @@
             this.datag2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.datag2.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.datag2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datag2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datag2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.datag2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datag2.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datag2.DefaultCellStyle = dataGridViewCellStyle4;
             this.datag2.Location = new System.Drawing.Point(4, 312);
             this.datag2.Name = "datag2";
             this.datag2.RowHeadersVisible = false;
@@ -243,7 +245,7 @@
             // pbedit
             // 
             this.pbedit.Image = ((System.Drawing.Image)(resources.GetObject("pbedit.Image")));
-            this.pbedit.Location = new System.Drawing.Point(90, 253);
+            this.pbedit.Location = new System.Drawing.Point(84, 253);
             this.pbedit.Name = "pbedit";
             this.pbedit.Size = new System.Drawing.Size(55, 38);
             this.pbedit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -266,7 +268,7 @@
             // pbdelete
             // 
             this.pbdelete.Image = ((System.Drawing.Image)(resources.GetObject("pbdelete.Image")));
-            this.pbdelete.Location = new System.Drawing.Point(176, 253);
+            this.pbdelete.Location = new System.Drawing.Point(150, 253);
             this.pbdelete.Name = "pbdelete";
             this.pbdelete.Size = new System.Drawing.Size(50, 38);
             this.pbdelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -348,6 +350,7 @@
             this.panel1.Controls.Add(this.pbdunglaidi);
             this.panel1.Controls.Add(this.txtsoluong);
             this.panel1.Controls.Add(this.pbdelete);
+            this.panel1.Controls.Add(this.pbXoaNhap);
             this.panel1.Controls.Add(this.pbsave);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -379,6 +382,17 @@
             this.lbthongbao.Text = "-";
             this.lbthongbao.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pbXoaNhap
+            // 
+            this.pbXoaNhap.Image = ((System.Drawing.Image)(resources.GetObject("pbXoaNhap.Image")));
+            this.pbXoaNhap.Location = new System.Drawing.Point(213, 253);
+            this.pbXoaNhap.Name = "pbXoaNhap";
+            this.pbXoaNhap.Size = new System.Drawing.Size(42, 38);
+            this.pbXoaNhap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbXoaNhap.TabIndex = 3;
+            this.pbXoaNhap.TabStop = false;
+            this.pbXoaNhap.Click += new System.EventHandler(this.pbXoaNhap_Click);
+            // 
             // kiemhang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -403,6 +417,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panKiemhang.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbXoaNhap)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -433,5 +448,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panKiemhang;
         private System.Windows.Forms.Label lbthongbao;
+        private System.Windows.Forms.PictureBox pbXoaNhap;
     }
 }

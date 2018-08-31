@@ -84,15 +84,43 @@ namespace khocnf
             }
             
         }
+        public static void tudongnhaydenmasp(DataGridView dtv, string masp,int kihieu)
+        {
+            try
+            {
+                if (dtv.RowCount < 1)
+                {
+                    return;
+                }
+                if (kihieu == 2)
+                {
+                    masp = masp.Substring(0, 15);
+                }
+                else if (kihieu == 3)
+                {
+                    masp = masp.Substring(0, 9);
+                }
+                for (int i = 0; i < dtv.RowCount - 1; i++)
+                {
+                    if (masp == dtv.Rows[i].Cells[0].Value.ToString())
+                    {
+                        dtv.FirstDisplayedScrollingRowIndex = i;
+                        dtv.Rows[i].Selected = true;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
+
+        }
         public static double ConvertToDouble(string Value)
         {
             if (Value == null)
             {
                 return 0;
-            }
-            else if (Value == "0.0")
-            {
-                return 0.0;
             }
             else
             {
@@ -284,7 +312,11 @@ namespace khocnf
 
                         ExcelWorksheet worksheet = package.Workbook.Worksheets.Add(tencuahang+ "_Điều chuyển_"+tongsp+"sp");
 
-                        worksheet.Cells["A1"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
+                        worksheet.Cells["A1"].Value = tencuahang + " _ Điều chuyển";
+                        worksheet.Cells["A2"].Value = "Đến : " + noinhan;
+                        worksheet.Cells["A3"].Value = "Ngày tạo : " + DateTime.Now.ToString("dd-MM-yyyy");
+                        worksheet.Cells["A4"].Value = "Tổng SP : " + tongsp + " sp";
+                        worksheet.Cells["A6"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
 
                         worksheet.Cells[worksheet.Dimension.End.Row + 1, 1].Value = "Tổng sản phẩm:";
                         worksheet.Cells[worksheet.Dimension.End.Row, 3].Value = Int32.Parse(tongsp);
@@ -303,9 +335,9 @@ namespace khocnf
             ExcelPackage ExcelPkg = new ExcelPackage();
             ExcelWorksheet worksheet = ExcelPkg.Workbook.Worksheets.Add("hts");
             worksheet.Cells["A1"].Value = tencuahang + " _ Điều chuyển";
-            worksheet.Cells["A2"].Value = "Đến :" +noinhan;
-            worksheet.Cells["A3"].Value = "Ngày tạo :" + DateTime.Now.ToString("dd-MM-yyyy");
-            worksheet.Cells["A4"].Value = "Tổng SP :" + tongsp +" sp";
+            worksheet.Cells["A2"].Value = "Đến : " +noinhan;
+            worksheet.Cells["A3"].Value = "Ngày tạo : " + DateTime.Now.ToString("dd-MM-yyyy");
+            worksheet.Cells["A4"].Value = "Tổng SP : " + tongsp +" sp";
             worksheet.Cells["A6"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
 
             worksheet.Column(1).Width = 28;

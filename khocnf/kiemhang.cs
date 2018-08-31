@@ -96,7 +96,7 @@ namespace khocnf
                     updatetatca();
 
                     // hamtao.notifi_hts(" Vừa sửa mã\n- '" + lbmasp.Text + "'");
-                    lbthongbao.Text = " Vừa sửa mã\n- '" + lbmasp.Text + "'";
+                    lbthongbao.Text = " Vừa sửa mã : '" + lbmasp.Text + "'";
                     clearvungnhap();
                     txtbarcode.Focus();
                     chinhsuama = false;
@@ -116,7 +116,7 @@ namespace khocnf
                 var dulieu = ketnoi.Khoitao();
                 dulieu.deletemasp(idrows);
                 // hamtao.notifi_hts( " Vừa xóa mã\n- '" + lbmasp.Text + "'");
-                lbthongbao.Text = " Vừa xóa mã\n- '" + lbmasp.Text + "'";
+                lbthongbao.Text = " Vừa xóa mã : '" + lbmasp.Text + "'";
                 updatetatca();
                 clearvungnhap();
                 txtbarcode.Focus();
@@ -453,6 +453,10 @@ namespace khocnf
                         }
                         catch (Exception)
                         {
+                            pbLoading.Invoke(new MethodInvoker(delegate ()
+                            {
+                                pbLoading.Visible = false;
+                            }));
                             return;
                         }
 
@@ -634,7 +638,26 @@ namespace khocnf
             }
         }
 
-        
+        private void pbXoaNhap_Click(object sender, EventArgs e)
+        {
+            DialogResult hoi = MessageBox.Show("Xóa nháp không lưu lại gì sất :). OK?", "Xóa nháp", MessageBoxButtons.OKCancel);
+            if (hoi == DialogResult.OK)
+            {
+                try
+                {
+                    var dulieu = ketnoi.Khoitao();
+                    dulieu.xoabangtam();
+                    dulieu.xoabangtam2();
+                    lammoitatca();
+                    txtsophieu.Clear();
+                    txtsophieu.Focus();
+                }
+                catch (Exception)
+                {
+                    hamtao.notifi_hts("Có vân đề \n Xem lại đi");
+                }
+            }
+        }
     }
 }
 
