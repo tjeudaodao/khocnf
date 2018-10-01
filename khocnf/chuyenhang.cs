@@ -299,17 +299,38 @@ namespace khocnf
                             dulieu.xoabangtamchuyenhang();
                             dulieu.xoabangthuathieu();
                             datag3.DataSource = dulieu.laydulieubangCOPY();
-                            lbsoluongdon.Text = dulieu.tongsoluongcannhat("bangtamchuyenhang1");
+                            datag2.DataSource = null;
+                            datag2.Refresh();
+                            string sldon = dulieu.tongsoluongcannhat("bangtamchuyenhang1");
+                            if (sldon == "0")
+                            {
+                                lbsoluongdon.Text = "Nhặt dứt";
+                            }
+                            else lbsoluongdon.Text = sldon;
                             HamBatDau();
                         }
                         else
                         {
                             string[] ngaygio = dulieu.layngaygiodaluuCHuyenhang();
                             dulieu.savevaobangchuyenhang(ngaygio[0], ngaygio[1]);
-                            dulieu.xoabangtamchuyenhang();
-                            dulieu.xoabangtamchuyenhang1();
-                            dulieu.xoabangthuathieu();
-                            HamBatDau();
+                            if (datag3.RowCount > 0)
+                            {
+                                dulieu.xoabangtamchuyenhang();
+                                dulieu.xoabangthuathieu();
+                                datag2.DataSource = null;
+                                datag2.Refresh();
+                                HamBatDau();
+                            }
+                            else
+                            {
+                                dulieu.xoabangtamchuyenhang1();
+                                dulieu.xoabangtamchuyenhang();
+                                dulieu.xoabangthuathieu();
+                                HamBatDau();
+                            }
+                            
+                            
+                            
                         }
                     }
                     else
@@ -342,7 +363,12 @@ namespace khocnf
                         dulieu.xoabangtamchuyenhang();
                         dulieu.xoabangthuathieu();
                         datag3.DataSource = dulieu.laydulieubangCOPY();
-                        lbsoluongdon.Text = dulieu.tongsoluongcannhat("bangtamchuyenhang1");
+                        string sldon = dulieu.tongsoluongcannhat("bangtamchuyenhang1");
+                        if (sldon == "0")
+                        {
+                            lbsoluongdon.Text = "Nhặt dứt";
+                        }
+                        else lbsoluongdon.Text = sldon;
                         HamBatDau();
                     }
                     else

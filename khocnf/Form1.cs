@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 using System.Threading;
 using System.IO;
-
+using System.Diagnostics;
 
 namespace khocnf
 {
@@ -23,16 +23,37 @@ namespace khocnf
         timkiem ustimkiem = new timkiem();
         Thread tuCapnhat;
         string duongdanAPP = Application.StartupPath;
+
+        Thread closecheckupdate;
+
         public Form1()
         {
             InitializeComponent();
-            
-           
+
+            closecheckupdate = new Thread(CloseCheckupdate);
+            closecheckupdate.IsBackground = true;
+            closecheckupdate.Start();
+
             tabnao = 1;
             tuCapnhat = new Thread(hamkiemtra);
             tuCapnhat.IsBackground = true;
             tuCapnhat.Start();
         }
+        public void CloseCheckupdate()
+        {
+            Process[] GetPArry = Process.GetProcesses();
+            foreach (Process testProcess in GetPArry)
+            {
+                string ProcessName = testProcess.ProcessName;
+                if (ProcessName.CompareTo("checkUpdate") == 0)
+                {
+                    testProcess.Kill();
+                    return;
+                }
+
+            }
+        }
+
         protected override CreateParams CreateParams // hieu ung shadow cho form
         {
             get
