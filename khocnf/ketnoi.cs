@@ -245,9 +245,9 @@ namespace khocnf
             Close();
         }
 
-        public void laydataexcel(string matong, string sl)
+        public void laydataexcel(string matong, string sl, string masp1)
         {
-            string sql = "insert into btkiemhang2(matong1,soluong1) values('" + matong + "','" + sl + "')";
+            string sql = "insert into btkiemhang2(matong1,soluong1,masp1) values('" + matong + "','" + sl + "','"+masp1+"')";
             Open();
             SQLiteCommand cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();

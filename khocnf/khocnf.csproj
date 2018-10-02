@@ -110,6 +110,9 @@
     <Compile Include="kiemhang.Designer.cs">
       <DependentUpon>kiemhang.cs</DependentUpon>
     </Compile>
+    <Compile Include="nuttoggle.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="timkiem.cs">

@@ -438,7 +438,7 @@ namespace khocnf
                                 matong = ws.Cells[i, 10].Value.ToString();
                                 masp = ws.Cells[i, 12].Value.ToString();
                                 soluong = ws.Cells[i, 14].Value.ToString();
-                                dulieu.laydataexcel(matong, soluong);
+                                dulieu.laydataexcel(matong, soluong, masp);
                                 if (!kiemtraSP)
                                 {
                                     dulieu.chenthongtinphieu(sophieu, masp, soluong,matong);
