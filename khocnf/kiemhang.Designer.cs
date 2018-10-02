@@ -49,13 +49,14 @@
             this.pbdelete = new System.Windows.Forms.PictureBox();
             this.pbsave = new System.Windows.Forms.PictureBox();
             this.grbthongtindon = new System.Windows.Forms.GroupBox();
+            this.toggleMahang = new khocnf.nuttoggle();
             this.lbnoidungdon = new System.Windows.Forms.Label();
             this.lbsophieu = new System.Windows.Forms.Label();
             this.pbLoading = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pbXoaNhap = new System.Windows.Forms.PictureBox();
             this.panKiemhang = new System.Windows.Forms.Panel();
             this.lbthongbao = new System.Windows.Forms.Label();
-            this.pbXoaNhap = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.datag1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datag2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -66,8 +67,8 @@
             this.grbthongtindon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLoading)).BeginInit();
             this.panel1.SuspendLayout();
-            this.panKiemhang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbXoaNhap)).BeginInit();
+            this.panKiemhang.SuspendLayout();
             this.SuspendLayout();
             // 
             // datag1
@@ -212,7 +213,7 @@
             this.lbsoluongdon.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lbsoluongdon.Font = new System.Drawing.Font("Comic Sans MS", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbsoluongdon.ForeColor = System.Drawing.Color.SpringGreen;
-            this.lbsoluongdon.Location = new System.Drawing.Point(544, 19);
+            this.lbsoluongdon.Location = new System.Drawing.Point(548, 20);
             this.lbsoluongdon.Name = "lbsoluongdon";
             this.lbsoluongdon.Size = new System.Drawing.Size(107, 38);
             this.lbsoluongdon.TabIndex = 1;
@@ -289,6 +290,7 @@
             // 
             // grbthongtindon
             // 
+            this.grbthongtindon.Controls.Add(this.toggleMahang);
             this.grbthongtindon.Controls.Add(this.lbnoidungdon);
             this.grbthongtindon.Controls.Add(this.lbsophieu);
             this.grbthongtindon.Controls.Add(this.lbsoluongdon);
@@ -300,14 +302,27 @@
             this.grbthongtindon.Text = "Mô tả thông tin đơn";
             this.grbthongtindon.Enter += new System.EventHandler(this.grbthongtindon_Enter);
             // 
+            // toggleMahang
+            // 
+            this.toggleMahang.AutoSize = true;
+            this.toggleMahang.BackColor = System.Drawing.Color.White;
+            this.toggleMahang.Location = new System.Drawing.Point(439, 22);
+            this.toggleMahang.Name = "toggleMahang";
+            this.toggleMahang.Padding = new System.Windows.Forms.Padding(6);
+            this.toggleMahang.Size = new System.Drawing.Size(90, 31);
+            this.toggleMahang.TabIndex = 6;
+            this.toggleMahang.Text = "nuttoggle1";
+            this.toggleMahang.UseVisualStyleBackColor = false;
+            this.toggleMahang.CheckedChanged += new System.EventHandler(this.toggleMahang_CheckedChanged);
+            // 
             // lbnoidungdon
             // 
             this.lbnoidungdon.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lbnoidungdon.Font = new System.Drawing.Font("Comic Sans MS", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbnoidungdon.ForeColor = System.Drawing.Color.DimGray;
-            this.lbnoidungdon.Location = new System.Drawing.Point(221, 24);
+            this.lbnoidungdon.Location = new System.Drawing.Point(196, 24);
             this.lbnoidungdon.Name = "lbnoidungdon";
-            this.lbnoidungdon.Size = new System.Drawing.Size(304, 29);
+            this.lbnoidungdon.Size = new System.Drawing.Size(237, 29);
             this.lbnoidungdon.TabIndex = 1;
             this.lbnoidungdon.Text = "-";
             this.lbnoidungdon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -358,6 +373,17 @@
             this.panel1.Size = new System.Drawing.Size(447, 700);
             this.panel1.TabIndex = 9;
             // 
+            // pbXoaNhap
+            // 
+            this.pbXoaNhap.Image = ((System.Drawing.Image)(resources.GetObject("pbXoaNhap.Image")));
+            this.pbXoaNhap.Location = new System.Drawing.Point(213, 253);
+            this.pbXoaNhap.Name = "pbXoaNhap";
+            this.pbXoaNhap.Size = new System.Drawing.Size(42, 38);
+            this.pbXoaNhap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbXoaNhap.TabIndex = 3;
+            this.pbXoaNhap.TabStop = false;
+            this.pbXoaNhap.Click += new System.EventHandler(this.pbXoaNhap_Click);
+            // 
             // panKiemhang
             // 
             this.panKiemhang.Controls.Add(this.pbLoading);
@@ -382,17 +408,6 @@
             this.lbthongbao.Text = "-";
             this.lbthongbao.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pbXoaNhap
-            // 
-            this.pbXoaNhap.Image = ((System.Drawing.Image)(resources.GetObject("pbXoaNhap.Image")));
-            this.pbXoaNhap.Location = new System.Drawing.Point(213, 253);
-            this.pbXoaNhap.Name = "pbXoaNhap";
-            this.pbXoaNhap.Size = new System.Drawing.Size(42, 38);
-            this.pbXoaNhap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbXoaNhap.TabIndex = 3;
-            this.pbXoaNhap.TabStop = false;
-            this.pbXoaNhap.Click += new System.EventHandler(this.pbXoaNhap_Click);
-            // 
             // kiemhang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -413,11 +428,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbdelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbsave)).EndInit();
             this.grbthongtindon.ResumeLayout(false);
+            this.grbthongtindon.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLoading)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panKiemhang.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbXoaNhap)).EndInit();
+            this.panKiemhang.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -449,5 +465,6 @@
         private System.Windows.Forms.Panel panKiemhang;
         private System.Windows.Forms.Label lbthongbao;
         private System.Windows.Forms.PictureBox pbXoaNhap;
+        private nuttoggle toggleMahang;
     }
 }

@@ -180,9 +180,9 @@ namespace khocnf
             Close();
             return h;
         }
-        public DataTable locdulieu()
+        public DataTable locdulieu(string mahang)
         {
-            string sql = "select matong as 'Mã tổng thực tế', sum(soluong) as 'SL thực tế' from btkiemhang1 group by matong";
+            string sql = string.Format("select {0} as 'Mã thực tế', sum(soluong) as 'SL thực tế' from btkiemhang1 group by {0}",mahang);
             Open();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
             DataTable dt = new DataTable();
@@ -254,10 +254,18 @@ namespace khocnf
             Close();
         }
 
-        public DataTable sosanhdulieu()
+        public DataTable sosanhdulieu(string mahangtt, string mahangtd)
         {
             
-            string sql2 = "select matong as 'Mã thực tế',tongsoluong as 'SL TT',matong1 as 'Mã theo đơn',tongsoluong1 as 'SL TĐ' from	(select matong1,sum(soluong1) as tongsoluong1 from btkiemhang2 group by matong1) left join (select matong,sum(soluong) as tongsoluong from btkiemhang1 group by matong) on matong1=matong union all select matong as 'Mã thực tế',tongsoluong as 'SL TT',matong1 as 'Mã theo đơn',tongsoluong1 as 'SL TĐ' from (select matong,sum(soluong) as tongsoluong from btkiemhang1 group by matong) left join (select matong1,sum(soluong1) as tongsoluong1 from btkiemhang2 group by matong1) on matong1=matong where matong1 is null";
+            string sql2 = string.Format(@"select {0} as 'Mã thực tế',tongsoluong as 'SL TT',{1} as 'Mã theo đơn',tongsoluong1 as 'SL TĐ' 
+                            from (select {1},sum(soluong1) as tongsoluong1 from btkiemhang2 group by {1}) 
+                            left join (select {0},sum(soluong) as tongsoluong from btkiemhang1 group by {0}) 
+                            on {1}={0} 
+                            union all select {0} as 'Mã thực tế',tongsoluong as 'SL TT',{1} as 'Mã theo đơn',tongsoluong1 as 'SL TĐ' 
+                            from (select {0},sum(soluong) as tongsoluong from btkiemhang1 group by {0}) 
+                            left join (select {1},sum(soluong1) as tongsoluong1 from btkiemhang2 group by {1}) 
+                            on {1}={0} 
+                            where {1} is null",mahangtt,mahangtd);
             Open();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql2, conn);
             DataTable dt = new DataTable();

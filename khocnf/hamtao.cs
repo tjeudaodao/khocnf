@@ -169,7 +169,28 @@ namespace khocnf
             }
             return dt;
         }
-
+        public static string ThongbaoketquaSosanh(DataTable bangdasosanhroi)
+        {
+            string ketqua = "";
+            foreach (DataRow row in bangdasosanhroi.Rows)
+            {
+                if (row[4].ToString() != "OK")
+                {
+                    string ma;
+                    if (row[0].ToString() == "")
+                    {
+                        ma = row[2].ToString();
+                    }
+                    else ma = row[0].ToString();
+                    ketqua += "- " + ma + " --> " + row[4].ToString() + "\n";
+                }
+            }
+            if (ketqua == "")
+            {
+                ketqua = "OK, nuột";
+            }
+            return ketqua;
+        }
         #region chuyenhang
         public static string duongdanfileexcel = "";
         public static string layduongdan()

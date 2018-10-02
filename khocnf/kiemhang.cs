@@ -25,6 +25,7 @@ namespace khocnf
         static bool chinhsuama = false;
 
         Thread chayHts;
+
         public kiemhang()
         {
             InitializeComponent();
@@ -48,7 +49,7 @@ namespace khocnf
         {
             var dulieu = ketnoi.Khoitao();
             datag1.DataSource = dulieu.bangkiemhang1();
-            datag2.DataSource = dulieu.locdulieu();
+            datag2.DataSource = dulieu.locdulieu("matong");
             lbtongsoluong.Text = dulieu.tongsoluongbt1();
             pbdelete.Image = Properties.Resources.eraser;
             pbedit.Image = Properties.Resources.tools;
@@ -184,7 +185,7 @@ namespace khocnf
                                 datag2.DefaultCellStyle.Font = new Font("Comic Sans MS", 30f);
                                 cochuthaydoi = false;
                             }
-                            datag2.DataSource = dulieu.locdulieu();
+                            datag2.DataSource = dulieu.locdulieu("matong");
                             dulieu.kiemtramamoi(matong);
                             datag1.FirstDisplayedScrollingRowIndex = datag1.RowCount - 2;
                             lbtongsoluong.Text = dulieu.tongsoluongbt1();
@@ -468,7 +469,7 @@ namespace khocnf
                 }
                 datag2.Invoke(new MethodInvoker(delegate ()
                 {
-                    datag2.DataSource = hamtao.bangdasosanh(dulieu.sosanhdulieu());
+                    datag2.DataSource = hamtao.bangdasosanh(dulieu.sosanhdulieu("matong","matong1"));
                     datag2.DefaultCellStyle.Font = new Font("Comic Sans MS", 20.0F);
                     DataGridViewColumn column = datag2.Columns[1];
                     column.Width = 60;
@@ -626,7 +627,7 @@ namespace khocnf
                 grbthongtindon.Width = 810;
                 lbtongsoluong.Width = 820;
                 pbLoading.Width = 820;
-                lbsoluongdon.Width = 250;
+                lbsoluongdon.Width = 210;
             }
             else if (this.Width <= 1170)
             {
@@ -655,6 +656,37 @@ namespace khocnf
                 catch (Exception)
                 {
                     hamtao.notifi_hts("Có vân đề \n Xem lại đi");
+                }
+            }
+        }
+
+        private void toggleMahang_CheckedChanged(object sender, EventArgs e)
+        {
+            var dulieu = ketnoi.Khoitao();
+            if (datag2.ColumnCount == 2)
+            {
+                if (toggleMahang.Checked)
+                {
+                    datag2.DataSource = dulieu.locdulieu("masp");
+                }
+                else
+                {
+                    datag2.DataSource = dulieu.locdulieu("matong");
+                }
+            }
+            else if (datag2.ColumnCount == 5)
+            {
+                if (toggleMahang.Checked)
+                {
+                    datag2.DataSource = hamtao.bangdasosanh(dulieu.sosanhdulieu("masp", "masp1"));
+                    datag2.DefaultCellStyle.Font = new Font("Comic Sans MS", 14.0F);
+                    string layketqua = hamtao.ThongbaoketquaSosanh((DataTable)datag2.DataSource);
+                    MessageBox.Show("Kết quả : \n" + layketqua, "Thông báo");
+                }
+                else
+                {
+                    datag2.DataSource = hamtao.bangdasosanh(dulieu.sosanhdulieu("matong", "matong1"));
+                    datag2.DefaultCellStyle.Font = new Font("Comic Sans MS", 20.0F);
                 }
             }
         }

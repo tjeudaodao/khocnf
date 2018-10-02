@@ -31,7 +31,7 @@ namespace khocnf
                 r = Height - 1;
                 var rect = Checked ? new Rectangle(Width - r - 1, 0, r, r)
                                    : new Rectangle(0, 0, r, r);
-                e.Graphics.FillEllipse(Checked ? Brushes.Green : Brushes.WhiteSmoke, rect);
+                e.Graphics.FillEllipse(Checked ? Brushes.SpringGreen : Brushes.WhiteSmoke, rect);
             }
         }
     }
