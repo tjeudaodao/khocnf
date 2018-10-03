@@ -191,6 +191,18 @@ namespace khocnf
             }
             return ketqua;
         }
+        public static void AmthanhSosanh(DataTable bangdasosanhroi)
+        {
+            foreach (DataRow row in bangdasosanhroi.Rows)
+            {
+                if (row[4].ToString() != "OK")
+                {
+                    amthanh.phatbaoLech();
+                    return;
+                }
+            }
+            amthanh.phatDu();
+        }
         #region chuyenhang
         public static string duongdanfileexcel = "";
         public static string layduongdan()

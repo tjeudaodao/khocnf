@@ -470,6 +470,7 @@ namespace khocnf
                 datag2.Invoke(new MethodInvoker(delegate ()
                 {
                     datag2.DataSource = hamtao.bangdasosanh(dulieu.sosanhdulieu("matong","matong1"));
+                    hamtao.AmthanhSosanh((DataTable)datag2.DataSource);
                     datag2.DefaultCellStyle.Font = new Font("Comic Sans MS", 20.0F);
                     DataGridViewColumn column = datag2.Columns[1];
                     column.Width = 60;
@@ -668,10 +669,12 @@ namespace khocnf
                 if (toggleMahang.Checked)
                 {
                     datag2.DataSource = dulieu.locdulieu("masp");
+                    datag2.DefaultCellStyle.Font = new Font("Comic Sans MS", 20.0F);
                 }
                 else
                 {
                     datag2.DataSource = dulieu.locdulieu("matong");
+                    datag2.DefaultCellStyle.Font = new Font("Comic Sans MS", 30f);
                 }
             }
             else if (datag2.ColumnCount == 5)
