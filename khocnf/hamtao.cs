@@ -15,6 +15,10 @@ using Microsoft.Office.Interop;
 using excel = Microsoft.Office.Interop.Excel;
 using System.Drawing;
 using System.IO;
+using System.Collections;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 namespace khocnf
 {
     class hamtao
@@ -209,7 +213,12 @@ namespace khocnf
         {
             return duongdanfileexcel;
         }
-        public static DataTable layvungcopy()
+        public static void TaofileJSON(Dictionary<string,string> json)
+        {
+            string h = JsonConvert.SerializeObject(json, Formatting.Indented);
+            File.WriteAllText("dulieucopy.json", h);
+        }
+        public static DataTable layvungcopy(Label lbsoluongcannhat)
         {
             DataTable dt = new DataTable();
             DataObject o = (DataObject)Clipboard.GetDataObject();
@@ -225,21 +234,35 @@ namespace khocnf
                 string mau1_1 = @"(?<matong>\d\w{2}\d{2}[SWACswac]\d{3}\s+.*)"; // loc theo ma tong
                 string mau2 = @"\s+";
                 
-                if (Regex.IsMatch(goc,mau))
+                string key;
+                string value;
+                Dictionary<string, string> gt = new Dictionary<string, string>();
+
+                if (Regex.IsMatch(goc, mau))
                 {
                     MatchCollection matchhts = Regex.Matches(goc, mau);
                     foreach (Match h in matchhts)
                     {
-
-                        string[] hang = Regex.Split(h.Value.ToString(), mau2);
-
                         DataRow rowadd = dt.NewRow();
-                        rowadd[0] = hang[0].ToUpper();
-                        rowadd[1] = hang[1];
+                        string[] hang = Regex.Split(h.Value.ToString(), mau2);
+                        key = hang[0].ToUpper();
+                        value = hang[1].TrimEnd();
+                        rowadd[0] = key;
+                        rowadd[1] = value;
                         dt.Rows.Add(rowadd);
+                        if (gt.ContainsKey(key))
+                        {
+                            gt[key] = (int.Parse(gt[key].ToString()) + int.Parse(value)).ToString();
+                            continue;
+                        }
+
+                        gt.Add(key, value);
                     }
+                    TaofileJSON(gt);
+                    var sl = gt.Sum(x => int.Parse(x.Value));
+                    lbsoluongcannhat.Text = sl.ToString();
                 }
-                else if (Regex.IsMatch(goc,mau1))
+                else if (Regex.IsMatch(goc, mau1))
                 {
                     MatchCollection matchmamau = Regex.Matches(goc, mau1);
                     foreach (Match h1 in matchmamau)
@@ -248,34 +271,73 @@ namespace khocnf
                         string[] hang = Regex.Split(h1.Value.ToString(), mau2);
 
                         DataRow rowadd = dt.NewRow();
-                        rowadd[0] = hang[0].ToUpper();
-                        rowadd[1] = hang[1];
+                        key = hang[0].ToUpper();
+                        value = hang[1].TrimEnd();
+                        rowadd[0] = key;
+                        rowadd[1] = value;
                         dt.Rows.Add(rowadd);
+                        if (gt.ContainsKey(key))
+                        {
+                            gt[key] = (int.Parse(gt[key].ToString()) + int.Parse(value)).ToString();
+                            continue;
+                        }
+
+                        gt.Add(key, value);
                     }
+                    TaofileJSON(gt);
+
+                    var sl = gt.Sum(x => int.Parse(x.Value));
+                    lbsoluongcannhat.Text = sl.ToString();
                 }
-                else if (Regex.IsMatch(goc,mau1_1))
+                else if (Regex.IsMatch(goc, mau1_1))
                 {
                     MatchCollection matchmatong_1 = Regex.Matches(goc, mau1_1);
                     foreach (Match mm in matchmatong_1)
                     {
                         string[] hang = Regex.Split(mm.Groups["matong"].Value.ToString(), mau2);
-
+                        key = hang[0].ToUpper();
+                        value = hang[1].TrimEnd();
                         DataRow rowadd = dt.NewRow();
-                        rowadd[0] = hang[0].ToUpper();
-                        string hh = null;
-                        for (int i = 1; i < hang.Length; i++)
-                        {
-
-                            hh += hang[i] + " ";
-
-                        }
-                        rowadd[1] = hh;
+                        rowadd[0] = key;
+                        rowadd[1] = value;
                         dt.Rows.Add(rowadd);
+
+                        if (gt.ContainsKey(key))
+                        {
+                            if (Regex.IsMatch(value, @"^\d+$"))
+                            {
+                                gt[key] = (int.Parse(gt[key].ToString()) + int.Parse(value)).ToString();
+                            }
+                            continue;
+                        }
+                        gt.Add(key, value);
                     }
+                    TaofileJSON(gt);
+                    try
+                    {
+                        var sl = gt.Sum(x => int.Parse(x.Value));
+                        lbsoluongcannhat.Text = sl.ToString();
+                    }
+                    catch (Exception)
+                    {
+
+                        lbsoluongcannhat.Text = "Nhặt dứt";
+                    }
+
                 }
                 
             }
             return dt;
+        }
+        public static bool KiemtraFileJSON()
+        {
+            bool kq = false;
+            if (!File.Exists("dulieucopy.json"))
+            {
+                return kq;
+            }
+
+            return kq;
         }
         public static void taovainfileexcel(DataTable dt,string tongsp,int sobanin = 1)
         {
