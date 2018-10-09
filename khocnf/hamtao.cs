@@ -138,6 +138,24 @@ namespace khocnf
                 return OutVal;
             }
         }
+        public static int ConvertToInt(string Value)
+        {
+            if (Value == null)
+            {
+                return 0;
+            }
+            else
+            {
+                int OutVal;
+                int.TryParse(Value, out OutVal);
+
+                if (!int.TryParse(Value, out OutVal))
+                {
+                    return 0;
+                }
+                return OutVal;
+            }
+        }
         public static string layngaygiohientai()
         {
             return DateTime.Now.ToString("dd/MM/yy-HH:mm");
@@ -383,8 +401,9 @@ namespace khocnf
             book.Close();
             app.Quit();
         }
-        public static void xuatfile(DataTable dt, string tongsp,string noinhan,string tencuahang)
+        public static bool xuatfile(DataTable dt, string tongsp,string noinhan,string tencuahang)
         {
+            bool kq = false;
             string tenfile = DateTime.Now.ToString("dd-MM");
             if (string.IsNullOrEmpty(noinhan))
             {
@@ -399,7 +418,7 @@ namespace khocnf
                 if (saveDialog.ShowDialog() != DialogResult.Cancel)
                 {
                     duongdanfileexcel = Path.GetFullPath(saveDialog.FileName);
-                    
+                    kq = true;
                     string exportFilePath = saveDialog.FileName;
                     var newFile = new FileInfo(exportFilePath);
                     using (var package = new ExcelPackage(newFile))
@@ -424,6 +443,7 @@ namespace khocnf
                     }
                 }
             }
+            return kq;
         }
         public static void taovainfileexcelchuyenhang(DataTable dt, string tongsp,string noinhan,string tencuahang)
         {

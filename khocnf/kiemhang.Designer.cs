@@ -49,6 +49,7 @@
             this.pbdelete = new System.Windows.Forms.PictureBox();
             this.pbsave = new System.Windows.Forms.PictureBox();
             this.grbthongtindon = new System.Windows.Forms.GroupBox();
+            this.toggleMahang = new khocnf.nuttoggle();
             this.lbnoidungdon = new System.Windows.Forms.Label();
             this.lbsophieu = new System.Windows.Forms.Label();
             this.pbLoading = new System.Windows.Forms.PictureBox();
@@ -56,7 +57,6 @@
             this.pbXoaNhap = new System.Windows.Forms.PictureBox();
             this.panKiemhang = new System.Windows.Forms.Panel();
             this.lbthongbao = new System.Windows.Forms.Label();
-            this.toggleMahang = new khocnf.nuttoggle();
             ((System.ComponentModel.ISupportInitialize)(this.datag1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datag2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -302,6 +302,19 @@
             this.grbthongtindon.Text = "Mô tả thông tin đơn";
             this.grbthongtindon.Enter += new System.EventHandler(this.grbthongtindon_Enter);
             // 
+            // toggleMahang
+            // 
+            this.toggleMahang.AutoSize = true;
+            this.toggleMahang.BackColor = System.Drawing.Color.White;
+            this.toggleMahang.Location = new System.Drawing.Point(439, 22);
+            this.toggleMahang.Name = "toggleMahang";
+            this.toggleMahang.Padding = new System.Windows.Forms.Padding(6);
+            this.toggleMahang.Size = new System.Drawing.Size(90, 31);
+            this.toggleMahang.TabIndex = 6;
+            this.toggleMahang.Text = "nuttoggle1";
+            this.toggleMahang.UseVisualStyleBackColor = false;
+            this.toggleMahang.CheckedChanged += new System.EventHandler(this.toggleMahang_CheckedChanged);
+            // 
             // lbnoidungdon
             // 
             this.lbnoidungdon.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -387,26 +400,13 @@
             // lbthongbao
             // 
             this.lbthongbao.Font = new System.Drawing.Font("Comic Sans MS", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbthongbao.ForeColor = System.Drawing.Color.SpringGreen;
+            this.lbthongbao.ForeColor = System.Drawing.Color.DimGray;
             this.lbthongbao.Location = new System.Drawing.Point(3, 673);
             this.lbthongbao.Name = "lbthongbao";
             this.lbthongbao.Size = new System.Drawing.Size(707, 19);
             this.lbthongbao.TabIndex = 1;
             this.lbthongbao.Text = "-";
             this.lbthongbao.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // toggleMahang
-            // 
-            this.toggleMahang.AutoSize = true;
-            this.toggleMahang.BackColor = System.Drawing.Color.White;
-            this.toggleMahang.Location = new System.Drawing.Point(439, 22);
-            this.toggleMahang.Name = "toggleMahang";
-            this.toggleMahang.Padding = new System.Windows.Forms.Padding(6);
-            this.toggleMahang.Size = new System.Drawing.Size(90, 31);
-            this.toggleMahang.TabIndex = 6;
-            this.toggleMahang.Text = "nuttoggle1";
-            this.toggleMahang.UseVisualStyleBackColor = false;
-            this.toggleMahang.CheckedChanged += new System.EventHandler(this.toggleMahang_CheckedChanged);
             // 
             // kiemhang
             // 

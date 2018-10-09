@@ -468,7 +468,7 @@
             // radioMathieu
             // 
             this.radioMathieu.AutoSize = true;
-            this.radioMathieu.Location = new System.Drawing.Point(120, 57);
+            this.radioMathieu.Location = new System.Drawing.Point(116, 56);
             this.radioMathieu.Name = "radioMathieu";
             this.radioMathieu.Size = new System.Drawing.Size(119, 19);
             this.radioMathieu.TabIndex = 22;

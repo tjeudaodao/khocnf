@@ -71,10 +71,10 @@ namespace khocnf
                 while (true)
                 {
                     Thread.Sleep(1000);
+                    string luungayData = layngayClient();
                     var con = ketnoimysql.Khoitao();
-                    var consqlite = ketnoi.Khoitao();
                     string ngaylay = con.LayNgaycapnhat();
-                    string luungayData = consqlite.layngayData();
+                    
                     lbNgayCapnhat.Invoke(new MethodInvoker(delegate ()
                     {
                         if (luungayData == null)
@@ -99,30 +99,6 @@ namespace khocnf
                 }
                 
 
-                //while (true)
-                //{
-                //    string ngayclient = consqlite.layngayData();
-                //    string ngaylay = con.LayNgaycapnhat();
-                //    if (ngaylay != ngayclient)
-                //    {
-                //        btnUPDATE.Invoke(new MethodInvoker(delegate ()
-                //        {
-                //            btnUPDATE.Image = Properties.Resources.update;
-                //            if (File.Exists(Application.StartupPath + @"\databarcode.db"))
-                //            {
-                //                File.Delete(Application.StartupPath + @"\databarcode.db");
-                //            }
-                //            ftpClient.download("app/luutru/databarcode.db", Application.StartupPath + @"\databarcode.db");
-                            
-                //            lbNgayCapnhat.Invoke(new MethodInvoker(delegate ()
-                //            {
-                //                lbNgayCapnhat.Text = ngaylay;
-                //            }));
-                //            btnUPDATE.Image = Properties.Resources.hetupdate;
-                //            consqlite.updatengayData(ngaylay);
-                //        }));
-                //    }
-                //    Thread.Sleep(600000);
                 //}
             }
             catch (Exception)
@@ -131,6 +107,11 @@ namespace khocnf
                 hamtao.notifi_hts("Có lỗi cập nhật");
             }
             
+        }
+        public string layngayClient()
+        {
+            var consqlite = ketnoi.Khoitao();
+            return consqlite.layngayData();
         }
         void hamKiemtay()
         {
@@ -176,17 +157,6 @@ namespace khocnf
             }
 
         }
-        //void hamngayData()
-        //{
-        //    Thread.Sleep(2000);
-        //    var con = ketnoimysql.Khoitao();
-        //    luungayData = con.LayNgaycapnhat();
-        //    btnUPDATE.Invoke(new MethodInvoker(delegate ()
-        //    {
-        //        btnUPDATE.Text = luungayData;
-        //    }));
-        //}
-
         private void btnchuyenhang_Click(object sender, EventArgs e)
         {
             panthaydoi.Top = btnchuyenhang.Top;
