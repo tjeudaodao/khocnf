@@ -473,7 +473,8 @@ namespace khocnf
                 sl1 = dtr[0].ToString();
             }
             Close();
-            if (!int.TryParse(sl1, out int val))
+            int val;
+            if (!int.TryParse(sl1, out val))
             {
                 sl1 = "0";
             }
@@ -761,7 +762,16 @@ namespace khocnf
             Close();
             return dt;
         }
-        
+        public DataTable laybangxuatchuyenhang_matong()
+        {
+            string sql = "select matong as 'Mã tổng',sum(soluong) as 'Số lượng' from bangthuathieu group by matong";
+            Open();
+            SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
+            DataTable dt = new DataTable();
+            dta.Fill(dt);
+            Close();
+            return dt;
+        }
         public DataTable laybangdein() // sua lai lay du lieu in tu bangtamchuyenhang thay vi lay tu bangthuathieu
         {
             string sql = "select masp as 'Mã thực tế', sum(soluong) as 'SL TT' from bangtamchuyenhang group by masp";

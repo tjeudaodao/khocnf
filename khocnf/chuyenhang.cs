@@ -45,10 +45,10 @@ namespace khocnf
                 var dulieu = ketnoi.Khoitao();
                 if (datag2.RowCount > 0)
                 {
-                    if (hamtao.xuatfile(dulieu.laybangxuatchuyenhang(), lbtongsoluong.Text, txtnoinhan.Text, txtTencuahang.Text))
+                    if (hamtao.xuatfile(dulieu.laybangxuatchuyenhang(),dulieu.laybangxuatchuyenhang_matong(), lbtongsoluong.Text, txtnoinhan.Text, txtTencuahang.Text))
                     {
                         hamtao.taovainfileexcelchuyenhang(dulieu.laybangdein(), lbtongsoluong.Text, txtnoinhan.Text, txtTencuahang.Text);
-                        hamtao.notifi_hts("Đường dẫn:'" + hamtao.layduongdan() + "'", 5);
+                        hamtao.notifi_hts("Đường dẫn:'" + hamtao.layduongdan() + "'\nClick để mở FILE.", 5);
                         lbThongbao.Text = "Đường dẫn: '" + hamtao.layduongdan();
                         return;
                     }
@@ -145,6 +145,8 @@ namespace khocnf
             datag2.DefaultCellStyle.Font = new Font("Comic Sans MS", 16.0f);
             var con = ketnoi.Khoitao();
             txtTencuahang.Text = con.LayTencuahang();
+
+            nut_checkmathieu.mauChon = Brushes.RoyalBlue;
         }
         private void pbsave_Click(object sender, EventArgs e)
         {
@@ -587,9 +589,9 @@ namespace khocnf
                     {
                         return;
                     }
-                    radioMathieu.Invoke(new MethodInvoker(delegate ()
+                    nut_checkmathieu.Invoke(new MethodInvoker(delegate ()
                     {
-                        if (radioMathieu.Checked)
+                        if (nut_checkmathieu.Checked)
                         {
                             string tenfile = @"dulieutach.json";
                             File.Copy("dulieucopy.json", tenfile);
@@ -657,60 +659,8 @@ namespace khocnf
         {
             xuatexcel();
         }
-
-        private void radioMathieu_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (radioMathieu.Checked)
-                {
-                    var dulieu = ketnoi.Khoitao();
-                    radioMathieu.BackColor = Color.RoyalBlue;
-                    radioMathieu.ForeColor = Color.White;
-                    string mabang3 = null;
-                    string mabang2 = null;
-                    for (int i = 0; i < datag3.RowCount - 1; i++)
-                    {
-                        mabang3 = datag3.Rows[i].Cells[0].Value.ToString().Trim();
-                        for (int j = 0; j < datag2.RowCount - 1; j++)
-                        {
-                            mabang2 = datag2.Rows[j].Cells[0].Value.ToString();
-                            if (mabang3 == mabang2)
-                            {
-                                datag3.Rows[i].Selected = true;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    radioMathieu.BackColor = Color.White;
-                    radioMathieu.ForeColor = Color.Black;
-                }
-            }
-            catch (Exception)
-            {
-                radioTatca.Checked = true;
-                return;
-            }
-            
-
-        }
-
-        private void radioTatca_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioTatca.Checked)
-            {
-                radioTatca.BackColor = Color.RoyalBlue;
-                radioTatca.ForeColor = Color.White;
-            }
-            else
-            {
-                radioTatca.BackColor = Color.White;
-                radioTatca.ForeColor = Color.Black;
-            }
-        }
-
+        
+        
         private void chuyenhang_Resize(object sender, EventArgs e)
         {
             if (this.Width > 1170)
@@ -826,6 +776,28 @@ namespace khocnf
             string h = @"{
                         }";
             File.WriteAllText("dulieucopy.json", h);
+        }
+
+        private void nut_checkmathieu_CheckedChanged(object sender, EventArgs e)
+        {
+            if (nut_checkmathieu.Checked)
+            {
+                string mabang3 = null;
+                string mabang2 = null;
+                for (int i = 0; i < datag3.RowCount - 1; i++)
+                {
+                    mabang3 = datag3.Rows[i].Cells[0].Value.ToString().Trim();
+                    for (int j = 0; j < datag2.RowCount - 1; j++)
+                    {
+                        mabang2 = datag2.Rows[j].Cells[0].Value.ToString();
+                        if (mabang3 == mabang2)
+                        {
+                            datag3.Rows[i].Selected = true;
+                        }
+                    }
+                }
+            }
+            else datag3.ClearSelection();
         }
     }
 }

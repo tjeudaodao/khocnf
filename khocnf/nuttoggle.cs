@@ -16,6 +16,12 @@ namespace khocnf
             SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
             Padding = new Padding(6);
         }
+        private Brush mamau = Brushes.SpringGreen;
+        public Brush mauChon
+        {
+            get { return mamau; }
+            set { mamau = value; Invalidate(); }
+        }
         protected override void OnPaint(PaintEventArgs e)
         {
             this.OnPaintBackground(e);
@@ -31,7 +37,7 @@ namespace khocnf
                 r = Height - 1;
                 var rect = Checked ? new Rectangle(Width - r - 1, 0, r, r)
                                    : new Rectangle(0, 0, r, r);
-                e.Graphics.FillEllipse(Checked ? Brushes.SpringGreen : Brushes.Gainsboro, rect);
+                e.Graphics.FillEllipse(Checked ? mamau : Brushes.Gainsboro, rect);
             }
         }
     }

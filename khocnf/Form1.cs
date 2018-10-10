@@ -38,6 +38,13 @@ namespace khocnf
             tuCapnhat = new Thread(hamkiemtra);
             tuCapnhat.IsBackground = true;
             tuCapnhat.Start();
+
+            if (!File.Exists("dulieucopy.json"))
+            {
+                string h = @"{
+                        }";
+                File.WriteAllText("dulieucopy.json", h);
+            }
         }
         public void CloseCheckupdate()
         {

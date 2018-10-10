@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(chuyenhang));
             this.grbthongtindon = new System.Windows.Forms.GroupBox();
             this.radioMatong = new System.Windows.Forms.RadioButton();
@@ -61,8 +61,6 @@
             this.pbsave = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtSLIN = new System.Windows.Forms.TextBox();
-            this.radioMathieu = new System.Windows.Forms.RadioButton();
-            this.radioTatca = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -70,6 +68,8 @@
             this.txtTencuahang = new System.Windows.Forms.TextBox();
             this.lbThongbao = new System.Windows.Forms.Label();
             this.pbXoaNhap = new System.Windows.Forms.PictureBox();
+            this.nut_checkmathieu = new khocnf.nuttoggle();
+            this.label5 = new System.Windows.Forms.Label();
             this.grbthongtindon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datag2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datag1)).BeginInit();
@@ -200,7 +200,7 @@
             // 
             this.btninnhat.Font = new System.Drawing.Font("Comic Sans MS", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btninnhat.ForeColor = System.Drawing.Color.DimGray;
-            this.btninnhat.Location = new System.Drawing.Point(15, 16);
+            this.btninnhat.Location = new System.Drawing.Point(17, 12);
             this.btninnhat.Name = "btninnhat";
             this.btninnhat.Size = new System.Drawing.Size(150, 34);
             this.btninnhat.TabIndex = 20;
@@ -305,23 +305,23 @@
             this.datag2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.datag2.BackgroundColor = System.Drawing.Color.White;
             this.datag2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datag2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datag2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.datag2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datag2.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datag2.DefaultCellStyle = dataGridViewCellStyle14;
             this.datag2.Location = new System.Drawing.Point(378, 322);
             this.datag2.Name = "datag2";
             this.datag2.RowHeadersVisible = false;
@@ -353,23 +353,23 @@
             this.datag3.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.datag3.BackgroundColor = System.Drawing.Color.White;
             this.datag3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datag3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datag3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.datag3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datag3.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datag3.DefaultCellStyle = dataGridViewCellStyle16;
             this.datag3.Location = new System.Drawing.Point(11, 322);
             this.datag3.Name = "datag3";
             this.datag3.RowHeadersVisible = false;
@@ -437,14 +437,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.nut_checkmathieu);
             this.groupBox1.Controls.Add(this.txtSLIN);
             this.groupBox1.Controls.Add(this.btntachdon);
             this.groupBox1.Controls.Add(this.lbthongtin);
             this.groupBox1.Controls.Add(this.btnxuatexcel);
             this.groupBox1.Controls.Add(this.lbsoluongdon);
-            this.groupBox1.Controls.Add(this.radioMathieu);
-            this.groupBox1.Controls.Add(this.radioTatca);
             this.groupBox1.Controls.Add(this.btninnhat);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(15, 16);
             this.groupBox1.Name = "groupBox1";
@@ -457,40 +457,13 @@
             this.txtSLIN.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSLIN.Font = new System.Drawing.Font("Comic Sans MS", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSLIN.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtSLIN.Location = new System.Drawing.Point(171, 19);
+            this.txtSLIN.Location = new System.Drawing.Point(171, 15);
             this.txtSLIN.Name = "txtSLIN";
             this.txtSLIN.Size = new System.Drawing.Size(64, 28);
             this.txtSLIN.TabIndex = 23;
             this.txtSLIN.Text = "1";
             this.txtSLIN.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSLIN.Click += new System.EventHandler(this.txtSLIN_Click);
-            // 
-            // radioMathieu
-            // 
-            this.radioMathieu.AutoSize = true;
-            this.radioMathieu.Location = new System.Drawing.Point(116, 56);
-            this.radioMathieu.Name = "radioMathieu";
-            this.radioMathieu.Size = new System.Drawing.Size(119, 19);
-            this.radioMathieu.TabIndex = 22;
-            this.radioMathieu.Text = "Chỉ những mã thiếu";
-            this.radioMathieu.UseVisualStyleBackColor = true;
-            this.radioMathieu.CheckedChanged += new System.EventHandler(this.radioMathieu_CheckedChanged);
-            // 
-            // radioTatca
-            // 
-            this.radioTatca.AutoSize = true;
-            this.radioTatca.BackColor = System.Drawing.Color.RoyalBlue;
-            this.radioTatca.Checked = true;
-            this.radioTatca.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.radioTatca.ForeColor = System.Drawing.SystemColors.Control;
-            this.radioTatca.Location = new System.Drawing.Point(15, 57);
-            this.radioTatca.Name = "radioTatca";
-            this.radioTatca.Size = new System.Drawing.Size(74, 19);
-            this.radioTatca.TabIndex = 21;
-            this.radioTatca.TabStop = true;
-            this.radioTatca.Text = "Tất cả mã";
-            this.radioTatca.UseVisualStyleBackColor = false;
-            this.radioTatca.CheckedChanged += new System.EventHandler(this.radioTatca_CheckedChanged);
             // 
             // label3
             // 
@@ -567,6 +540,28 @@
             this.pbXoaNhap.TabStop = false;
             this.pbXoaNhap.Click += new System.EventHandler(this.pbXoaNhap_Click);
             // 
+            // nut_checkmathieu
+            // 
+            this.nut_checkmathieu.AutoSize = true;
+            this.nut_checkmathieu.Location = new System.Drawing.Point(149, 49);
+            this.nut_checkmathieu.Name = "nut_checkmathieu";
+            this.nut_checkmathieu.Padding = new System.Windows.Forms.Padding(6);
+            this.nut_checkmathieu.Size = new System.Drawing.Size(90, 31);
+            this.nut_checkmathieu.TabIndex = 28;
+            this.nut_checkmathieu.Text = "nuttoggle1";
+            this.nut_checkmathieu.UseVisualStyleBackColor = true;
+            this.nut_checkmathieu.CheckedChanged += new System.EventHandler(this.nut_checkmathieu_CheckedChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(19, 54);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(114, 19);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Check mã thiếu: ";
+            // 
             // chuyenhang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -642,8 +637,6 @@
         private System.Windows.Forms.Button btninnhat;
         private System.Windows.Forms.Label lbtinhtrang;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioMathieu;
-        private System.Windows.Forms.RadioButton radioTatca;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbthongtin;
         private System.Windows.Forms.Panel panel1;
@@ -656,5 +649,7 @@
         private System.Windows.Forms.Label lbThongbao;
         private System.Windows.Forms.TextBox txtSLIN;
         private System.Windows.Forms.PictureBox pbXoaNhap;
+        private nuttoggle nut_checkmathieu;
+        private System.Windows.Forms.Label label5;
     }
 }

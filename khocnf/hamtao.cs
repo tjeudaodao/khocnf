@@ -61,9 +61,22 @@ namespace khocnf
             pop.Delay = sogiayhienthi *1000;
             pop.BorderColor = System.Drawing.Color.DimGray;
             pop.HeaderHeight = 1;
+            pop.Click += Pop_Click;
             pop.Popup();
         }
-        
+
+        private static void Pop_Click(object sender, EventArgs e)
+        {
+            if (duongdanfileexcel != null)
+            {
+                var app = new excel.Application();
+
+                excel.Workbooks book = app.Workbooks;
+                excel.Workbook sh = book.Open(duongdanfileexcel);
+                app.Visible = true;
+            }
+        }
+
         public static void tudongnhaydenmasp(DataGridView dtv, string masp)
         {
             try
@@ -229,7 +242,7 @@ namespace khocnf
         public static string duongdanfileexcel = "";
         public static string layduongdan()
         {
-            return duongdanfileexcel;
+            return Path.GetDirectoryName(duongdanfileexcel);
         }
         public static void TaofileJSON(Dictionary<string,string> json)
         {
@@ -401,7 +414,7 @@ namespace khocnf
             book.Close();
             app.Quit();
         }
-        public static bool xuatfile(DataTable dt, string tongsp,string noinhan,string tencuahang)
+        public static bool xuatfile(DataTable dtmachitiet,DataTable dtmatong, string tongsp,string noinhan,string tencuahang)
         {
             bool kq = false;
             string tenfile = DateTime.Now.ToString("dd-MM");
@@ -430,14 +443,14 @@ namespace khocnf
                         worksheet.Cells["A2"].Value = "Đến : " + noinhan;
                         worksheet.Cells["A3"].Value = "Ngày tạo : " + DateTime.Now.ToString("dd-MM-yyyy");
                         worksheet.Cells["A4"].Value = "Tổng SP : " + tongsp + " sp";
-                        worksheet.Cells["A6"].LoadFromDataTable(dt, true, OfficeOpenXml.Table.TableStyles.Light1);
+                        worksheet.Cells["A6"].LoadFromDataTable(dtmachitiet, true, OfficeOpenXml.Table.TableStyles.Light1);
 
+                        worksheet.Cells["E6"].LoadFromDataTable(dtmatong, true, OfficeOpenXml.Table.TableStyles.Light1);
                         worksheet.Cells[worksheet.Dimension.End.Row + 1, 1].Value = "Tổng sản phẩm:";
                         worksheet.Cells[worksheet.Dimension.End.Row, 3].Value = Int32.Parse(tongsp);
                         worksheet.Column(1).AutoFit();
                         worksheet.Column(2).AutoFit();
-                        worksheet.PrinterSettings.LeftMargin = 0.2M / 2.54M;
-                        worksheet.PrinterSettings.RightMargin = 0.2M / 2.54M;
+                        worksheet.Column(5).AutoFit();
                         package.Save();
 
                     }
@@ -500,6 +513,7 @@ namespace khocnf
             }
             return dtmasp;
         }
+        
         #endregion
         #region tab tim kiem
         public static void xuatfileexceltabtimkiem(DataTable dtkiemhang,DataTable dtchuyenhang,DataTable dtchitietphieu, string ngay)
