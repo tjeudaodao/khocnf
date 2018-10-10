@@ -213,8 +213,8 @@ namespace khocnf
                     }
                     else
                     {
-                        //try
-                        //{
+                        try
+                        {
                             lbmasp.Text = masp;
                             string mamau = masp.Substring(0, 15); // 1bs18a001-sk010
                             string matong = masp.Substring(0, 9);
@@ -260,12 +260,12 @@ namespace khocnf
                                 pbdelete.Image = Properties.Resources.eraser;
                                 chinhsuama = false;
                             }
-                        //}
-                        //catch (Exception)
-                        //{
+                        }
+                        catch (Exception)
+                        {
 
-                        //    hamtao.notifi_hts("Xem lại đi lỗi rồi");
-                        //}
+                            hamtao.notifi_hts("xem lại đi lỗi rồi");
+                        }
                     }
                 }
 
@@ -442,13 +442,13 @@ namespace khocnf
                         txtbarcode.Focus();
                         pbdelete.Image = Properties.Resources.eraser;
                         chinhsuama = false;
-                    }
-                    catch (Exception)
-                    {
-
-                        return;
-                    }
                 }
+                    catch (Exception)
+                {
+
+                    return;
+                }
+            }
 
 
             }

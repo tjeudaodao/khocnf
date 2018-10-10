@@ -473,6 +473,10 @@ namespace khocnf
                 sl1 = dtr[0].ToString();
             }
             Close();
+            if (!int.TryParse(sl1, out int val))
+            {
+                sl1 = "0";
+            }
             return int.Parse(sl1);
         }
         public int laysoluongtudon(string masp)
@@ -776,16 +780,6 @@ namespace khocnf
             SQLiteCommand cmd = new SQLiteCommand(sqlupdate, conn);
             cmd.ExecuteNonQuery();
             Close();
-        }
-        public DataTable tachdon1(string tenbang)
-        {
-            string sql2 = "select masp as 'Mã sản phẩm',soluong1 as 'Sl' from "+tenbang+" where masp notnull group by masp";
-            Open();
-            SQLiteDataAdapter dta = new SQLiteDataAdapter(sql2, conn);
-            DataTable dt1 = new DataTable();
-            dta.Fill(dt1);
-            Close();
-            return dt1;
         }
         
         public string LayTencuahang()
