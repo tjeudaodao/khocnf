@@ -102,30 +102,39 @@ namespace khocnf
             string mau = @"\d\w{2}\d{2}[SWAC]\d{3}-\w{2}\d{3}-\w+";
             string mau2 = @"\d\w{2}\d{2}[SWAC]\d{3}";
             string mau1 = @"\d\w{2}\d{2}[SWAC]\d{3}-\w{2}\d{3}";
-            if (datag3.RowCount >0)
+            try
             {
-                string maspgoc = datag3.Rows[0].Cells[0].Value.ToString().Trim();
-                if (Regex.IsMatch(maspgoc, mau))
+                if (datag3.RowCount > 0)
+                {
+                    string maspgoc = datag3.Rows[0].Cells[0].Value.ToString().Trim();
+                    if (Regex.IsMatch(maspgoc, mau))
+                    {
+                        kihieumasanpham = 1;
+                        radioMacdinh.Checked = true;
+                    }
+                    else if (Regex.IsMatch(maspgoc, mau1))
+                    {
+                        kihieumasanpham = 2;
+                        radioMamau.Checked = true;
+                    }
+                    else if (Regex.IsMatch(maspgoc, mau2))
+                    {
+                        kihieumasanpham = 3;
+                        radioMatong.Checked = true;
+                    }
+                }
+                else
                 {
                     kihieumasanpham = 1;
                     radioMacdinh.Checked = true;
                 }
-                else if (Regex.IsMatch(maspgoc, mau1))
-                {
-                    kihieumasanpham = 2;
-                    radioMamau.Checked = true;
-                }
-                else if (Regex.IsMatch(maspgoc, mau2))
-                {
-                    kihieumasanpham = 3;
-                    radioMatong.Checked = true;
-                }
             }
-            else
+            catch (Exception)
             {
                 kihieumasanpham = 1;
                 radioMacdinh.Checked = true;
             }
+            
         }
         public void HamBatDau()
         {
@@ -428,29 +437,31 @@ namespace khocnf
                     try
                     {
                         string masp = lbmasp.Text;
-                        var dulieu = ketnoi.Khoitao();
-                        dulieu.deletemaspchuyenhang(idrows);
-                        dulieu.updatebangthuathieu(masp, kihieumasanpham);
-                        lbThongbao.Text = "Vừa xóa mã :" + masp + " tại STT: " + idrows;
-                        lbtinhtrang.Text = dulieu.laytinhtrangthuathieu(masp);
-                        dulieu.loadvaodatag1(datag1);
-                        datag2.DataSource = dulieu.laydulieubangthuathieu(kihieumasanpham);
-                        dulieu.baoamthanh(masp);
-                        hamtao.tudongnhaydenmasp(datag2, masp, kihieumasanpham);
-                        lbtongsoluong.Text = dulieu.tongcheckhang();
-                        txtbarcode.Clear();
-                        lbmasp.Text = "-";
-                        txtsoluong.Text = "-";
-                        txtbarcode.Focus();
-                        pbdelete.Image = Properties.Resources.eraser;
-                        chinhsuama = false;
-                }
+                    var dulieu = ketnoi.Khoitao();
+                    dulieu.deletemaspchuyenhang(idrows);
+                    dulieu.loadJSON();
+                    dulieu.valueJSON(masp, kihieumasanpham);
+                    dulieu.updatebangthuathieu(masp, kihieumasanpham);
+                    lbThongbao.Text = "Vừa xóa mã :" + masp + " tại STT: " + idrows;
+                    lbtinhtrang.Text = dulieu.laytinhtrangthuathieu(masp);
+                    dulieu.loadvaodatag1(datag1);
+                    datag2.DataSource = dulieu.laydulieubangthuathieu(kihieumasanpham);
+                    dulieu.baoamthanh(masp);
+                    hamtao.tudongnhaydenmasp(datag2, masp, kihieumasanpham);
+                    lbtongsoluong.Text = dulieu.tongcheckhang();
+                    txtbarcode.Clear();
+                    lbmasp.Text = "-";
+                    txtsoluong.Text = "-";
+                    txtbarcode.Focus();
+                    pbdelete.Image = Properties.Resources.eraser;
+                    chinhsuama = false;
+                    }
                     catch (Exception)
-                {
+                    {
 
-                    return;
+                        return;
+                    }
                 }
-            }
 
 
             }
