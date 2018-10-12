@@ -49,14 +49,15 @@ namespace khocnf
             if (!File.Exists("dulieucopy.json"))
             {
                 string h = @"{
-                        }";
+                            }";
                 File.WriteAllText("dulieucopy.json", h);
             }
             if (!File.Exists("capnhat.json"))
             {
                 string h = @"{
                             'phienban' : '0',
-                            'ngaycapnhat' : '-'
+                            'ngaycapnhat' : '-',
+                            'phienbanSV' : '0' 
                             }                          
                             ";
                 File.WriteAllText("capnhat.json", h);
@@ -99,8 +100,9 @@ namespace khocnf
                 Thread.Sleep(500);
                 xulyJSON js = new xulyJSON("capnhat.json");
                 string layPhienbanSV = layphienbanServer();
+                js.UpdatevalueJSON("phienbanSV", layPhienbanSV);
                 string layphienbanClient = js.ReadJSON("phienban");
-                Console.WriteLine(layphienbanClient + ", " + layPhienbanSV);
+
                 if (layphienbanClient != layPhienbanSV)
                 {
                     this.Invoke(new MethodInvoker(delegate ()
@@ -137,11 +139,12 @@ namespace khocnf
         }
         void hamkiemtra()
         {
+            checkupdate.Join();
             try
             {
                 while (true)
                 {
-                    Thread.Sleep(3000);
+                    Thread.Sleep(1000);
                     string luungayData = layngayClient();
                     string ngaylay = layngayDATA();
                     lbNgayCapnhat.Invoke(new MethodInvoker(delegate ()

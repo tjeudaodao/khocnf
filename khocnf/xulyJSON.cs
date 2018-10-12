@@ -143,5 +143,11 @@ namespace khocnf
         {
             return (string)jotachdon[key];
         }
+        public void UpdatevalueJSON(string key, string valuenew)
+        {
+            jotachdon[key] = valuenew;
+            string output = JsonConvert.SerializeObject(jotachdon, Formatting.Indented);
+            File.WriteAllText("capnhat.json", output);
+        }
     }
 }
