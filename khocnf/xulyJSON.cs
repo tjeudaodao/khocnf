@@ -143,22 +143,5 @@ namespace khocnf
         {
             return (string)jotachdon[key];
         }
-        public void UpdatevalueJSON(string key, string valuenew)
-        {
-            jotachdon[key] = valuenew;
-            string output = JsonConvert.SerializeObject(jotachdon, Formatting.Indented);
-            File.WriteAllText("config.json", output);
-        }
-        public void UpdatevalueJSON(string[,] mangNx2)
-        {
-            for (int i = 0; i < mangNx2.GetLength(0); i++)
-            {
-                string key = mangNx2[i, 0];
-                string value = mangNx2[i, 1];
-                jotachdon[key] = value;
-            }
-            string output = JsonConvert.SerializeObject(jotachdon, Formatting.Indented);
-            File.WriteAllText("config.json", output);
-        }
     }
 }
