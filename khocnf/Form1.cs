@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using System.Threading;
 using System.IO;
 using System.Diagnostics;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace khocnf
 {
@@ -25,6 +27,7 @@ namespace khocnf
         string duongdanAPP = Application.StartupPath;
 
         Thread closecheckupdate;
+        Thread checkupdate;
 
         public Form1()
         {
@@ -33,6 +36,10 @@ namespace khocnf
             closecheckupdate = new Thread(CloseCheckupdate);
             closecheckupdate.IsBackground = true;
             closecheckupdate.Start();
+
+            checkupdate = new Thread(hamcheckupdate);
+            checkupdate.IsBackground = true;
+            checkupdate.Start();
 
             tabnao = 1;
             tuCapnhat = new Thread(hamkiemtra);
@@ -44,6 +51,15 @@ namespace khocnf
                 string h = @"{
                         }";
                 File.WriteAllText("dulieucopy.json", h);
+            }
+            if (!File.Exists("capnhat.json"))
+            {
+                string h = @"{
+                            'phienban' : '0',
+                            'ngaycapnhat' : '-'
+                            }                          
+                            ";
+                File.WriteAllText("capnhat.json", h);
             }
         }
         public void CloseCheckupdate()
@@ -71,17 +87,63 @@ namespace khocnf
                 return cp;
             }
         }
+        public string layphienbanServer()
+        {
+            var con = ketnoimysql.Khoitao();
+            return con.GetPhienban("khocnf");
+        }
+        public void hamcheckupdate()
+        {
+            try
+            {
+                Thread.Sleep(500);
+                xulyJSON js = new xulyJSON("capnhat.json");
+                string layPhienbanSV = layphienbanServer();
+                string layphienbanClient = js.ReadJSON("phienban");
+                Console.WriteLine(layphienbanClient + ", " + layPhienbanSV);
+                if (layphienbanClient != layPhienbanSV)
+                {
+                    this.Invoke(new MethodInvoker(delegate ()
+                    {
+                        DialogResult hoi = MessageBox.Show(this, "Có phiên bản cập nhật mới\nCó muốn cập nhật luôn không?\n\n(Chú ý: Chương trình sẽ đóng lại)", "New update", MessageBoxButtons.YesNo);
+                        if (hoi == DialogResult.Yes)
+                        {
+                            Process chayupdate = Process.Start(Application.StartupPath + "/checkUpdate.exe");
+                            Application.Exit();
+                        }
+                    }));
+                }
+            }
+            catch (Exception e)
+            {
+                ghiloi.ghilog_loi(e);
+                return;
+            }
+            
+        }
+        public string layngayDATA()
+        {
+            try
+            {
+
+                var con = ketnoimysql.Khoitao();
+                return con.LayNgaycapnhat();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         void hamkiemtra()
         {
             try
             {
                 while (true)
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(3000);
                     string luungayData = layngayClient();
-                    var con = ketnoimysql.Khoitao();
-                    string ngaylay = con.LayNgaycapnhat();
-                    
+                    string ngaylay = layngayDATA();
                     lbNgayCapnhat.Invoke(new MethodInvoker(delegate ()
                     {
                         if (luungayData == null)

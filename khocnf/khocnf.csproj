@@ -104,6 +104,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="ftp.cs" />
+    <Compile Include="ghiloi.cs" />
     <Compile Include="hamtao.cs" />
     <Compile Include="ketnoi.cs" />
     <Compile Include="ketnoibarcode.cs" />

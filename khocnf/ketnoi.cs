@@ -120,9 +120,8 @@ namespace khocnf
             cmd.ExecuteNonQuery();
             Close();
         }
-
         #region xuly kiemhang
-        
+
         public string laymatong(string masp)
         {
             string m = null;

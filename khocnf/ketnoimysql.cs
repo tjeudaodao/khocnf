@@ -78,5 +78,17 @@ namespace khocnf
             Close();
             return h;
         }
+        public string GetPhienban(string tenungdung)
+        {
+            string kq = null;
+            string sql = "select phienban from bangcapnhatphanmem where tenungdung = '" + tenungdung + "'";
+            Open();
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader dtr = cmd.ExecuteReader();
+            dtr.Read();
+            kq = dtr[0].ToString();
+            Close();
+            return kq;
+        }
     }
 }
