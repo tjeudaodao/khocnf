@@ -420,29 +420,40 @@ namespace khocnf
             string tenfile = DateTime.Now.ToString("dd-MM");
             if (string.IsNullOrEmpty(noinhan))
             {
-                noinhan = "-";
+                noinhan = "_";
             }
             Random dr = new Random();
-            string ver = " " + dr.Next(1, 10).ToString();
+            string ver =  dr.Next(1, 10).ToString();
             using (SaveFileDialog saveDialog = new SaveFileDialog())
             {
                 saveDialog.Filter = "Excel (.xlsx)|*.xlsx";
-                saveDialog.FileName = noinhan + "-" + tongsp + "sp" +"-"+ tencuahang+ "-ĐC ngày " + tenfile +ver;
+                saveDialog.FileName = "Ngày " + tenfile + "_" + tencuahang + "_ĐC hàng đi_"+noinhan + " = " + tongsp + "sp v" + ver;
+                
                 if (saveDialog.ShowDialog() != DialogResult.Cancel)
                 {
-                    duongdanfileexcel = Path.GetFullPath(saveDialog.FileName);
+                    string fileName = saveDialog.FileName;
+                    duongdanfileexcel = Path.GetFullPath(fileName);
+                    
                     kq = true;
-                    string exportFilePath = saveDialog.FileName;
-                    var newFile = new FileInfo(exportFilePath);
+                    var newFile = new FileInfo(fileName);
                     using (var package = new ExcelPackage(newFile))
                     {
 
-                        ExcelWorksheet worksheet = package.Workbook.Worksheets.Add(tencuahang+ "_Điều chuyển_"+tongsp+"sp");
-
-                        worksheet.Cells["A1"].Value = tencuahang + " _ Điều chuyển";
-                        worksheet.Cells["A2"].Value = "Đến : " + noinhan;
-                        worksheet.Cells["A3"].Value = "Ngày tạo : " + DateTime.Now.ToString("dd-MM-yyyy");
-                        worksheet.Cells["A4"].Value = "Tổng SP : " + tongsp + " sp";
+                        ExcelWorksheet worksheet = package.Workbook.Worksheets.Add(tencuahang+ "-->" + noinhan + "=" + tongsp+"sp");
+                        var chinhFont = worksheet.Cells[1,2,4,2].Style.Font;
+                        chinhFont.SetFromFont(new Font("Calibri", 12, FontStyle.Italic | FontStyle.Bold));
+                        chinhFont.Color.SetColor(Color.RoyalBlue);
+                        worksheet.Cells["B1:C1"].Merge = true;
+                        worksheet.Cells["B2:C2"].Merge = true;
+                        worksheet.Cells["B3:C3"].Merge = true;
+                        worksheet.Cells["B4:C4"].Merge = true;
+                        worksheet.Cells["B1"].Value = tencuahang + " _ Điều chuyển";
+                        worksheet.Cells["A2"].Value = "Đến: ";
+                        worksheet.Cells["A3"].Value = "Ngày tạo: ";
+                        worksheet.Cells["A4"].Value = "Tổng SP: ";
+                        worksheet.Cells["B2"].Value = noinhan;
+                        worksheet.Cells["B3"].Value = DateTime.Now.ToString("dd-MM-yyyy"); 
+                        worksheet.Cells["B4"].Value = tongsp + " sp";
                         worksheet.Cells["A6"].LoadFromDataTable(dtmachitiet, true, OfficeOpenXml.Table.TableStyles.Light1);
 
                         worksheet.Cells["E6"].LoadFromDataTable(dtmatong, true, OfficeOpenXml.Table.TableStyles.Light1);

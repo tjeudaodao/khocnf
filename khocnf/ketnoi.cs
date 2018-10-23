@@ -592,7 +592,7 @@ namespace khocnf
         }
         public DataTable laydulieubangCOPY()
         {
-            string sql = "select masp as 'Ma san pham',soluong1 as 'SL' from bangtamchuyenhang1 group by masp";
+            string sql = "select masp as 'Mã sản phẩm',soluong1 as 'SL' from bangtamchuyenhang1 group by masp";
             Open();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
             DataTable dt = new DataTable();
@@ -753,7 +753,7 @@ namespace khocnf
         }
         public DataTable laybangxuatchuyenhang()
         {
-            string sql = "select barcode as 'Barcode',masp as 'Mã thực tế', sum(soluong) as 'Số lượng' from bangtamchuyenhang group by masp";
+            string sql = "select barcode as 'Barcode',masp as 'Mã chi tiết', sum(soluong) as 'Số lượng' from bangtamchuyenhang group by masp";
             Open();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
             DataTable dt = new DataTable();
@@ -773,7 +773,7 @@ namespace khocnf
         }
         public DataTable laybangdein() // sua lai lay du lieu in tu bangtamchuyenhang thay vi lay tu bangthuathieu
         {
-            string sql = "select masp as 'Mã thực tế', sum(soluong) as 'SL TT' from bangtamchuyenhang group by masp";
+            string sql = "select masp as 'Mã chi tiết', sum(soluong) as 'SL TT' from bangtamchuyenhang group by masp";
             Open();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, conn);
             DataTable dt = new DataTable();
