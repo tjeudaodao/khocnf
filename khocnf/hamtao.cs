@@ -260,7 +260,7 @@ namespace khocnf
                 dt.Columns.Add("SL");
                 dt.AcceptChanges();
                 string goc = o.GetData(DataFormats.Text).ToString().TrimEnd("\r\n".ToCharArray());
-                string mau = @"\d\w{2}\d{2}[SWACswac]\d{3}-\w{2}\d{3}-\w+\s+\d+"; // loc theo ma chi tiet
+                string mau = @"\d\w{2}\d{2}[SWACswac]\d{3}-\w{2}\d{3}-(\w+|\w+/\w+)\s+\d+"; // loc theo ma chi tiet
                 string mau1 = @"\d\w{2}\d{2}[SWACswac]\d{3}-\w{2}\d{3}\s+\d+"; // loc theo ma mau
                 string mau1_1 = @"(?<matong>\d\w{2}\d{2}[SWACswac]\d{3}\s+.*)"; // loc theo ma tong
                 string mau2 = @"\s+";

@@ -605,7 +605,7 @@ namespace khocnf
                         if (nut_checkmathieu.Checked)
                         {
                             string tenfile = @"dulieutach.json";
-                            File.Copy("dulieucopy.json", tenfile);
+                            File.Copy("dulieucopy.json", tenfile, true);
                             xulyJSON xl = new xulyJSON(tenfile);
 
                             dt = xl.tachDON(datag2,tenfile,xl.get(tenfile));
