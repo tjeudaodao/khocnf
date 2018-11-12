@@ -38,29 +38,34 @@ namespace khocnf
             lbtongsoluong.Text = dulieu.tongcheckhang();
             lbsoluongdon.Text = xulyJSON.tongsoluongValue();
         }
-        public void xuatexcel()
+        public bool xuatexcel()
         {
+            bool kq = false;
             try
             {
                 var dulieu = ketnoi.Khoitao();
                 if (datag2.RowCount > 0)
                 {
-                    if (hamtao.xuatfile(dulieu.laybangxuatchuyenhang(),dulieu.laybangxuatchuyenhang_matong(), lbtongsoluong.Text, txtnoinhan.Text, txtTencuahang.Text))
+                    if (hamtao.xuatfile(dulieu.laybangxuatchuyenhang(), dulieu.laybangxuatchuyenhang_matong(), lbtongsoluong.Text, txtnoinhan.Text, txtTencuahang.Text))
                     {
                         hamtao.taovainfileexcelchuyenhang(dulieu.laybangdein(), lbtongsoluong.Text, txtnoinhan.Text, txtTencuahang.Text);
                         hamtao.notifi_hts("Đường dẫn:'" + hamtao.layduongdan() + "'\nClick để mở FILE.", 5);
                         lbThongbao.Text = "Đường dẫn: '" + hamtao.layduongdan();
-                        return;
+                        kq = true;
                     }
-                    
+                    kq = false;
                 }
-                hamtao.notifi_hts("Chưa có gì mà xuất :)");
+                else
+                {
+                    hamtao.notifi_hts("Chưa có gì mà xuất :)");
+                    kq = false;
+                }
             }
             catch (Exception)
             {
-
-                return;
+                kq = false;
             }
+            return kq;
         }
         public void lammoitatca()
         {
@@ -644,19 +649,22 @@ namespace khocnf
             {
                 try
                 {
-                    xulyJSON hh = new xulyJSON();
-                    lbThongbao.Text = "Đang tách đơn ... ";
-                    var dulieu = ketnoi.Khoitao();
-                    xuatexcel();
-                    dulieu.savevaobangchuyenhang(ngay, gio);
-                    dulieu.xoabangtamchuyenhang();
-                    dulieu.xoabangthuathieu();
-                    datag3.DataSource = hh.tachDON(datag2,"dulieucopy.json",hh.get());
+                    if (xuatexcel())
+                    {
+                        xulyJSON hh = new xulyJSON();
+                        lbThongbao.Text = "Đang tách đơn ... ";
+                        var dulieu = ketnoi.Khoitao();
+                        dulieu.savevaobangchuyenhang(ngay, gio);
+                        dulieu.xoabangtamchuyenhang();
+                        dulieu.xoabangthuathieu();
+                        datag3.DataSource = hh.tachDON(datag2, "dulieucopy.json", hh.get());
 
-                    lammoitatca();
-                    lbsoluongdon.Text = hh.tongsoluongValue(hh.get());
-                    hamtao.notifi_hts("OK ,Triển chiêu");
-                    lbThongbao.Text = "-";
+                        lammoitatca();
+                        lbsoluongdon.Text = hh.tongsoluongValue(hh.get());
+                        hamtao.notifi_hts("OK ,Triển chiêu");
+                        lbThongbao.Text = "-";
+                    }
+                    return;
                 }
                 catch (Exception)
                 {
