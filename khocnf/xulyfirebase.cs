@@ -25,7 +25,7 @@ namespace khocnf
             AuthSecret = "w2evy6pLiTOlWdsl3ZJ40eJ1qvCkCrFGUecs2kou",
             BasePath = "https://danhmucvm-cnf.firebaseio.com/"
         };
-        public static JObject jo = JObject.Parse(File.ReadAllText("capnhat.json"));
+        public static JObject jo = JObject.Parse(File.ReadAllText("capnhatdb.json"));
         // class
         
 
@@ -71,7 +71,7 @@ namespace khocnf
                     jo["dbbarcode"]["phienban_cl"] = phienbanSV;
                     jo["dbbarcode"]["phienban_sv"] = phienbanSV;
                     string output = JsonConvert.SerializeObject(jo, Formatting.Indented);
-                    File.WriteAllText("capnhat.json", output);
+                    File.WriteAllText("capnhatdb.json", output);
 
                     string ngay = await layngaybarcode();
                     lbngaycapnhat.Invoke(new MethodInvoker(delegate ()
@@ -88,7 +88,7 @@ namespace khocnf
                     jo["dbbarcode"]["phienban_cl"] = "0";
                     jo["dbbarcode"]["phienban_sv"] = phienbanSV;
                     string output = JsonConvert.SerializeObject(jo, Formatting.Indented);
-                    File.WriteAllText("capnhat.json", output);
+                    File.WriteAllText("capnhatdb.json", output);
                     return;
                 }
                 
