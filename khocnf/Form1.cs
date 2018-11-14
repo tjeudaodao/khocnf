@@ -23,7 +23,6 @@ namespace khocnf
         kiemhang uskiemhang = new kiemhang();
         chuyenhang uschuyenhang = new chuyenhang();
         timkiem ustimkiem = new timkiem();
-        Thread tuCapnhat;
         string duongdanAPP = Application.StartupPath;
 
         Thread closecheckupdate;
@@ -42,9 +41,8 @@ namespace khocnf
             checkupdate.Start();
 
             tabnao = 1;
-            tuCapnhat = new Thread(hamkiemtra);
-            tuCapnhat.IsBackground = true;
-            tuCapnhat.Start();
+
+            xulyfirebase.langnghe(lbNgayCapnhat, this);
 
             if (!File.Exists("dulieucopy.json"))
             {
@@ -123,110 +121,58 @@ namespace khocnf
             }
             
         }
-        public string layngayDATA()
-        {
-            try
-            {
-
-                var con = ketnoimysql.Khoitao();
-                return con.LayNgaycapnhat();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-        void hamkiemtra()
-        {
-            checkupdate.Join();
-            try
-            {
-                while (true)
-                {
-                    Thread.Sleep(1000);
-                    string luungayData = layngayClient();
-                    string ngaylay = layngayDATA();
-                    lbNgayCapnhat.Invoke(new MethodInvoker(delegate ()
-                    {
-                        if (luungayData == null)
-                        {
-                            lbNgayCapnhat.Text = "-";
-                        }
-                        lbNgayCapnhat.Text = luungayData;
-                    }));
-                    if (luungayData != ngaylay)
-                    {
-                        pbANHNEN.Invoke(new MethodInvoker(delegate ()
-                        {
-                            pbANHNEN.Image = Properties.Resources.down;
-                        }));
-
-                        btnUPDATE.Invoke(new MethodInvoker(delegate ()
-                        {
-                            btnUPDATE.Image = Properties.Resources.update;
-                        }));
-                    }
-                    Thread.Sleep(300000);
-                }
-                
-
-                //}
-            }
-            catch (Exception)
-            {
-
-                hamtao.notifi_hts("Có lỗi cập nhật");
-            }
+        //public async void hamcapnhatdb()
+        //{
+        //    //string phienbansv = await xulyfirebase.layPhienbanbarcode();
+        //    //JObject jo = JObject.Parse(File.ReadAllText("capnhat.json"));
+        //    //string phienbancl = jo["dbbarcode"]["phienban_cl"].ToString();
+        //    //if (phienbansv != phienbancl)
+        //    //{
+        //    //    xulyfirebase.taifiledbbarcode(phienbansv, lbNgayCapnhat, this);
+        //    //}
             
-        }
-        public string layngayClient()
-        {
-            var consqlite = ketnoi.Khoitao();
-            return consqlite.layngayData();
-        }
+        //}
         void hamKiemtay()
         {
-            try
-            {
-                var con = ketnoimysql.Khoitao();
-                var consqlite = ketnoi.Khoitao();
-                ftp ftpClient = new ftp(@"ftp://27.72.29.28/", "hts", "hoanglaota");
-                string ngaylay = con.LayNgaycapnhat();
-                string ngayclient = consqlite.layngayData();
-                Console.WriteLine(ngaylay + "-" + ngayclient);
+            //try
+            //{
+            //    var con = ketnoimysql.Khoitao();
+            //    var consqlite = ketnoi.Khoitao();
+            //    ftp ftpClient = new ftp(@"ftp://27.72.29.28/", "hts", "hoanglaota");
+            //    string ngaylay = con.LayNgaycapnhat();
+            //    string ngayclient = consqlite.layngayData();
 
-                if (ngaylay != ngayclient)
-                {
-                    btnUPDATE.Invoke(new MethodInvoker(delegate ()
-                    {
-                        btnUPDATE.Image = Properties.Resources.update;
-                        //if (File.Exists(Application.StartupPath + @"\databarcode.db"))
-                        //{
-                        //    File.Delete(Application.StartupPath + @"\databarcode.db");
-                        //}
-                        ftpClient.download("app/luutru/databarcode.db", Application.StartupPath + @"\databarcode.db");
+            //    if (ngaylay != ngayclient)
+            //    {
+            //        btnUPDATE.Invoke(new MethodInvoker(delegate ()
+            //        {
+            //            btnUPDATE.Image = Properties.Resources.update;
+            //            //if (File.Exists(Application.StartupPath + @"\databarcode.db"))
+            //            //{
+            //            //    File.Delete(Application.StartupPath + @"\databarcode.db");
+            //            //}
+            //            ftpClient.download("app/luutru/databarcode.db", Application.StartupPath + @"\databarcode.db");
 
 
-                        btnUPDATE.Image = Properties.Resources.hetupdate;
+            //            btnUPDATE.Image = Properties.Resources.hetupdate;
                         
-                    }));
-                    lbNgayCapnhat.Invoke(new MethodInvoker(delegate ()
-                    {
-                        lbNgayCapnhat.Text = ngaylay;
-                    }));
-                    pbANHNEN.Invoke(new MethodInvoker(delegate ()
-                    {
-                        pbANHNEN.Image = Properties.Resources.totoro1;
-                    }));
-                    consqlite.updatengayData(ngaylay);
-                }
-            }
-            catch (Exception)
-            {
+            //        }));
+            //        lbNgayCapnhat.Invoke(new MethodInvoker(delegate ()
+            //        {
+            //            lbNgayCapnhat.Text = ngaylay;
+            //        }));
+            //        pbANHNEN.Invoke(new MethodInvoker(delegate ()
+            //        {
+            //            pbANHNEN.Image = Properties.Resources.totoro1;
+            //        }));
+            //        consqlite.updatengayData(ngaylay);
+            //    }
+            //}
+            //catch (Exception)
+            //{
 
-                return;
-            }
+            //    return;
+            //}
 
         }
         private void btnchuyenhang_Click(object sender, EventArgs e)
@@ -276,9 +222,6 @@ namespace khocnf
         private void pbclose_Click(object sender, EventArgs e)
         {
             this.Close();
-            var dulieu = ketnoi.Khoitao();
-            dulieu.savevaobangkiemhang();
-            dulieu.xoabangtam2();
         }
 
        
@@ -365,7 +308,6 @@ namespace khocnf
                 xulyBTN(btnkiemhang, "", thugon);
                 xulyBTN(btnchuyenhang, "", thugon);
                 xulyBTN(btntimkiem, "", thugon);
-                xulyBTN(btnUPDATE, "", thugon);
                 xulyBTN(btnAMTHANH, "", thugon);
                 xulyBTN(btn_Backup, "", thugon);
                 xulyBTN(btn_restore, "", thugon);
@@ -379,7 +321,6 @@ namespace khocnf
                 xulyBTN(btnkiemhang, "Kiểm hàng", thugon);
                 xulyBTN(btnchuyenhang, "Chuyển hàng", thugon);
                 xulyBTN(btntimkiem, "Tìm kiếm", thugon);
-                xulyBTN(btnUPDATE, "", thugon);
                 xulyBTN(btnAMTHANH, "", thugon);
                 xulyBTN(btn_Backup, "", thugon);
                 xulyBTN(btn_restore, "", thugon);
@@ -403,26 +344,7 @@ namespace khocnf
                 btn.Text = noidung;
             }
         }
-        private void btnUPDATE_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                
-                Thread kiemtra = new Thread(hamKiemtay);
-                kiemtra.IsBackground = true;
-                
-                    kiemtra.Start();
-
-                   
-                
-            }
-            catch (Exception)
-            {
-
-                hamtao.notifi_hts("Có vấn đề, xem lại");
-            }
-        }
-
+        
         private void btnAMTHANH_Click(object sender, EventArgs e)
         {
             chay = !chay;

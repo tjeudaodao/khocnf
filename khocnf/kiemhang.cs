@@ -221,8 +221,21 @@ namespace khocnf
             try
             {
                 var dulieu = ketnoi.Khoitao();
-                dulieu.xoabangtam();
-                dulieu.xoabangtam2();
+                if (dulieu.kiemtraBang() != null)
+                {
+                    DialogResult hoi =   MessageBox.Show("Còn dữ liệu kiểm hàng lần trước.\nCó muốn kiểm tiếp không?","???" ,MessageBoxButtons.YesNo);
+                    if (hoi == DialogResult.Yes)
+                    {
+                        datag1.DataSource = dulieu.bangkiemhang1();
+                        datag2.DataSource = dulieu.locdulieu("matong");
+                    }
+                    else
+                    {
+                        dulieu.savevaobangkiemhang();
+                        dulieu.xoabangtam();
+                        dulieu.xoabangtam2();
+                    }
+                }
                 chinhsizecot = false;
                 txtbarcode.Enabled = true;
                 ngay = DateTime.Now.ToString("dd-MM-yyyy");

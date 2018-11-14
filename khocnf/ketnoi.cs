@@ -132,6 +132,20 @@ namespace khocnf
             }
             return m;
         }
+        public string kiemtraBang()
+        {
+            string sql = "select * from btkiemhang1";
+            string sl = null;
+            Open();
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            SQLiteDataReader dtr = cmd.ExecuteReader();
+            while (dtr.Read())
+            {
+                sl = dtr[0].ToString();
+            }
+            Close();
+            return sl;
+        }
         public string tongsoluongbt1()
         {
             string sql = "select sum(soluong) from btkiemhang1";

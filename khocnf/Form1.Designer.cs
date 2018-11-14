@@ -35,7 +35,6 @@
             this.panthaydoi = new System.Windows.Forms.Panel();
             this.btn_restore = new System.Windows.Forms.Button();
             this.btn_Backup = new System.Windows.Forms.Button();
-            this.btnUPDATE = new System.Windows.Forms.Button();
             this.btntimkiem = new System.Windows.Forms.Button();
             this.btnchuyenhang = new System.Windows.Forms.Button();
             this.btnkiemhang = new System.Windows.Forms.Button();
@@ -65,7 +64,6 @@
             this.pantieude.Controls.Add(this.panthaydoi);
             this.pantieude.Controls.Add(this.btn_restore);
             this.pantieude.Controls.Add(this.btn_Backup);
-            this.pantieude.Controls.Add(this.btnUPDATE);
             this.pantieude.Controls.Add(this.btntimkiem);
             this.pantieude.Controls.Add(this.btnchuyenhang);
             this.pantieude.Controls.Add(this.btnkiemhang);
@@ -141,23 +139,6 @@
             this.btn_Backup.UseVisualStyleBackColor = false;
             this.btn_Backup.Click += new System.EventHandler(this.btn_Backup_Click);
             // 
-            // btnUPDATE
-            // 
-            this.btnUPDATE.BackColor = System.Drawing.Color.DimGray;
-            this.btnUPDATE.FlatAppearance.BorderSize = 0;
-            this.btnUPDATE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUPDATE.Font = new System.Drawing.Font("Comic Sans MS", 4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUPDATE.ForeColor = System.Drawing.Color.SpringGreen;
-            this.btnUPDATE.Image = ((System.Drawing.Image)(resources.GetObject("btnUPDATE.Image")));
-            this.btnUPDATE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnUPDATE.Location = new System.Drawing.Point(22, 400);
-            this.btnUPDATE.Name = "btnUPDATE";
-            this.btnUPDATE.Size = new System.Drawing.Size(150, 50);
-            this.btnUPDATE.TabIndex = 1;
-            this.btnUPDATE.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnUPDATE.UseVisualStyleBackColor = false;
-            this.btnUPDATE.Click += new System.EventHandler(this.btnUPDATE_Click);
-            // 
             // btntimkiem
             // 
             this.btntimkiem.BackColor = System.Drawing.Color.DimGray;
@@ -167,7 +148,7 @@
             this.btntimkiem.ForeColor = System.Drawing.SystemColors.Control;
             this.btntimkiem.Image = ((System.Drawing.Image)(resources.GetObject("btntimkiem.Image")));
             this.btntimkiem.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btntimkiem.Location = new System.Drawing.Point(22, 292);
+            this.btntimkiem.Location = new System.Drawing.Point(22, 353);
             this.btntimkiem.Name = "btntimkiem";
             this.btntimkiem.Size = new System.Drawing.Size(150, 80);
             this.btntimkiem.TabIndex = 1;
@@ -185,7 +166,7 @@
             this.btnchuyenhang.ForeColor = System.Drawing.SystemColors.Control;
             this.btnchuyenhang.Image = ((System.Drawing.Image)(resources.GetObject("btnchuyenhang.Image")));
             this.btnchuyenhang.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnchuyenhang.Location = new System.Drawing.Point(22, 179);
+            this.btnchuyenhang.Location = new System.Drawing.Point(22, 209);
             this.btnchuyenhang.Name = "btnchuyenhang";
             this.btnchuyenhang.Size = new System.Drawing.Size(150, 80);
             this.btnchuyenhang.TabIndex = 1;
@@ -353,7 +334,6 @@
         private System.Windows.Forms.Panel panMain;
         private System.Windows.Forms.Button btnTHUGON;
         private System.Windows.Forms.Button btnAMTHANH;
-        private System.Windows.Forms.Button btnUPDATE;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pbANHNEN;
         private System.Windows.Forms.Panel panTop_Left;
